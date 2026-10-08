@@ -632,18 +632,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sensitivity Slider
       objectReference: {fileID: 0}
-    - target: {fileID: 4385116852346562782, guid: 263ae8a86b60e75428de5dc600308146, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4712841692104864569, guid: 263ae8a86b60e75428de5dc600308146, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4712841692104864569, guid: 263ae8a86b60e75428de5dc600308146, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7981741967921494104, guid: 263ae8a86b60e75428de5dc600308146, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

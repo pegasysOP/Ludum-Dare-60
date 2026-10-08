@@ -37,7 +37,7 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager Instance;
 
-    public void Init()
+    private void Awake()
     {
         Instance = this;
 
@@ -51,6 +51,12 @@ public class AudioManager : MonoBehaviour
         if (uiSfxSource != null) uiSfxSource.spatialBlend = 0f;
 
         UpdateVolume();
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+            Instance = null;
     }
 
     //==================== SFX ====================

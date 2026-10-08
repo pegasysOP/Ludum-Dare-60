@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public AudioManager audioManager;
 
     public PlayerController playerController;
     public CameraController cameraController;
@@ -33,7 +32,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         escapeAction = InputSystem.actions.FindAction("Escape");
-        audioManager.Init();
         
         UpdateUI();
 
