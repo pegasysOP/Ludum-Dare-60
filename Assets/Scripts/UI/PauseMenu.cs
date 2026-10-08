@@ -99,7 +99,7 @@ public class PauseMenu : MonoBehaviour
 
     private void OnResumeButtonClick()
     {
-        Toggle();
+        GameManager.Instance.TogglePauseMenu();
     }
 
     private void OnQuitButtonClick()

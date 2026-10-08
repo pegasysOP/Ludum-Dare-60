@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void TogglePauseMenu()
+    public void TogglePauseMenu()
     {
         if (hudController == null || hudController.pauseMenu == null)
         {
