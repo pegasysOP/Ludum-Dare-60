@@ -8,6 +8,7 @@ public class CameraController : MonoBehaviour
     public float yaw;
     public float pitch;
     public float mouseSensitivity;
+    public float stickLookSpeed = 180f;
     public float maxLookAngle;
 
     private Vector3 cameraBaseLocalPos;
@@ -38,15 +39,21 @@ public class CameraController : MonoBehaviour
         if (GameManager.Instance.LOCKED)
             return;
         
-        Vector2 lookValue = lookAction.ReadValue<Vector2>() * 0.02f;
+        Vector2 lookValue = lookAction.ReadValue<Vector2>();
 
-        yaw += lookValue.x * mouseSensitivity * sensitivitySetting;
-        pitch -= lookValue.y * mouseSensitivity * sensitivitySetting;
+        // stick is a rate, mouse is already per frame
+        if (lookAction.activeControl?.device is Gamepad)
+            lookValue *= stickLookSpeed * Time.deltaTime;
+        else
+            lookValue *= mouseSensitivity * 0.02f;
+
+        yaw += lookValue.x * sensitivitySetting;
+        pitch -= lookValue.y * sensitivitySetting;
 
         pitch = Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle);
 
-        transform.localEulerAngles = new Vector3(0, yaw, 0);
-        playerCamera.transform.localEulerAngles = new Vector3(pitch, 0, 0);
+        // body yaw is applied in PlayerController.FixedUpdate
+        playerCamera.transform.rotation = Quaternion.Euler(pitch, yaw, 0);
     }
 
     public void UpdateSensitivity(float value)
@@ -92,7 +99,6 @@ public class CameraController : MonoBehaviour
         yaw = Mathf.LerpAngle(yaw, desiredYaw, t);
         pitch = Mathf.Lerp(pitch, desiredPitch, t);
 
-        transform.localEulerAngles = new Vector3(0, yaw, 0);
-        playerCamera.transform.localEulerAngles = new Vector3(pitch, 0, 0);
+        playerCamera.transform.rotation = Quaternion.Euler(pitch, yaw, 0);
     }
 }

@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
     public Rigidbody rb;
+    public CameraController cameraController;
     public float moveSpeed;
     public float moveAcceleration;
     public float maxVelocity;
@@ -133,6 +134,8 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         if (inCutscene) return;
+
+        rb.MoveRotation(Quaternion.Euler(0, cameraController.yaw, 0));
 
         Vector3 moveDir = transform.TransformDirection(inputDir.normalized);
         float velocityX = Mathf.Clamp(moveDir.x * moveSpeed, -maxVelocity, maxVelocity);

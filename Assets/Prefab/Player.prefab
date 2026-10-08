@@ -130,7 +130,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!114 &2189392033409192641
@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 7566411133159595505}
+  cameraController: {fileID: 6374639003791134708}
   moveSpeed: 5
   moveAcceleration: 6
   maxVelocity: 10.5
@@ -173,6 +174,7 @@ MonoBehaviour:
   yaw: 0
   pitch: 0
   mouseSensitivity: 6
+  stickLookSpeed: 180
   maxLookAngle: 80
   lookAtTarget: {fileID: 0}
   lookAtFollowSpeed: 12
