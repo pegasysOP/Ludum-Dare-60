@@ -77,6 +77,10 @@ public class PauseMenu : MonoBehaviour
     private void OnMusicVolumeChanged(float newValue)
     {
         SaveNewMusicVolume(newValue);
+
+        if (MusicManager.Instance == null)
+            return;
+
         MusicManager.Instance.sourceA.volume = newValue;
         MusicManager.Instance.sourceB.volume = newValue;
     }

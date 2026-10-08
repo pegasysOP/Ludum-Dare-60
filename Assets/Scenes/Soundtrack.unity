@@ -1394,61 +1394,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7150455118390193801, guid: c225751f90cf29947abbc8a6ae119f42, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1330376467}
-    - targetCorrespondingSourceObject: {fileID: 7150455118390193801, guid: c225751f90cf29947abbc8a6ae119f42, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1330376470}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c225751f90cf29947abbc8a6ae119f42, type: 3}
---- !u!1 &1330376466 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7150455118390193801, guid: c225751f90cf29947abbc8a6ae119f42, type: 3}
-  m_PrefabInstance: {fileID: 1330376465}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1330376467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1330376466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c429c3f8569f6584fa26c54a21e24152, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameMusicGuy
---- !u!114 &1330376470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1330376466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bd7ef9fff603a44ab7edaca4341139d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MusicManager
-  sourceA: {fileID: 0}
-  sourceB: {fileID: 0}
-  mixerGroup: {fileID: 0}
-  crossfadeDuration: 3
-  peakHoldDuration: 3
-  decayDuration: 4
-  peakMultiplier: 1
-  backgroundMultiplier: 0.4
-  smoothEnvelope: 1
-  fullVolumeMultiplier: 1
-  prewarmLibrary: {fileID: 11400000, guid: 237ee2a5fef0ab044b1270db08088d69, type: 2}
-  prewarmLibraryResourcePath: MusicLibrary
-  prewarmPrimeDecoder: 1
-  currentClipDebug: {fileID: 0}
-  currentPerceivedMultiplierDebug: 0
-  currentModeDebug: 0
-  phaseDebug: Idle
-  prewarmCompleteDebug: 0
 --- !u!1001 &1479189306
 PrefabInstance:
   m_ObjectHideFlags: 0
