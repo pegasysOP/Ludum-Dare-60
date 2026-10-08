@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08066f6c9d79daa4cac6e67064ad754d, type: 3}
+  m_Name: MusicLibrary
+  m_EditorClassIdentifier: Assembly-CSharp::MusicLibrary
+  mainMenu: {fileID: 8300000, guid: 873fd3b55584b064599f047167b386fd, type: 3}
+  credits: {fileID: 8300000, guid: ba5b205e420c47d408a3c32c099f8fb2, type: 3}
+  entries:
+  - id: 0
+    clip: {fileID: 8300000, guid: 873fd3b55584b064599f047167b386fd, type: 3}
+    displayText: 'Menu Theme '
+    sprite: {fileID: 21300000, guid: 1a9e81ee9bb4f334eb4ee29c7f111ab9, type: 3}
+  - id: 1
+    clip: {fileID: 8300000, guid: ba5b205e420c47d408a3c32c099f8fb2, type: 3}
+    displayText: 'Credits Theme '
+    sprite: {fileID: 21300000, guid: 67c8eaf2e330419478e7b82320745eb4, type: 3}
