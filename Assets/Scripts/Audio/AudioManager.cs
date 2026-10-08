@@ -58,7 +58,10 @@ public class AudioManager : MonoBehaviour
     public void PlaySfx(List<AudioClip> audioClips)
     {
         if (sfxSource == null || audioClips == null || audioClips.Count == 0)
+        {
             Debug.LogError("ERROR: there are no sounds to play!");
+            return;
+        }
 
         int index = Random.Range(0, audioClips.Count);
         sfxSource.PlayOneShot(audioClips[index], 1f);
@@ -67,7 +70,10 @@ public class AudioManager : MonoBehaviour
     public void PlaySfx(List<AudioClipVolume> clips)
     {
         if (sfxSource == null || clips == null || clips.Count == 0)
+        {
             Debug.LogError("ERROR: there are no sounds to play!");
+            return;
+        }
 
         int index = Random.Range(0, clips.Count);
         AudioClipVolume entry = clips[index];
@@ -79,7 +85,10 @@ public class AudioManager : MonoBehaviour
     public void PlaySfxWithPitchShifting(List<AudioClip> clips, float minPitch = 0.8f, float maxPitch = 1.2f)
     {
         if (sfxSource == null || clips == null || clips.Count == 0)
+        {
             Debug.LogError("ERROR: there are no sounds to pitch shift!");
+            return;
+        }
 
         int index = Random.Range(0, clips.Count);
         sfxSource.pitch = Random.Range(minPitch, maxPitch);
@@ -90,7 +99,10 @@ public class AudioManager : MonoBehaviour
     public void PlaySfxWithPitchShifting(List<AudioClipVolume> clips, float minPitch = 0.8f, float maxPitch = 1.2f)
     {
         if (sfxSource == null || clips == null || clips.Count == 0)
+        {
             Debug.LogError("ERROR: there are no sounds to pitch shift!");
+            return;
+        }
 
         int index = Random.Range(0, clips.Count);
         AudioClipVolume entry = clips[index];
