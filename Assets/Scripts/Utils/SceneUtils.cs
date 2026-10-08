@@ -21,7 +21,8 @@ public static class SceneUtils
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        GameManager.Instance?.DestroySelf();
+        if (GameManager.Instance != null)
+            GameManager.Instance.DestroySelf();
 
         SceneManager.LoadScene(MENU_SCENE);
     }
@@ -31,7 +32,8 @@ public static class SceneUtils
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        GameManager.Instance?.DestroySelf();
+        if (GameManager.Instance != null)
+            GameManager.Instance.DestroySelf();
 
         SceneManager.LoadScene(CREDIT_SCENE);
     }
