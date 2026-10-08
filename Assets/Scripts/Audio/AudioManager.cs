@@ -50,7 +50,7 @@ public class AudioManager : MonoBehaviour
         if (sfxSource != null) sfxSource.spatialBlend = 0f;
         if (uiSfxSource != null) uiSfxSource.spatialBlend = 0f;
 
-        UpdateVolume(SettingsUtils.GetMasterVolume());
+        UpdateVolume();
     }
 
     //==================== SFX ====================
@@ -400,18 +400,13 @@ public class AudioManager : MonoBehaviour
 
     //==================== Volume ====================
 
-    public void UpdateVolume(float value)
+    public void UpdateVolume()
     {
-        sfxSource.volume = value;
-        uiSfxSource.volume = value;
+        float volume = SettingsUtils.GetMasterVolume() * SettingsUtils.GetSFXVolume();
+        sfxSource.volume = volume;
+        uiSfxSource.volume = volume;
 
         if (MusicManager.Instance != null)
             MusicManager.Instance.RefreshMasterVolume();
-    }
-
-    public void UpdateSfxVolume(float value)
-    {
-        sfxSource.volume = value;
-        uiSfxSource.volume = value;
     }
 }

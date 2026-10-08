@@ -502,10 +502,10 @@ public class MusicManager : MonoBehaviour
     }
 
     // Convert a perceived 0-1 multiplier into a linear AudioSource.volume, scaled
-    // to the project's "full music loudness" baseline (master/3, matching AudioManager).
+    // to the project's "full music loudness" baseline (master * music / 3).
     private float TargetLinear(float perceivedMultiplier)
     {
-        float masterLinear = Mathf.Clamp01(SettingsUtils.GetMasterVolume()) / 3f;
+        float masterLinear = Mathf.Clamp01(SettingsUtils.GetMasterVolume() * SettingsUtils.GetMusicVolume()) / 3f;
         float masterPerceived = AudioVolume.ToPerceived(masterLinear);
         float perceived = masterPerceived * Mathf.Clamp01(perceivedMultiplier);
         return AudioVolume.ToLinear(perceived);

@@ -66,7 +66,7 @@ public class PauseMenu : MonoBehaviour
     {
         SaveNewVolume(newValue);
 
-        GameManager.Instance?.audioManager?.UpdateVolume(newValue);
+        GameManager.Instance?.audioManager?.UpdateVolume();
     }
 
     private void SaveNewVolume(float newValue)
@@ -78,11 +78,8 @@ public class PauseMenu : MonoBehaviour
     {
         SaveNewMusicVolume(newValue);
 
-        if (MusicManager.Instance == null)
-            return;
-
-        MusicManager.Instance.sourceA.volume = newValue;
-        MusicManager.Instance.sourceB.volume = newValue;
+        if (MusicManager.Instance != null)
+            MusicManager.Instance.RefreshMasterVolume();
     }
 
     private void SaveNewMusicVolume(float newValue)
@@ -93,7 +90,7 @@ public class PauseMenu : MonoBehaviour
     private void OnSFXVolumeChanged(float newValue)
     {
         SaveNewSFXVolume(newValue);
-        GameManager.Instance?.audioManager?.UpdateSfxVolume(newValue);
+        GameManager.Instance?.audioManager?.UpdateVolume();
     }
 
     private void SaveNewSFXVolume(float newValue)
