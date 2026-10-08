@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CutsceneSystem : MonoBehaviour
+public class CutsceneController : MonoBehaviour
 {
-    public static CutsceneSystem Instance { get; private set; }
+    public static CutsceneController Instance { get; private set; }
 
     public event Action<string> OnCutsceneStarted;
     public event Action<string> OnCutsceneEnded;
