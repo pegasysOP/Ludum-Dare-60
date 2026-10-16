@@ -120,3 +120,6 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+
+# Silas (sound design / music) personal working folder
+/_silas/
