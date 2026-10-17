@@ -10,6 +10,7 @@ public class PdaController : MonoBehaviour
     public Button sideButton;
     public TextMeshProUGUI sideText;
     public RectTransform rect;
+    public CanvasGroup canvasGroup;
     public HomescreenApp[] apps;
 
     private bool open = false;
@@ -57,6 +58,13 @@ public class PdaController : MonoBehaviour
         rect.DOAnchorPosX(opening ? 50 : -550, 0.5f).SetEase(Ease.OutExpo);
         sideText.text = opening ? "<" : ">";
         open = opening;
+    }
+
+    public void SetVisible(bool visible)
+    {
+        canvasGroup.DOKill();
+        canvasGroup.DOFade(visible ? 1f : 0f, 0.3f);
+        canvasGroup.blocksRaycasts = visible;
     }
 
     public void OpenApp(HomescreenApp app)
