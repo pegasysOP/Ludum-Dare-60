@@ -33,6 +33,9 @@ public class FullscreenApp : MonoBehaviour
             .Join(canvasGroup.DOFade(1f, openDuration * 0.5f));
 
         OnOpened();
+
+        foreach (IAppContent content in GetComponentsInChildren<IAppContent>(true))
+            content.OnAppOpened();
     }
 
     public void Close(RectTransform icon)

@@ -36,6 +36,8 @@ public class SusPXApp : MonoBehaviour, IAppContent
         return true;
     }
 
+    public void OnAppOpened() { }
+
     public void OnAppClosed()
     {
         detailView.SetActive(false);

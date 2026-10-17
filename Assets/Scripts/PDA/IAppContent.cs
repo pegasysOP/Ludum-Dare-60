@@ -4,5 +4,7 @@ public interface IAppContent
     // return true if back was used up, e.g. closing a sub view
     bool Back();
 
+    void OnAppOpened();
+
     void OnAppClosed();
 }
