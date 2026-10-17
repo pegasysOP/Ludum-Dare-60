@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     private InputAction moveAction;
 
     [Header("Jumping")]
-    public GroundDetector groundDetector;
     public float jumpForce;
     public float airAcceleration;
     public float jumpCooldown = 0.30f;
@@ -26,12 +25,6 @@ public class PlayerController : MonoBehaviour
     public Vector3 inputDir;
     public float speedDebug;
     public bool groundDebug;
-
-    private float footstepTimer;
-    private bool wasGrounded;
-    private float airTime;
-    private float firstGroundedTime = -1f;
-    private float lastJumpTime = -999f;
 
     private bool inCutscene = false;
 
@@ -75,18 +68,6 @@ public class PlayerController : MonoBehaviour
             Vector3 lv = rb.linearVelocity;
             rb.linearVelocity = new Vector3(0f, lv.y, 0f);
 
-            bool grounded = groundDetector != null && groundDetector.IsGrounded;
-            if (grounded)
-            {
-                footstepTimer -= Time.fixedDeltaTime;
-                if (footstepTimer <= 0f)
-                {
-                    //if (movementSounds != null)
-                    //    movementSounds.footsteps.PlayAt(transform.position);
-                    //footstepTimer = FootstepInterval;
-                }
-            }
-
             yield return wait;
         }
     }
@@ -95,7 +76,6 @@ public class PlayerController : MonoBehaviour
     {
         jumpAction = InputSystem.actions.FindAction("Jump");
         moveAction = InputSystem.actions.FindAction("Move");
-        wasGrounded = groundDetector != null && groundDetector.IsGrounded;
     }
 
     private void Update()
@@ -106,23 +86,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        HandleJumping();
         HandleMovement();
-    }
-
-    private void HandleJumping()
-    {
-        if (jumpAction.triggered && groundDetector.IsGrounded && Time.time - lastJumpTime >= jumpCooldown)
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            lastJumpTime = Time.time;
-            //animator.SetBool("isJumping", true);
-        }
-
-        if (groundDetector.IsGrounded)
-        {
-            //animator.SetBool("isJumping", false);
-        }
     }
 
     private void HandleMovement()
@@ -143,28 +107,7 @@ public class PlayerController : MonoBehaviour
         Vector3 targetVelocity = new Vector3(velocityX, rb.linearVelocity.y, velocityZ);
 
         bool wantsMove = inputDir.sqrMagnitude > 0.01f;
-        bool grounded = groundDetector != null && groundDetector.IsGrounded;
-
-        if (!grounded)
-            airTime += Time.fixedDeltaTime;
-
-        if (grounded && firstGroundedTime < 0f)
-            firstGroundedTime = Time.time;
-
-        if (grounded && !wasGrounded)
-        {
-            airTime = 0f;
-        }
-        wasGrounded = grounded;
-
-        float currentAcceleration = grounded ? moveAcceleration : airAcceleration;
-        rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, targetVelocity, currentAcceleration * Time.deltaTime);
-
-        Vector3 groundNormal = groundDetector != null ? groundDetector.GroundNormal : Vector3.up;
-        Vector3 gravity = -groundNormal * Physics.gravity.magnitude * rb.mass;
-        rb.AddForce(gravity, ForceMode.Acceleration);
 
         speedDebug = rb.linearVelocity.magnitude;
-        groundDebug = groundDetector.IsGrounded;
     }
 }
