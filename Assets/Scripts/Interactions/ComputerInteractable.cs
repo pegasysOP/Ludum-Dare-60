@@ -30,16 +30,6 @@ public class ComputerInteractable : Interactable
 
         keyboard = Keyboard.current;
     }
-
-    public void Update()
-    {
-        if (keyboard.escapeKey.wasPressedThisFrame)
-        {
-            computerCanvas.gameObject.SetActive(false);
-            homeScreenCanvas.gameObject.SetActive(false);
-            passwordInputField.text = "";
-        }
-    }
     public override void OnPointerDown(PointerEventData eventData)
     {
         //Enable the computer Canvas
@@ -80,6 +70,7 @@ public class ComputerInteractable : Interactable
             computerCanvas.gameObject.SetActive(false);
             homeScreenCanvas.gameObject.SetActive(false);
             blackScreenPanel.gameObject.SetActive(true);
+            passwordInputField.text = "";
         }
         
     }
