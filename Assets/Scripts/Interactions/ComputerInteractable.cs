@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ComputerInteractable : Interactable
@@ -12,11 +13,25 @@ public class ComputerInteractable : Interactable
 
     [SerializeField] private TMP_InputField passwordInputField;
 
+    //FIXME: Replace this with a proper way to exit the computer
+    public Keyboard keyboard;
+
     private string password = "password"; //TODO: Change this to be based on the clue    
 
     public void Start()
     {
         loginButton.onClick.AddListener(OnLoginButtonClicked);
+        keyboard = Keyboard.current;
+    }
+
+    public void Update()
+    {
+        if (keyboard.escapeKey.wasPressedThisFrame)
+        {
+            computerCanvas.gameObject.SetActive(false);
+            homeScreenCanvas.gameObject.SetActive(false);
+            passwordInputField.text = "";
+        }
     }
     public override void OnPointerDown(PointerEventData eventData)
     {
