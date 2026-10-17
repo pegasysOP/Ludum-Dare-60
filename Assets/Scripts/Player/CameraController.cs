@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
-    public Camera playerCamera;
     public float yaw;
     public float pitch;
     public float mouseSensitivity;
@@ -52,53 +51,10 @@ public class CameraController : MonoBehaviour
 
         pitch = Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle);
 
-        // body yaw is applied in PlayerController.FixedUpdate
-        playerCamera.transform.rotation = Quaternion.Euler(pitch, yaw, 0);
     }
 
     public void UpdateSensitivity(float value)
     {
         sensitivitySetting = value;
-    }
-
-    public IEnumerator Shake(float duration, float magnitude)
-    {
-        if (playerCamera == null || duration <= 0f) yield break;
-
-        if (!cameraBaseCached)
-        {
-            cameraBaseLocalPos = playerCamera.transform.localPosition;
-            cameraBaseCached = true;
-        }
-        Vector3 basePos = cameraBaseLocalPos;
-
-        shaking = true;
-        float time = 0f;
-        while (time < duration)
-        {
-            float decay = 1f - (time / duration);
-            playerCamera.transform.localPosition = basePos + Random.insideUnitSphere * magnitude * decay;
-            time += Time.deltaTime;
-            yield return null;
-        }
-        playerCamera.transform.localPosition = basePos;
-        shaking = false;
-    }
-
-    private void AimAt(Vector3 worldPoint)
-    {
-        Vector3 toTarget = worldPoint - playerCamera.transform.position;
-        if (toTarget.sqrMagnitude < 0.0001f) return;
-
-        float desiredYaw = Mathf.Atan2(toTarget.x, toTarget.z) * Mathf.Rad2Deg;
-        float flatDist = new Vector2(toTarget.x, toTarget.z).magnitude;
-        float desiredPitch = -Mathf.Atan2(toTarget.y, flatDist) * Mathf.Rad2Deg;
-        desiredPitch = Mathf.Clamp(desiredPitch, -maxLookAngle, maxLookAngle);
-
-        float t = 1f - Mathf.Exp(-lookAtFollowSpeed * Time.deltaTime);
-        yaw = Mathf.LerpAngle(yaw, desiredYaw, t);
-        pitch = Mathf.Lerp(pitch, desiredPitch, t);
-
-        playerCamera.transform.rotation = Quaternion.Euler(pitch, yaw, 0);
     }
 }
