@@ -8,17 +8,23 @@ public abstract class Interactable : MonoBehaviour, IPointerDownHandler, IPointe
 
 
     public abstract void OnPointerUp(PointerEventData eventData);
+    
+    private SpriteOutline spriteOutline;
 
+    public virtual void Awake()
+    {
+        spriteOutline = GetComponent<SpriteOutline>();
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         Debug.Log(name + "Game Object Mouse Enter");
-        //TODO: highlight object in red
+        spriteOutline?.ShowOutline();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         Debug.Log(name + "Game Object Mouse Exit");
-        //TODO: remove highlight from object
+        spriteOutline?.HideOutline();
     }
 }
