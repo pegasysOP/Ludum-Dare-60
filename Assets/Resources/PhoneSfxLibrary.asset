@@ -134,7 +134,7 @@ MonoBehaviour:
     useFocusMixerGroup: 0
   camShutter:
     clips:
-    - _clip: {fileID: 8300000, guid: e015b6f2b05448e9856215e82417705c, type: 3}
+    - _clip: {fileID: 8300000, guid: 97cac540f3b524270a9c4909c4923fde, type: 3}
       _volume: 1
       _delay: 0
     pitchMin: 1
