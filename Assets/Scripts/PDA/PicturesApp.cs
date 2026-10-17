@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PicturesApp : FullscreenApp
 {
-    public const int MaxPhotos = 3;
+    public const int MaxPhotos = 20;
 
     public Button thumbnailTemplate;
     public RectTransform grid;
