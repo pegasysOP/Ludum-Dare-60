@@ -14,6 +14,7 @@ public class ComputerInteractable : Interactable
     [SerializeField] private Button turnOnButton;
     [SerializeField] private Button turnOnButton2;
 
+    private ComputerSfxLibrary sounds;
 
     [SerializeField] private TMP_InputField passwordInputField;
 
@@ -22,6 +23,10 @@ public class ComputerInteractable : Interactable
 
     private string password = "password"; //TODO: Change this to be based on the clue    
 
+    private void Awake()
+    {
+        sounds = ComputerSfxLibrary.Load();
+    }
     public void Start()
     {
         loginButton.onClick.AddListener(OnLoginButtonClicked);
@@ -50,11 +55,13 @@ public class ComputerInteractable : Interactable
             //TODO: If correct, change to homescreen canvas
             computerCanvas.gameObject.SetActive(false);
             homeScreenCanvas.gameObject.SetActive(true);
+            sounds.startup.Play();
         }
         else
         {
             //If incorrect, play an error sound
             Debug.Log("Incorrect password");
+            sounds.error.Play();
         }
     }
 
@@ -63,14 +70,17 @@ public class ComputerInteractable : Interactable
         if (blackScreenPanel.gameObject.activeSelf)
         {
             blackScreenPanel.gameObject.SetActive(false);
-            //TODO: Also play audio at this point to simulate the computer turning on
+            //TODO: This shouldn't be one shot but play on loop. 
+            sounds.fan.Play();
         }
         else
         {
             computerCanvas.gameObject.SetActive(false);
             homeScreenCanvas.gameObject.SetActive(false);
             blackScreenPanel.gameObject.SetActive(true);
+
             passwordInputField.text = "";
+            sounds.shutdown.Play();
         }
         
     }
