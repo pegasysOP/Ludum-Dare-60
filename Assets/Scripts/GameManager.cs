@@ -6,7 +6,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public PlayerController playerController;
-    public CameraController cameraController;
     public HudController hudController;
 
     private InputAction escapeAction; 

@@ -21,7 +21,6 @@ public class PauseMenu : MonoBehaviour
     private void OnEnable()
     {
         resumeButton.onClick.AddListener(OnResumeButtonClick);
-        sensitivitySlider.onValueChanged.AddListener(OnSensitivityValueChanged);
         volumeSlider.onValueChanged.AddListener(OnVolumeValueChanged);
         musicSlider.onValueChanged.AddListener(OnMusicVolumeChanged);
         sfxSlider.onValueChanged.AddListener(OnSFXVolumeChanged);
@@ -32,7 +31,6 @@ public class PauseMenu : MonoBehaviour
     private void OnDisable()
     {
         resumeButton.onClick.RemoveListener(OnResumeButtonClick);
-        sensitivitySlider.onValueChanged.RemoveListener(OnSensitivityValueChanged);
         volumeSlider.onValueChanged.RemoveListener(OnVolumeValueChanged);
         musicSlider.onValueChanged.RemoveListener(OnMusicVolumeChanged);
         sfxSlider.onValueChanged.RemoveListener(OnSFXVolumeChanged);
@@ -50,17 +48,6 @@ public class PauseMenu : MonoBehaviour
         gameObject.SetActive(pausing);
     }
 
-    private void OnSensitivityValueChanged(float newValue)
-    {
-        SaveNewSensitivity(newValue);
-    }
-
-    private void SaveNewSensitivity(float newValue)
-    {
-        SettingsUtils.SetSensitivity(newValue);
-
-        GameManager.Instance?.cameraController?.UpdateSensitivity(newValue);
-    }
 
     private void OnVolumeValueChanged(float newValue)
     {
