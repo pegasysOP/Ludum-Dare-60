@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ComputerInteractable : Interactable
 {
     [SerializeField] private Canvas computerCanvas;
+    [SerializeField] private Canvas homeScreenCanvas;
 
     [SerializeField] private Button loginButton;
 
@@ -36,6 +37,7 @@ public class ComputerInteractable : Interactable
         {
             //TODO: If correct, change to homescreen canvas
             computerCanvas.gameObject.SetActive(false);
+            homeScreenCanvas.gameObject.SetActive(true);
         }
         else
         {
