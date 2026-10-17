@@ -4,8 +4,6 @@ using UnityEngine.InputSystem;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
-    public PlayerController playerController;
     public HudController hudController;
 
     private InputAction escapeAction; 
