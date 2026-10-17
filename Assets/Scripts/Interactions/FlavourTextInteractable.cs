@@ -18,6 +18,8 @@ public class FlavourTextInteractable : Interactable
         flavourTextUI.maxVisibleCharacters = 0;
     }
 
+    //TODO: Do we want to disable the text if the player changes room? 
+
     public override void OnPointerDown(PointerEventData eventData)
     {
         if(flavourTextUI.text != flavourText)
