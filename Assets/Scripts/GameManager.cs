@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,8 +6,6 @@ public class GameManager : MonoBehaviour
 
     public PlayerController playerController;
     public HudController hudController;
-
-    private InputAction escapeAction; 
 
     public bool LOCKED = false;
 
@@ -30,8 +27,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        escapeAction = InputSystem.actions.FindAction("Escape");
-        
         UpdateUI();
 
         SetLocked(false);
@@ -40,14 +35,6 @@ public class GameManager : MonoBehaviour
     private void UpdateUI()
     {
         //TODO: Implement UI 
-    }
-
-    private void Update()
-    {
-        if (escapeAction != null && escapeAction.triggered)
-        {
-            TogglePauseMenu();
-        }
     }
 
     public void TogglePauseMenu()

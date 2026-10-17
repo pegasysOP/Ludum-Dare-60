@@ -2,6 +2,7 @@ using System;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class PdaController : MonoBehaviour
@@ -9,18 +10,75 @@ public class PdaController : MonoBehaviour
     public Button sideButton;
     public TextMeshProUGUI sideText;
     public RectTransform rect;
+    public HomescreenApp[] apps;
 
     private bool open = false;
+    private HomescreenApp openApp;
+    private InputAction escapeAction;
 
     private void Awake()
     {
         sideButton.onClick.AddListener(ToggleOpen);
+
+        foreach (HomescreenApp app in apps)
+        {
+            app.button.onClick.AddListener(() => OpenApp(app));
+            app.fullscreenApp.backButton.onClick.AddListener(CloseApp);
+        }
     }
 
-    private void ToggleOpen()
+    private void Start()
     {
-        rect.DOAnchorPosX(open ? -550 : 50, 0.5f).SetEase(Ease.OutExpo);
-        sideText.text = open ? ">" : "<";
-        open = !open;
+        escapeAction = InputSystem.actions.FindAction("Escape");
+    }
+
+    private void Update()
+    {
+        if (escapeAction != null && escapeAction.triggered)
+        {
+            if (openApp != null)
+                CloseApp();
+            else
+                ToggleOpen();
+        }
+    }
+
+    public void ToggleOpen()
+    {
+        SetOpen(!open);
+    }
+
+    public void SetOpen(bool opening)
+    {
+        if (!opening)
+            CloseApp();
+
+        rect.DOKill();
+        rect.DOAnchorPosX(opening ? 50 : -550, 0.5f).SetEase(Ease.OutExpo);
+        sideText.text = opening ? "<" : ">";
+        open = opening;
+    }
+
+    public void OpenApp(HomescreenApp app)
+    {
+        if (openApp == app)
+            return;
+
+        CloseApp();
+
+        if (!open)
+            SetOpen(true);
+
+        openApp = app;
+        app.fullscreenApp.Open(app.rect);
+    }
+
+    public void CloseApp()
+    {
+        if (openApp == null)
+            return;
+
+        openApp.fullscreenApp.Close(openApp.rect);
+        openApp = null;
     }
 }
