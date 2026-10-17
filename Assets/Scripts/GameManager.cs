@@ -1,9 +1,12 @@
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public HudController hudController;
+
+    [SerializeField] private TextMeshProUGUI  flavourText;
 
     public bool LOCKED = false;
 
@@ -47,5 +50,11 @@ public class GameManager : MonoBehaviour
         LOCKED = locked;
         Cursor.visible = locked;
         Cursor.lockState = locked ? CursorLockMode.None : CursorLockMode.Locked;
+    }
+
+    public void ResetFlavourText()
+    {
+        flavourText.text = "";
+        flavourText.maxVisibleCharacters = 0;
     }
 }
