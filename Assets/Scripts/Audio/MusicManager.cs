@@ -46,6 +46,8 @@ public class MusicManager : MonoBehaviour
     public AudioSource sourceB;
     [Tooltip("Optional mixer group output applied to both sources on Awake.")]
     public AudioMixerGroup mixerGroup;
+    [Tooltip("Stingers play here. Its Send feeds the Duck Volume on the Music group, so a stinger ducks the music.")]
+    public AudioMixerGroup stingerMixerGroup;
 
     [Header("In-Game Envelope")]
     [Tooltip("Crossfade length when switching tracks in-game. Also acts as the ramp-up " +
@@ -86,6 +88,7 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private bool prewarmCompleteDebug;
 
     private AudioSource activeSource;
+    private AudioSource stingerSource;
     private Coroutine routine;
     private Coroutine prewarmRoutine;
 
@@ -300,6 +303,27 @@ public class MusicManager : MonoBehaviour
     public void ResumeGameMusic()
     {
         IsGameMusicSuspended = false;
+    }
+
+    /// <summary>
+    /// Plays a one-shot stinger over the music, at the music volume setting. Routed to
+    /// <see cref="stingerMixerGroup"/>, whose Send drives the Music group's Duck Volume, so
+    /// the music ducks under the stinger and comes back on its own.
+    /// </summary>
+    public void PlayStinger(AudioClip clip, float perceivedVolume = 1f)
+    {
+        if (clip == null)
+            return;
+        if (stingerSource == null)
+        {
+            GameObject go = new GameObject("StingerSource");
+            go.transform.SetParent(transform, false);
+            stingerSource = go.AddComponent<AudioSource>();
+            stingerSource.playOnAwake = false;
+            stingerSource.spatialBlend = 0f;
+            stingerSource.outputAudioMixerGroup = stingerMixerGroup != null ? stingerMixerGroup : mixerGroup;
+        }
+        stingerSource.PlayOneShot(clip, TargetLinear(perceivedVolume));
     }
 
     /// <summary>

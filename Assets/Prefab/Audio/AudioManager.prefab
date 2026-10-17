@@ -570,6 +570,10 @@ MonoBehaviour:
   uiSfxSource: {fileID: 8511008005881343802}
   audioMixer: {fileID: 24100000, guid: 40926198f5985694ab7a701dab4da26a, type: 2}
   focusMixerGroup: {fileID: 1668216675390786927, guid: 40926198f5985694ab7a701dab4da26a, type: 2}
+  phoneMixerGroup: {fileID: 8126649324560856246, guid: 40926198f5985694ab7a701dab4da26a, type: 2}
+  worldSnapshotName: World
+  phoneSnapshotName: PhoneOpen
+  phoneTransitionTime: 0.2
   buttonPressClip: {fileID: 0}
   buttonHoverClip: {fileID: 0}
   pauseMenuOpenClip: {fileID: 0}
@@ -594,6 +598,7 @@ MonoBehaviour:
   sourceA: {fileID: 890167101138383018}
   sourceB: {fileID: 2581380003339255313}
   mixerGroup: {fileID: 3111571339142354338, guid: 40926198f5985694ab7a701dab4da26a, type: 2}
+  stingerMixerGroup: {fileID: -2821630993129036900, guid: 40926198f5985694ab7a701dab4da26a, type: 2}
   crossfadeDuration: 3
   peakHoldDuration: 3
   decayDuration: 4
