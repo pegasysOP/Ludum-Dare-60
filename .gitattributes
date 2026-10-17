@@ -70,3 +70,4 @@
 
 # TextMeshPro font assets
 *.sdf filter=lfs diff=lfs merge=lfs -text
+Assets/Fonts/**/*SDF.asset filter=lfs diff=lfs merge=lfs -text

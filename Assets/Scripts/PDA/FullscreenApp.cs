@@ -51,10 +51,22 @@ public class FullscreenApp : MonoBehaviour
             .OnComplete(() => gameObject.SetActive(false));
 
         OnClosed();
+
+        foreach (IAppContent content in GetComponentsInChildren<IAppContent>(true))
+            content.OnAppClosed();
     }
 
-    // return true if the app dealt with back itself, e.g. closing a sub view
-    public virtual bool Back() { return false; }
+    // return true if the app dealt with back itself, e.g. closing a sub view; asks IAppContent by default
+    public virtual bool Back()
+    {
+        foreach (IAppContent content in GetComponentsInChildren<IAppContent>(true))
+        {
+            if (content.Back())
+                return true;
+        }
+
+        return false;
+    }
 
     protected virtual void OnOpened() { }
 
