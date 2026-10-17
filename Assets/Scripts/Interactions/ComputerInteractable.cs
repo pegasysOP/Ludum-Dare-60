@@ -22,13 +22,9 @@ public class ComputerInteractable : Interactable
     public Keyboard keyboard;
 
     private string password = "password"; //TODO: Change this to be based on the clue    
-
-    private void Awake()
-    {
-        sounds = ComputerSfxLibrary.Load();
-    }
     public void Start()
     {
+        sounds = ComputerSfxLibrary.Load();
         loginButton.onClick.AddListener(OnLoginButtonClicked);
         turnOnButton.onClick.AddListener(OnTurnOnButtonClicked);
         turnOnButton2.onClick.AddListener(OnTurnOnButtonClicked);
