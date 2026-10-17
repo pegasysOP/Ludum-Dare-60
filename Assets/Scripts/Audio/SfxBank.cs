@@ -30,6 +30,9 @@ public class SfxBank
              "No-op if AudioManager.focusMixerGroup is unassigned (bank falls back to the default path).")]
     public bool useFocusMixerGroup = false;
 
+    /// <summary>Set by <see cref="PhoneSfxLibrary"/> on its banks: routes them through AudioManager.phoneMixerGroup.</summary>
+    [System.NonSerialized] public bool routeToPhone;
+
     public bool HasAnyClip
     {
         get
@@ -192,8 +195,9 @@ public class SfxBank
     /// </summary>
     private AudioMixerGroup ResolveMixerGroupOverride()
     {
-        if (!useFocusMixerGroup) return null;
         if (AudioManager.Instance == null) return null;
+        if (routeToPhone && AudioManager.Instance.phoneMixerGroup != null) return AudioManager.Instance.phoneMixerGroup;
+        if (!useFocusMixerGroup) return null;
         return AudioManager.Instance.focusMixerGroup;
     }
 

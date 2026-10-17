@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class HudController : MonoBehaviour
 {
-    public PauseMenu pauseMenu;
-
     public GameObject centreDot;
     public GameObject interactIcon;
     public GameObject interactPrompt;

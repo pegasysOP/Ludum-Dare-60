@@ -1,9 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PauseMenu : MonoBehaviour
+public class SettingsApp : MonoBehaviour
 {
-    public Button resumeButton;
     public Slider sensitivitySlider;
     public Slider volumeSlider;
     public Slider musicSlider;
@@ -20,77 +19,49 @@ public class PauseMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        resumeButton.onClick.AddListener(OnResumeButtonClick);
+        sensitivitySlider.onValueChanged.AddListener(OnSensitivityValueChanged);
         volumeSlider.onValueChanged.AddListener(OnVolumeValueChanged);
         musicSlider.onValueChanged.AddListener(OnMusicVolumeChanged);
         sfxSlider.onValueChanged.AddListener(OnSFXVolumeChanged);
         quitButton.onClick.AddListener(OnQuitButtonClick);
-        //AudioManager.Instance.PauseMenuOpenClip();
     }
 
     private void OnDisable()
     {
-        resumeButton.onClick.RemoveListener(OnResumeButtonClick);
+        sensitivitySlider.onValueChanged.RemoveListener(OnSensitivityValueChanged);
         volumeSlider.onValueChanged.RemoveListener(OnVolumeValueChanged);
         musicSlider.onValueChanged.RemoveListener(OnMusicVolumeChanged);
         sfxSlider.onValueChanged.RemoveListener(OnSFXVolumeChanged);
         quitButton.onClick.RemoveListener(OnQuitButtonClick);
-        //AudioManager.Instance.PauseMenuClosedClip();
     }
 
-    public void Toggle()
+    private void OnSensitivityValueChanged(float newValue)
     {
-        bool pausing = !isActiveAndEnabled;
-
-        //Cursor.visible = pausing;
-        //Cursor.lockState = pausing ? CursorLockMode.None : CursorLockMode.Locked;
-
-        gameObject.SetActive(pausing);
+        SettingsUtils.SetSensitivity(newValue);
     }
-
 
     private void OnVolumeValueChanged(float newValue)
     {
-        SaveNewVolume(newValue);
+        SettingsUtils.SetMasterVolume(newValue);
 
         if (AudioManager.Instance != null)
             AudioManager.Instance.UpdateVolume();
     }
 
-    private void SaveNewVolume(float newValue)
-    {
-        SettingsUtils.SetMasterVolume(newValue);
-    }
-
     private void OnMusicVolumeChanged(float newValue)
     {
-        SaveNewMusicVolume(newValue);
+        SettingsUtils.SetMusicVolume(newValue);
 
         if (MusicManager.Instance != null)
             MusicManager.Instance.RefreshMasterVolume();
     }
 
-    private void SaveNewMusicVolume(float newValue)
-    {
-        SettingsUtils.SetMusicVolume(newValue);
-    }
-
     private void OnSFXVolumeChanged(float newValue)
     {
-        SaveNewSFXVolume(newValue);
+        SettingsUtils.SetSFXVolume(newValue);
 
         if (AudioManager.Instance != null)
             AudioManager.Instance.UpdateVolume();
-    }
-
-    private void SaveNewSFXVolume(float newValue)
-    {
-        SettingsUtils.SetSFXVolume(newValue);
-    }
-
-    private void OnResumeButtonClick()
-    {
-        GameManager.Instance.TogglePauseMenu();
     }
 
     private void OnQuitButtonClick()
