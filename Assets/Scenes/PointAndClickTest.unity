@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 33032360}
   - component: {fileID: 33032359}
   - component: {fileID: 33032362}
+  - component: {fileID: 33032363}
   m_Layer: 0
   m_Name: FlavourTextInteractable
   m_TagString: Untagged
@@ -274,6 +275,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &33032363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33032358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc050a0b59d48a4fa66fa3eb51c9334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteOutline
+  outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  outlineScale: 1.15
 --- !u!1 &175133377
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,6 +301,7 @@ GameObject:
   - component: {fileID: 175133380}
   - component: {fileID: 175133379}
   - component: {fileID: 175133378}
+  - component: {fileID: 175133382}
   m_Layer: 0
   m_Name: MoveRoomRight
   m_TagString: Untagged
@@ -429,6 +445,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &175133382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175133377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc050a0b59d48a4fa66fa3eb51c9334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteOutline
+  outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  outlineScale: 1.15
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,6 +598,7 @@ GameObject:
   - component: {fileID: 857269885}
   - component: {fileID: 857269884}
   - component: {fileID: 857269883}
+  - component: {fileID: 857269887}
   m_Layer: 0
   m_Name: MoveRoomLeft
   m_TagString: Untagged
@@ -711,6 +742,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &857269887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857269882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc050a0b59d48a4fa66fa3eb51c9334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteOutline
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineScale: 1.15
 --- !u!1 &1025970889
 GameObject:
   m_ObjectHideFlags: 0

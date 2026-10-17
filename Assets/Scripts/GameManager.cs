@@ -3,8 +3,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
-    public PlayerController playerController;
     public HudController hudController;
 
     public bool LOCKED = false;
