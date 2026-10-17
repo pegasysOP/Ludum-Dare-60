@@ -152,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   flavourText: 'Be there or be square! '
   flavourTextUI: {fileID: 1025970891}
+  characterDelay: 0.1
 --- !u!212 &33032360
 SpriteRenderer:
   serializedVersion: 3
