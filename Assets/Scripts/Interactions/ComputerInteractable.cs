@@ -6,10 +6,14 @@ using UnityEngine.UI;
 
 public class ComputerInteractable : Interactable
 {
+    [SerializeField] private GameObject blackScreenPanel;
     [SerializeField] private Canvas computerCanvas;
     [SerializeField] private Canvas homeScreenCanvas;
 
     [SerializeField] private Button loginButton;
+    [SerializeField] private Button turnOnButton;
+    [SerializeField] private Button turnOnButton2;
+
 
     [SerializeField] private TMP_InputField passwordInputField;
 
@@ -21,6 +25,9 @@ public class ComputerInteractable : Interactable
     public void Start()
     {
         loginButton.onClick.AddListener(OnLoginButtonClicked);
+        turnOnButton.onClick.AddListener(OnTurnOnButtonClicked);
+        turnOnButton2.onClick.AddListener(OnTurnOnButtonClicked);
+
         keyboard = Keyboard.current;
     }
 
@@ -47,8 +54,8 @@ public class ComputerInteractable : Interactable
     }
 
     private void OnLoginButtonClicked()
-    { 
-        if(passwordInputField.text == password)
+    {
+        if (passwordInputField.text == password)
         {
             //TODO: If correct, change to homescreen canvas
             computerCanvas.gameObject.SetActive(false);
@@ -59,5 +66,21 @@ public class ComputerInteractable : Interactable
             //If incorrect, play an error sound
             Debug.Log("Incorrect password");
         }
+    }
+
+    private void OnTurnOnButtonClicked()
+    {
+        if (blackScreenPanel.gameObject.activeSelf)
+        {
+            blackScreenPanel.gameObject.SetActive(false);
+            //TODO: Also play audio at this point to simulate the computer turning on
+        }
+        else
+        {
+            computerCanvas.gameObject.SetActive(false);
+            homeScreenCanvas.gameObject.SetActive(false);
+            blackScreenPanel.gameObject.SetActive(true);
+        }
+        
     }
 }
