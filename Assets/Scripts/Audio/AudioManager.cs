@@ -21,6 +21,16 @@ public class AudioManager : MonoBehaviour
              "its own post-fader gain / EQ / sidechain, without rebalancing the whole SFX bus. Leave " +
              "unassigned to keep focus-flagged banks on the default SFX group as a safe fallback.")]
     public AudioMixerGroup focusMixerGroup;
+    [Tooltip("Mixer group for phone OS and notification sounds (every PhoneSfxLibrary bank). Stays clear " +
+             "and up close when the phone is up, while the world SFX group is muffled.")]
+    public AudioMixerGroup phoneMixerGroup;
+
+    [Header("Mixer Snapshots")]
+    [Tooltip("Snapshot for World mode (phone down).")]
+    public string worldSnapshotName = "World";
+    [Tooltip("Snapshot for Phone mode (phone up): world SFX low-passed and ducked, music dipped.")]
+    public string phoneSnapshotName = "PhoneOpen";
+    [Min(0f)] public float phoneTransitionTime = 0.2f;
 
     [Header("UI")]
     public AudioClip buttonPressClip;
@@ -41,12 +51,11 @@ public class AudioManager : MonoBehaviour
     {
         Instance = this;
 
-        // The shared non-positional SFX sources are strictly a "2D pipe" for UI / non-diegetic
-        // emphasis (stingers, feedback, menu clicks). Anything that exists in the world should
-        // go through PlaySfxAtPoint or PlaySfxAttached instead so it picks up spatialization
-        // and reverb zones. Forcing spatialBlend=0 here defends against the scene-authored
-        // AudioSource being accidentally set to 3D (which parks the "speaker" at world origin
-        // and makes every one-shot sound far away).
+        // The game's sound is 2D (decided 2026-10-16): world sounds play through these shared
+        // 2D sources too, not PlaySfxAtPoint / PlaySfxAttached (those spatialize in 3D).
+        // Forcing spatialBlend=0 here defends against the scene-authored AudioSource being
+        // accidentally set to 3D (which parks the "speaker" at world origin and makes every
+        // one-shot sound far away).
         if (sfxSource != null) sfxSource.spatialBlend = 0f;
         if (uiSfxSource != null) uiSfxSource.spatialBlend = 0f;
 
@@ -414,6 +423,27 @@ public class AudioManager : MonoBehaviour
         if (uiSfxSource == null || clip == null)
             return;
         uiSfxSource.PlayOneShot(clip, Mathf.Clamp01(volume));
+    }
+
+    //==================== Phone mode ====================
+
+    /// <summary>
+    /// Phone up: transitions to the phone snapshot, which pushes the world back (SFX
+    /// low-passed and ducked, music dipped). Phone down: back to the world snapshot.
+    /// The pause menu lives on the phone, so pausing goes through here too.
+    /// </summary>
+    public void SetPhoneMode(bool phoneUp)
+    {
+        if (audioMixer == null)
+            return;
+        string name = phoneUp ? phoneSnapshotName : worldSnapshotName;
+        AudioMixerSnapshot snapshot = audioMixer.FindSnapshot(name);
+        if (snapshot == null)
+        {
+            Debug.LogWarning($"AudioManager: no mixer snapshot named '{name}' in {audioMixer.name}.");
+            return;
+        }
+        snapshot.TransitionTo(phoneTransitionTime);
     }
 
     //==================== Volume ====================

@@ -59,6 +59,10 @@ public class GameMusicGuy : MonoBehaviour
     // plays the about-to-kill-you cue.
     private const int PanicStrikeThreshold = 2;
 
+    // Seconds after the game start stinger begins before the menu music comes in.
+    // The bloom's tail rings under the theme's first bars.
+    private const float GameStartMusicDelay = 3f;
+
     // ---------- Runtime state ----------
 
     private MusicLibrary library;
@@ -68,6 +72,17 @@ public class GameMusicGuy : MonoBehaviour
     private bool postEscapeLatched;
     private bool menuModeActive;
     private StateTracker subscribedStateTracker;
+
+    // The game start stinger plays once per session, in whichever scene loads first.
+    private static bool gameStartPlayed;
+    private static float gameStartMusicTime;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetGameStart()
+    {
+        gameStartPlayed = false;
+        gameStartMusicTime = 0f;
+    }
 
     private void Awake()
     {
@@ -90,6 +105,14 @@ public class GameMusicGuy : MonoBehaviour
             return;
         }
 
+        // The first sound of the game.
+        if (!gameStartPlayed && library.gameStartStinger != null)
+        {
+            gameStartPlayed = true;
+            gameStartMusicTime = Time.realtimeSinceStartup + GameStartMusicDelay;
+            MusicManager.Instance.PlayStinger(library.gameStartStinger);
+        }
+
         if (IsMenuScene())
         {
             menuModeActive = true;
@@ -97,7 +120,7 @@ public class GameMusicGuy : MonoBehaviour
             if (menuClip != null)
             {
                 lastRequestedClip = menuClip;
-                MusicManager.Instance.PlayMusic(menuClip);
+                StartCoroutine(PlayMusicAfterGameStart(menuClip));
             }
             return;
         }
@@ -109,10 +132,20 @@ public class GameMusicGuy : MonoBehaviour
             if (creditsClip != null)
             {
                 lastRequestedClip = creditsClip;
-                MusicManager.Instance.PlayMusic(creditsClip);
+                StartCoroutine(PlayMusicAfterGameStart(creditsClip));
             }
             return;
         }
+    }
+
+    /// <summary>Starts a menu/credits track, held back while the game start stinger has its moment.</summary>
+    private System.Collections.IEnumerator PlayMusicAfterGameStart(AudioClip clip)
+    {
+        float wait = gameStartMusicTime - Time.realtimeSinceStartup;
+        if (wait > 0f)
+            yield return new WaitForSecondsRealtime(wait);
+        if (MusicManager.Instance != null)
+            MusicManager.Instance.PlayMusic(clip);
     }
 
     private void OnDestroy()

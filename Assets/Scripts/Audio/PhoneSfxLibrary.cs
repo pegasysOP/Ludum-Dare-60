@@ -4,8 +4,8 @@ using UnityEngine;
 /// <summary>
 /// Central ScriptableObject holding every phone OS / notification sound, so the
 /// real phone UI and the PhoneSoundTest bench play from the same tuned banks.
-/// Slot names follow <c>_silas/sound_slots.txt</c>. Add new slots here as more
-/// phone sounds land in <c>Assets/Audio/sfx/Phone</c>.
+/// Slot names follow <c>_silas/SoundList.md</c>. Add new slots here as more
+/// phone sounds land in <c>Assets/Audio/sfx/phone</c>.
 /// </summary>
 [CreateAssetMenu(menuName = "Audio/Phone Sfx Library", fileName = "PhoneSfxLibrary")]
 public class PhoneSfxLibrary : ScriptableObject
@@ -25,6 +25,16 @@ public class PhoneSfxLibrary : ScriptableObject
 
     [Header("Notifications")]
     public SfxBank notifMessage = new SfxBank();
+
+    [Header("Camera")]
+    public SfxBank camShutter = new SfxBank();
+
+    private void OnEnable()
+    {
+        // Every phone sound goes to the Phone mixer group, so it stays clear while the world is muffled.
+        foreach (KeyValuePair<string, SfxBank> bank in AllBanks())
+            bank.Value.routeToPhone = true;
+    }
 
     /// <summary>Loads the shared library from Resources, or null if it is missing.</summary>
     public static PhoneSfxLibrary Load()
@@ -48,5 +58,6 @@ public class PhoneSfxLibrary : ScriptableObject
         yield return new KeyValuePair<string, SfxBank>("Toggle Off", toggleOff);
         yield return new KeyValuePair<string, SfxBank>("Error", error);
         yield return new KeyValuePair<string, SfxBank>("Message", notifMessage);
+        yield return new KeyValuePair<string, SfxBank>("Shutter", camShutter);
     }
 }

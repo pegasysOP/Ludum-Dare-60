@@ -112,3 +112,13 @@ MonoBehaviour:
     gain: 1
     volumeJitter: 0
     useFocusMixerGroup: 0
+  camShutter:
+    clips:
+    - _clip: {fileID: 8300000, guid: e015b6f2b05448e9856215e82417705c, type: 3}
+      _volume: 1
+      _delay: 0
+    pitchMin: 1
+    pitchMax: 1
+    gain: 1
+    volumeJitter: 0
+    useFocusMixerGroup: 0
