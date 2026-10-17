@@ -33,6 +33,9 @@ public class SfxBank
     /// <summary>Set by <see cref="PhoneSfxLibrary"/> on its banks: routes them through AudioManager.phoneMixerGroup.</summary>
     [System.NonSerialized] public bool routeToPhone;
 
+    /// <summary>Set by <see cref="UiSfxLibrary"/> on its banks: routes them through the UI mixer group (AudioManager.uiSfxSource).</summary>
+    [System.NonSerialized] public bool routeToUi;
+
     public bool HasAnyClip
     {
         get
@@ -197,6 +200,7 @@ public class SfxBank
     {
         if (AudioManager.Instance == null) return null;
         if (routeToPhone && AudioManager.Instance.phoneMixerGroup != null) return AudioManager.Instance.phoneMixerGroup;
+        if (routeToUi && AudioManager.Instance.uiSfxSource != null) return AudioManager.Instance.uiSfxSource.outputAudioMixerGroup;
         if (!useFocusMixerGroup) return null;
         return AudioManager.Instance.focusMixerGroup;
     }
