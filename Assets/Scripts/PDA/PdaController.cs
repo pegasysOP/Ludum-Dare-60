@@ -24,7 +24,7 @@ public class PdaController : MonoBehaviour
         foreach (HomescreenApp app in apps)
         {
             app.button.onClick.AddListener(() => OpenApp(app));
-            app.fullscreenApp.backButton.onClick.AddListener(CloseApp);
+            app.fullscreenApp.backButton.onClick.AddListener(Back);
         }
     }
 
@@ -38,7 +38,7 @@ public class PdaController : MonoBehaviour
         if (escapeAction != null && escapeAction.triggered)
         {
             if (openApp != null)
-                CloseApp();
+                Back();
             else
                 ToggleOpen();
         }
@@ -79,6 +79,14 @@ public class PdaController : MonoBehaviour
 
         openApp = app;
         app.fullscreenApp.Open(app.rect);
+    }
+
+    public void Back()
+    {
+        if (openApp != null && openApp.fullscreenApp.Back())
+            return;
+
+        CloseApp();
     }
 
     public void CloseApp()

@@ -11,6 +11,9 @@ public class CameraApp : FullscreenApp
     public Image flash;
     public RawImage photo;
     public Button retakeButton;
+    public Button saveButton;
+    public PicturesApp pictures;
+    public GameObject galleryFullText;
 
     public float flashDuration = 0.5f;
 
@@ -26,6 +29,9 @@ public class CameraApp : FullscreenApp
     private bool aiming = false;
     private bool cursorWasVisible;
     private Texture2D photoTexture;
+    private bool unsavedPhoto = false;
+    private Vector2 photoPos;
+    private Sequence saveSequence;
 
     private void Awake()
     {
@@ -34,7 +40,11 @@ public class CameraApp : FullscreenApp
         viewfinder.SetParent(canvas, false);
         flash.rectTransform.SetParent(canvas, false);
 
+        photoPos = photo.rectTransform.anchoredPosition;
+
         retakeButton.onClick.AddListener(StartAiming);
+        saveButton.onClick.AddListener(SavePhoto);
+        RefreshButtons();
     }
 
     private void Update()
@@ -55,6 +65,16 @@ public class CameraApp : FullscreenApp
 
     protected override void OnOpened()
     {
+        if (pictures.IsFull)
+        {
+            // nowhere to save a new one, so skip the viewfinder and show a blank shot
+            FinishSaveFling();
+            ClearPhoto();
+            unsavedPhoto = false;
+            RefreshButtons();
+            return;
+        }
+
         StartAiming();
     }
 
@@ -65,6 +85,8 @@ public class CameraApp : FullscreenApp
 
     private void StartAiming()
     {
+        FinishSaveFling();
+
         aiming = true;
         cursorWasVisible = Cursor.visible;
         Cursor.visible = false;
@@ -88,6 +110,9 @@ public class CameraApp : FullscreenApp
         viewfinder.gameObject.SetActive(false);
         flash.gameObject.SetActive(false);
         pda.SetVisible(true);
+
+        // gallery might have changed since the last photo
+        RefreshButtons();
     }
 
     private IEnumerator TakePhoto()
@@ -119,8 +144,11 @@ public class CameraApp : FullscreenApp
         photoTexture.SetPixels(pixels);
         photoTexture.Apply();
 
+        photo.DOKill();
         photo.texture = photoTexture;
         photo.color = Color.white;
+        unsavedPhoto = true;
+        RefreshButtons();
 
         Cursor.visible = cursorWasVisible;
 
@@ -130,6 +158,50 @@ public class CameraApp : FullscreenApp
             flash.gameObject.SetActive(false);
             pda.SetVisible(true);
         });
+    }
+
+    private void SavePhoto()
+    {
+        // gallery gets its own copy so deleting there doesn't blank this one
+        pictures.AddPhoto(Instantiate(photoTexture));
+
+        unsavedPhoto = false;
+        RefreshButtons();
+
+        // little dip, then fling it up into the gallery
+        RectTransform photoRect = photo.rectTransform;
+        photoRect.DOKill();
+        saveSequence = DOTween.Sequence()
+            .Append(photoRect.DOAnchorPosY(photoPos.y - 30f, 0.12f).SetEase(Ease.OutQuad))
+            .Append(photoRect.DOAnchorPosY(photoPos.y + 900f, 0.4f).SetEase(Ease.InQuad))
+            .Join(photoRect.DORotate(new Vector3(0f, 0f, Random.Range(-20f, 20f)), 0.4f).SetEase(Ease.InQuad))
+            .Join(photo.DOFade(0f, 0.4f).SetEase(Ease.InQuad))
+            .OnComplete(ClearPhoto);
+    }
+
+    private void FinishSaveFling()
+    {
+        if (saveSequence != null && saveSequence.IsActive())
+            saveSequence.Complete();
+    }
+
+    // empty black slot, faded back in where the photo was
+    private void ClearPhoto()
+    {
+        RectTransform photoRect = photo.rectTransform;
+        photoRect.anchoredPosition = photoPos;
+        photoRect.localRotation = Quaternion.identity;
+
+        photo.texture = null;
+        photo.color = new Color(0f, 0f, 0f, 0f);
+        photo.DOFade(1f, 0.2f);
+    }
+
+    private void RefreshButtons()
+    {
+        retakeButton.interactable = !pictures.IsFull;
+        saveButton.interactable = unsavedPhoto && !pictures.IsFull;
+        galleryFullText.SetActive(pictures.IsFull);
     }
 
     // averages each block of source pixels into one output pixel

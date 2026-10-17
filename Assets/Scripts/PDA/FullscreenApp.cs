@@ -53,6 +53,9 @@ public class FullscreenApp : MonoBehaviour
         OnClosed();
     }
 
+    // return true if the app dealt with back itself, e.g. closing a sub view
+    public virtual bool Back() { return false; }
+
     protected virtual void OnOpened() { }
 
     protected virtual void OnClosed() { }
