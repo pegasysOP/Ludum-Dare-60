@@ -159,6 +159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9156082671251123016}
+  - component: {fileID: 5905418269010161560}
   m_Layer: 5
   m_Name: Camera Content
   m_TagString: Untagged
@@ -1007,8 +1008,7 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.2723137
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5826193047618392517, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 241608565759778615, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
@@ -1020,10 +1020,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 241608565759778615, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5399576145972997864}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 304316379548689889, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5905418269010161560}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
 --- !u!224 &1756524869306263282 stripped
 RectTransform:
@@ -1041,18 +1038,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2234653585046182948}
+  m_GameObject: {fileID: 4574081282359761509}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 219219c3132c487eae093050bdff9262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraApp
-  backButton: {fileID: 4261403156657544032}
-  rect: {fileID: 1756524869306263282}
-  canvasGroup: {fileID: 9056509337119689312}
-  openDuration: 0.4
-  closeDuration: 0.25
-  iconScale: 0.25
   pda: {fileID: 0}
   viewfinder: {fileID: 9075130216214855334}
   flash: {fileID: 7572974406125774881}
@@ -1264,3 +1255,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &5467642692526352384 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5826193047618392517, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
+  m_PrefabInstance: {fileID: 1961937461813590469}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea954404451b4c1db6a609814ad60c18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FullscreenApp

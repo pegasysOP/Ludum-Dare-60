@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class CameraApp : FullscreenApp
+public class CameraApp : MonoBehaviour, IAppContent
 {
     public PdaController pda;
     public RectTransform viewfinder;
@@ -65,7 +65,7 @@ public class CameraApp : FullscreenApp
             StartCoroutine(TakePhoto());
     }
 
-    protected override void OnOpened()
+    public void OnAppOpened()
     {
         if (pictures.IsFull)
         {
@@ -83,7 +83,12 @@ public class CameraApp : FullscreenApp
         StartAiming();
     }
 
-    protected override void OnClosed()
+    public bool Back()
+    {
+        return false;
+    }
+
+    public void OnAppClosed()
     {
         StopAiming();
     }

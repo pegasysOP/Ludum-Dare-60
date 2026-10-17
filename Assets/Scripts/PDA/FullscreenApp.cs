@@ -32,8 +32,6 @@ public class FullscreenApp : MonoBehaviour
             .Join(rect.DOScale(1f, openDuration).SetEase(Ease.OutExpo))
             .Join(canvasGroup.DOFade(1f, openDuration * 0.5f));
 
-        OnOpened();
-
         foreach (IAppContent content in GetComponentsInChildren<IAppContent>(true))
             content.OnAppOpened();
     }
@@ -53,14 +51,12 @@ public class FullscreenApp : MonoBehaviour
             .Join(canvasGroup.DOFade(0f, closeDuration).SetEase(Ease.InQuad))
             .OnComplete(() => gameObject.SetActive(false));
 
-        OnClosed();
-
         foreach (IAppContent content in GetComponentsInChildren<IAppContent>(true))
             content.OnAppClosed();
     }
 
-    // return true if the app dealt with back itself, e.g. closing a sub view; asks IAppContent by default
-    public virtual bool Back()
+    // true if the app's content dealt with back itself, e.g. closing a sub view
+    public bool Back()
     {
         foreach (IAppContent content in GetComponentsInChildren<IAppContent>(true))
         {
@@ -70,8 +66,4 @@ public class FullscreenApp : MonoBehaviour
 
         return false;
     }
-
-    protected virtual void OnOpened() { }
-
-    protected virtual void OnClosed() { }
 }

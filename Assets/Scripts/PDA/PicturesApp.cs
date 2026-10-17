@@ -3,7 +3,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PicturesApp : FullscreenApp
+public class PicturesApp : MonoBehaviour, IAppContent
 {
     public const int MaxPhotos = 20;
 
@@ -13,9 +13,6 @@ public class PicturesApp : FullscreenApp
     public GameObject photoView;
     public RawImage fullPhoto;
     public Button deleteButton;
-    public ScrollRect scroll;
-
-    private const float ScrollTickSpacing = 70f;
 
     // kept in memory only, so they clear when the game stops
     private List<Texture2D> photos = new List<Texture2D>();
@@ -23,8 +20,6 @@ public class PicturesApp : FullscreenApp
     private Vector2 fullPhotoPos;
     private Sequence deleteSequence;
     private PhoneSfxLibrary sounds;
-    private float lastScrollY;
-    private float scrollTravelled;
 
     public bool IsFull => photos.Count >= MaxPhotos;
 
@@ -33,9 +28,6 @@ public class PicturesApp : FullscreenApp
         fullPhotoPos = fullPhoto.rectTransform.anchoredPosition;
         deleteButton.onClick.AddListener(DeletePhoto);
         sounds = PhoneSfxLibrary.Load();
-
-        lastScrollY = grid.anchoredPosition.y;
-        scroll.onValueChanged.AddListener(OnScrolled);
     }
 
     public void AddPhoto(Texture2D photo)
@@ -51,7 +43,7 @@ public class PicturesApp : FullscreenApp
         emptyText.SetActive(false);
     }
 
-    public override bool Back()
+    public bool Back()
     {
         if (!photoView.activeSelf)
             return false;
@@ -61,7 +53,9 @@ public class PicturesApp : FullscreenApp
         return true;
     }
 
-    protected override void OnClosed()
+    public void OnAppOpened() { }
+
+    public void OnAppClosed()
     {
         HidePhoto();
     }
@@ -124,20 +118,6 @@ public class PicturesApp : FullscreenApp
 
                 Destroy(photo);
             });
-    }
-
-    // tick every so often while the gallery scrolls
-    private void OnScrolled(Vector2 position)
-    {
-        float y = grid.anchoredPosition.y;
-        scrollTravelled += Mathf.Abs(y - lastScrollY);
-        lastScrollY = y;
-
-        if (scrollTravelled < ScrollTickSpacing)
-            return;
-
-        scrollTravelled %= ScrollTickSpacing;
-        sounds.scrollTick.Play();
     }
 
     private void OnDestroy()
