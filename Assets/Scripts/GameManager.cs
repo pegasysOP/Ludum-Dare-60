@@ -35,22 +35,6 @@ public class GameManager : MonoBehaviour
         //TODO: Implement UI 
     }
 
-    public void TogglePauseMenu()
-    {
-        if (hudController == null || hudController.pauseMenu == null)
-        {
-            Debug.LogWarning("HudController or PauseMenu is not assigned!");
-            return;
-        }
-
-        bool isPausing = !hudController.pauseMenu.isActiveAndEnabled;
-
-        SetLocked(isPausing);
-        Time.timeScale = isPausing ? 0f : 1f;
-
-        hudController.pauseMenu.Toggle();
-    }
-
     public void DestroySelf()
     {
         Time.timeScale = 1;
