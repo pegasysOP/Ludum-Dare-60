@@ -9,8 +9,15 @@ public class SettingsApp : MonoBehaviour
     public Slider sfxSlider;
     public Button quitButton;
 
+    private const float SliderTickInterval = 0.06f;
+
+    private PhoneSfxLibrary sounds;
+    private float lastTickTime;
+
     private void Awake()
     {
+        sounds = PhoneSfxLibrary.Load();
+
         sensitivitySlider.value = SettingsUtils.GetSensitivity();
         volumeSlider.value = SettingsUtils.GetMasterVolume();
         musicSlider.value = SettingsUtils.GetMusicVolume();
@@ -38,6 +45,7 @@ public class SettingsApp : MonoBehaviour
     private void OnSensitivityValueChanged(float newValue)
     {
         SettingsUtils.SetSensitivity(newValue);
+        PlaySliderTick();
     }
 
     private void OnVolumeValueChanged(float newValue)
@@ -46,6 +54,8 @@ public class SettingsApp : MonoBehaviour
 
         if (AudioManager.Instance != null)
             AudioManager.Instance.UpdateVolume();
+
+        PlaySliderTick();
     }
 
     private void OnMusicVolumeChanged(float newValue)
@@ -54,6 +64,8 @@ public class SettingsApp : MonoBehaviour
 
         if (MusicManager.Instance != null)
             MusicManager.Instance.RefreshMasterVolume();
+
+        PlaySliderTick();
     }
 
     private void OnSFXVolumeChanged(float newValue)
@@ -62,10 +74,23 @@ public class SettingsApp : MonoBehaviour
 
         if (AudioManager.Instance != null)
             AudioManager.Instance.UpdateVolume();
+
+        PlaySliderTick();
     }
 
     private void OnQuitButtonClick()
     {
+        sounds.tap.Play();
         SceneUtils.LoadMenuScene();
+    }
+
+    // ratchet tick while dragging, plays at the new volume so it doubles as a preview
+    private void PlaySliderTick()
+    {
+        if (Time.unscaledTime - lastTickTime < SliderTickInterval)
+            return;
+
+        lastTickTime = Time.unscaledTime;
+        sounds.scrollTick.Play();
     }
 }

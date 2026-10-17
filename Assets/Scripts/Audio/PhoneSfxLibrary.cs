@@ -23,6 +23,10 @@ public class PhoneSfxLibrary : ScriptableObject
     public SfxBank toggleOff = new SfxBank();
     public SfxBank error = new SfxBank();
 
+    [Header("Phone Mode")]
+    public SfxBank modeOpen = new SfxBank();
+    public SfxBank modeClose = new SfxBank();
+
     [Header("Notifications")]
     public SfxBank notifMessage = new SfxBank();
 
@@ -57,6 +61,8 @@ public class PhoneSfxLibrary : ScriptableObject
         yield return new KeyValuePair<string, SfxBank>("Toggle On", toggleOn);
         yield return new KeyValuePair<string, SfxBank>("Toggle Off", toggleOff);
         yield return new KeyValuePair<string, SfxBank>("Error", error);
+        yield return new KeyValuePair<string, SfxBank>("Phone Up", modeOpen);
+        yield return new KeyValuePair<string, SfxBank>("Phone Down", modeClose);
         yield return new KeyValuePair<string, SfxBank>("Message", notifMessage);
         yield return new KeyValuePair<string, SfxBank>("Shutter", camShutter);
     }

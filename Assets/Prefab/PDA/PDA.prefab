@@ -4243,6 +4243,7 @@ MonoBehaviour:
   photoView: {fileID: 1384756102938475612}
   fullPhoto: {fileID: 8610293847561029379}
   deleteButton: {fileID: 1195431083745736544}
+  scroll: {fileID: 7029384756102938415}
 --- !u!114 &8230353464483068466 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2313082390796509861, guid: 0b7d2b3d485436c49a49695870314883, type: 3}

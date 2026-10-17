@@ -30,6 +30,7 @@ public class CameraApp : FullscreenApp
     private bool cursorWasVisible;
     private Texture2D photoTexture;
     private bool unsavedPhoto = false;
+    private PhoneSfxLibrary sounds;
     private Vector2 photoPos;
     private Sequence saveSequence;
 
@@ -41,8 +42,9 @@ public class CameraApp : FullscreenApp
         flash.rectTransform.SetParent(canvas, false);
 
         photoPos = photo.rectTransform.anchoredPosition;
+        sounds = PhoneSfxLibrary.Load();
 
-        retakeButton.onClick.AddListener(StartAiming);
+        retakeButton.onClick.AddListener(Retake);
         saveButton.onClick.AddListener(SavePhoto);
         RefreshButtons();
     }
@@ -72,6 +74,9 @@ public class CameraApp : FullscreenApp
             ClearPhoto();
             unsavedPhoto = false;
             RefreshButtons();
+
+            // after the app open sound so they don't stack
+            DOVirtual.DelayedCall(0.25f, sounds.error.Play);
             return;
         }
 
@@ -152,6 +157,7 @@ public class CameraApp : FullscreenApp
 
         Cursor.visible = cursorWasVisible;
 
+        sounds.camShutter.Play();
         flash.color = Color.white;
         flash.DOFade(0f, flashDuration).SetEase(Ease.OutQuad).OnComplete(() =>
         {
@@ -168,6 +174,8 @@ public class CameraApp : FullscreenApp
         unsavedPhoto = false;
         RefreshButtons();
 
+        sounds.swipe.Play();
+
         // little dip, then fling it up into the gallery
         RectTransform photoRect = photo.rectTransform;
         photoRect.DOKill();
@@ -177,6 +185,12 @@ public class CameraApp : FullscreenApp
             .Join(photoRect.DORotate(new Vector3(0f, 0f, Random.Range(-20f, 20f)), 0.4f).SetEase(Ease.InQuad))
             .Join(photo.DOFade(0f, 0.4f).SetEase(Ease.InQuad))
             .OnComplete(ClearPhoto);
+    }
+
+    private void Retake()
+    {
+        sounds.tap.Play();
+        StartAiming();
     }
 
     private void FinishSaveFling()

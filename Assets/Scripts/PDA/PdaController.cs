@@ -16,9 +16,12 @@ public class PdaController : MonoBehaviour
     private bool open = false;
     private HomescreenApp openApp;
     private InputAction escapeAction;
+    private PhoneSfxLibrary sounds;
 
     private void Awake()
     {
+        sounds = PhoneSfxLibrary.Load();
+
         sideButton.onClick.AddListener(ToggleOpen);
 
         foreach (HomescreenApp app in apps)
@@ -51,8 +54,16 @@ public class PdaController : MonoBehaviour
 
     public void SetOpen(bool opening)
     {
+        if (opening == open)
+            return;
+
+        // phone down sound covers the app closing too
         if (!opening)
-            CloseApp();
+            CloseApp(false);
+
+        (opening ? sounds.modeOpen : sounds.modeClose).Play();
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.SetPhoneMode(opening);
 
         rect.DOKill();
         rect.DOAnchorPosX(opening ? 50 : -550, 0.5f).SetEase(Ease.OutExpo);
@@ -72,11 +83,12 @@ public class PdaController : MonoBehaviour
         if (openApp == app)
             return;
 
-        CloseApp();
+        CloseApp(false);
 
         if (!open)
             SetOpen(true);
 
+        sounds.appOpen.Play();
         openApp = app;
         app.fullscreenApp.Open(app.rect);
     }
@@ -89,10 +101,13 @@ public class PdaController : MonoBehaviour
         CloseApp();
     }
 
-    public void CloseApp()
+    public void CloseApp(bool playSound = true)
     {
         if (openApp == null)
             return;
+
+        if (playSound)
+            sounds.appClose.Play();
 
         openApp.fullscreenApp.Close(openApp.rect);
         openApp = null;

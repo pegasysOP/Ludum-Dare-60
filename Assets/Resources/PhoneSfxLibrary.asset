@@ -102,6 +102,26 @@ MonoBehaviour:
     gain: 1
     volumeJitter: 0
     useFocusMixerGroup: 0
+  modeOpen:
+    clips:
+    - _clip: {fileID: 8300000, guid: 274fb556da5d344b6ae9735e859e6b3f, type: 3}
+      _volume: 1
+      _delay: 0
+    pitchMin: 1
+    pitchMax: 1
+    gain: 1
+    volumeJitter: 0
+    useFocusMixerGroup: 0
+  modeClose:
+    clips:
+    - _clip: {fileID: 8300000, guid: e66d98ff7b7604fbcbb65b44b47ae663, type: 3}
+      _volume: 1
+      _delay: 0
+    pitchMin: 1
+    pitchMax: 1
+    gain: 1
+    volumeJitter: 0
+    useFocusMixerGroup: 0
   notifMessage:
     clips:
     - _clip: {fileID: 8300000, guid: ac7af6198da6e4522a916ae7ef5da4ab, type: 3}

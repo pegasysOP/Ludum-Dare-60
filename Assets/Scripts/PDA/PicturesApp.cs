@@ -13,12 +13,18 @@ public class PicturesApp : FullscreenApp
     public GameObject photoView;
     public RawImage fullPhoto;
     public Button deleteButton;
+    public ScrollRect scroll;
+
+    private const float ScrollTickSpacing = 70f;
 
     // kept in memory only, so they clear when the game stops
     private List<Texture2D> photos = new List<Texture2D>();
     private Button viewing;
     private Vector2 fullPhotoPos;
     private Sequence deleteSequence;
+    private PhoneSfxLibrary sounds;
+    private float lastScrollY;
+    private float scrollTravelled;
 
     public bool IsFull => photos.Count >= MaxPhotos;
 
@@ -26,6 +32,10 @@ public class PicturesApp : FullscreenApp
     {
         fullPhotoPos = fullPhoto.rectTransform.anchoredPosition;
         deleteButton.onClick.AddListener(DeletePhoto);
+        sounds = PhoneSfxLibrary.Load();
+
+        lastScrollY = grid.anchoredPosition.y;
+        scroll.onValueChanged.AddListener(OnScrolled);
     }
 
     public void AddPhoto(Texture2D photo)
@@ -46,6 +56,7 @@ public class PicturesApp : FullscreenApp
         if (!photoView.activeSelf)
             return false;
 
+        sounds.back.Play();
         HidePhoto();
         return true;
     }
@@ -61,6 +72,7 @@ public class PicturesApp : FullscreenApp
         if (deleteSequence != null && deleteSequence.IsActive())
             deleteSequence.Complete();
 
+        sounds.tap.Play();
         viewing = thumbnail;
         fullPhoto.texture = thumbnail.GetComponent<RawImage>().texture;
         fullPhoto.color = Color.white;
@@ -93,6 +105,7 @@ public class PicturesApp : FullscreenApp
         Destroy(viewing.gameObject);
         emptyText.SetActive(photos.Count == 0);
         deleteButton.interactable = false;
+        sounds.swipe.Play();
 
         // little hop, then fling it off the bottom, over the delete button
         RectTransform photoRect = fullPhoto.rectTransform;
@@ -111,6 +124,20 @@ public class PicturesApp : FullscreenApp
 
                 Destroy(photo);
             });
+    }
+
+    // tick every so often while the gallery scrolls
+    private void OnScrolled(Vector2 position)
+    {
+        float y = grid.anchoredPosition.y;
+        scrollTravelled += Mathf.Abs(y - lastScrollY);
+        lastScrollY = y;
+
+        if (scrollTravelled < ScrollTickSpacing)
+            return;
+
+        scrollTravelled %= ScrollTickSpacing;
+        sounds.scrollTick.Play();
     }
 
     private void OnDestroy()
