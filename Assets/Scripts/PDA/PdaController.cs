@@ -22,6 +22,7 @@ public class PdaController : MonoBehaviour
     public float closedScale = 0.38f;
 
     private bool open = false;
+    private bool putAway = false;
     private HomescreenApp openApp;
     private InputAction escapeAction;
     private PhoneSfxLibrary sounds;
@@ -56,6 +57,8 @@ public class PdaController : MonoBehaviour
 
         RefreshNotificationLight();
 
+        GetComponentInChildren<SusPXApp>(true).onReport.AddListener(_ => PutAway());
+
         rect.anchoredPosition = closedPosition;
         rect.localScale = Vector3.one * closedScale;
         openGroup.alpha = 0f;
@@ -71,6 +74,9 @@ public class PdaController : MonoBehaviour
 
     private void Update()
     {
+        if (putAway)
+            return;
+
         if (escapeAction != null && escapeAction.triggered)
         {
             if (openApp != null)
@@ -142,6 +148,17 @@ public class PdaController : MonoBehaviour
         canvasGroup.DOKill();
         canvasGroup.DOFade(visible ? 1f : 0f, 0.3f);
         canvasGroup.blocksRaycasts = visible;
+    }
+
+    // once someone's reported the phone closes and fades away for good
+    private void PutAway()
+    {
+        putAway = true;
+        SetOpen(false);
+
+        canvasGroup.DOKill();
+        canvasGroup.blocksRaycasts = false;
+        canvasGroup.DOFade(0f, 0.6f).SetDelay(0.6f);
     }
 
     public void OpenApp(HomescreenApp app)
