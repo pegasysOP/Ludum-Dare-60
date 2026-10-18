@@ -18,13 +18,11 @@ public abstract class Interactable : MonoBehaviour, IPointerDownHandler, IPointe
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log(name + "Game Object Mouse Enter");
         spriteOutline?.ShowOutline();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log(name + "Game Object Mouse Exit");
         spriteOutline?.HideOutline();
     }
 }
