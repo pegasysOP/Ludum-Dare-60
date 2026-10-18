@@ -8,6 +8,54 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 481976165637272635, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
+      propertyPath: m_Color.r
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 481976165637272635, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
+      propertyPath: m_Color.g
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 481976165637272635, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
+      propertyPath: m_Color.b
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5262575926867631387, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
+      propertyPath: m_Color.r
+      value: 0.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 5262575926867631387, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
+      propertyPath: m_Color.g
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 5262575926867631387, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
+      propertyPath: m_Color.b
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093817265530981746, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
+      propertyPath: m_fontColorGradient.topLeft.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093817265530981746, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
+      propertyPath: m_fontColorGradient.topLeft.g
+      value: 0.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093817265530981746, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
+      propertyPath: m_fontColorGradient.topLeft.b
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093817265530981746, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
+      propertyPath: m_fontColorGradient.topRight.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093817265530981746, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
+      propertyPath: m_fontColorGradient.topRight.g
+      value: 0.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093817265530981746, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
+      propertyPath: m_fontColorGradient.topRight.b
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 241608565759778615, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -102,15 +150,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6659679769260762834, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
       propertyPath: m_Color.b
-      value: 0.5874733
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 6659679769260762834, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
       propertyPath: m_Color.g
-      value: 0.6005031
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 6659679769260762834, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
       propertyPath: m_Color.r
-      value: 0.2096095
+      value: 0.65
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -459,7 +507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.29803923, g: 0.42745098, b: 0.41568628, a: 1}
+  m_Color: {r: 0.4, g: 0.1, b: 0.11, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -492,7 +540,7 @@ MonoBehaviour:
   headshot: {fileID: 7609182736450192871}
   nameText: {fileID: 6738201946501928375}
   titleText: {fileID: 5821039485761029389}
-  placeholderColour: {r: 0.19607843, g: 0.2901961, b: 0.28627452, a: 1}
+  placeholderColour: {r: 0.22, g: 0.06, b: 0.07, a: 1}
 --- !u!1 &2649183746501928364
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,7 +599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.33807984, g: 0.9685534, b: 0.9475376, a: 1}
+  m_Color: {r: 1, g: 0.35, b: 0.32, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -626,7 +674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.2901961, b: 0.28627452, a: 1}
+  m_Color: {r: 0.22, g: 0.06, b: 0.07, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -722,8 +770,8 @@ MonoBehaviour:
   m_enableVertexGradient: 1
   m_colorMode: 2
   m_fontColorGradient:
-    topLeft: {r: 0.54402506, g: 0.9376261, b: 1, a: 1}
-    topRight: {r: 0.54402506, g: 0.9376261, b: 1, a: 1}
+    topLeft: {r: 1, g: 0.78, b: 0.75, a: 1}
+    topRight: {r: 1, g: 0.78, b: 0.75, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
@@ -1020,7 +1068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.45176208, g: 0.59119487, b: 0.56500477, a: 1}
+  m_Color: {r: 0.55, g: 0.3, b: 0.3, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1101,7 +1149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.29803923, g: 0.42745098, b: 0.41568628, a: 1}
+  m_Color: {r: 0.4, g: 0.1, b: 0.11, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1134,7 +1182,7 @@ MonoBehaviour:
   headshot: {fileID: 4102938475610293830}
   nameText: {fileID: 5602938475610293834}
   titleText: {fileID: 1302938475610293838}
-  placeholderColour: {r: 0.19607843, g: 0.2901961, b: 0.28627452, a: 1}
+  placeholderColour: {r: 0.22, g: 0.06, b: 0.07, a: 1}
 --- !u!1 &7702938475610293823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,7 +1241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.33807984, g: 0.9685534, b: 0.9475376, a: 1}
+  m_Color: {r: 1, g: 0.35, b: 0.32, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1268,7 +1316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.2901961, b: 0.28627452, a: 1}
+  m_Color: {r: 0.22, g: 0.06, b: 0.07, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1364,8 +1412,8 @@ MonoBehaviour:
   m_enableVertexGradient: 1
   m_colorMode: 2
   m_fontColorGradient:
-    topLeft: {r: 0.54402506, g: 0.9376261, b: 1, a: 1}
-    topRight: {r: 0.54402506, g: 0.9376261, b: 1, a: 1}
+    topLeft: {r: 1, g: 0.78, b: 0.75, a: 1}
+    topRight: {r: 1, g: 0.78, b: 0.75, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
@@ -1792,7 +1840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.33807984, g: 0.9685534, b: 0.9475376, a: 1}
+  m_Color: {r: 1, g: 0.35, b: 0.32, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1871,15 +1919,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3741092339807915888, guid: 83c306c61f7d6e547b05e67c75959445, type: 3}
       propertyPath: m_Color.b
-      value: 0.1
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 3741092339807915888, guid: 83c306c61f7d6e547b05e67c75959445, type: 3}
       propertyPath: m_Color.g
-      value: 0.09
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3741092339807915888, guid: 83c306c61f7d6e547b05e67c75959445, type: 3}
       propertyPath: m_Color.r
-      value: 0.6
+      value: 0.88
       objectReference: {fileID: 0}
     - target: {fileID: 6078895358876009029, guid: 83c306c61f7d6e547b05e67c75959445, type: 3}
       propertyPath: m_Name
