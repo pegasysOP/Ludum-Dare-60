@@ -276,6 +276,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 350794083}
+  - {fileID: 842405458}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &171076647
@@ -1086,6 +1087,148 @@ PrefabInstance:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9072686908582477144, guid: fc9fd4baf18297a42acbf96d4f53a6dc, type: 3}
   m_PrefabInstance: {fileID: 838589313}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &842405457
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 74725921}
+    m_Modifications:
+    - target: {fileID: 1139003983346214975, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: hasCD
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139003983346214975, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: repeatableLine.text
+      value: Honestly, at this point I'd settle for a boring explanation.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139003983346214975, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139003983346214975, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[2].text
+      value: Because whenever numbers stop adding up, everyone immediately blames the product. Nobody ever considers the accountants.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139003983346214975, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[7].text
+      value: It's been a long week.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139003983346214975, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[8].text
+      value: Anyway. Workstation's unlocked. Feel free.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139003983346214975, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[9].text
+      value: You seem fairly relaxed.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139003983346214975, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[10].text
+      value: Relaxed isn't the word.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139003983346214975, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[11].text
+      value: Yesterday I sat through a two-hour meeting about whether a button should say 'Submit' or 'Confirm'.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139003983346214975, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[12].text
+      value: Nothing you find on that computer can hurt me more than that meeting did.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139003983346214975, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[13].text
+      value: He rubs his eyes
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139003983346214975, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[14].text
+      value: I've got six explanations. Three involve software, two involve spreadsheets, and one involves setting fire to the building and starting over.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139003983346214975, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[7].character
+      value: 
+      objectReference: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+    - target: {fileID: 1139003983346214975, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[8].character
+      value: 
+      objectReference: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+    - target: {fileID: 1139003983346214975, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[9].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
+    - target: {fileID: 1139003983346214975, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[10].character
+      value: 
+      objectReference: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+    - target: {fileID: 1139003983346214975, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[11].character
+      value: 
+      objectReference: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+    - target: {fileID: 1139003983346214975, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[13].character
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1147485803453466909, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 1147485803453466909, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 1147485803453466909, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 1147485803453466909, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.30164
+      objectReference: {fileID: 0}
+    - target: {fileID: 1147485803453466909, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1147485803453466909, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1147485803453466909, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1147485803453466909, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1147485803453466909, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1147485803453466909, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1147485803453466909, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1147485803453466909, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6803503765090878712, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: m_Name
+      value: ProductManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+--- !u!4 &842405458 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1147485803453466909, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+  m_PrefabInstance: {fileID: 842405457}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &869348419
 PrefabInstance:
