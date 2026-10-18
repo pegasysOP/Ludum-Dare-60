@@ -246,17 +246,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!114 &127818985 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4548777920402729400, guid: 71723c9b621c8764fb6ce4f33da0664c, type: 3}
-  m_PrefabInstance: {fileID: 545354769}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &171076647
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -541,41 +530,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce225db419a2b094fb50d6a30c2ba549, type: 3}
---- !u!114 &507550221 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6123675125645579850, guid: 71723c9b621c8764fb6ce4f33da0664c, type: 3}
-  m_PrefabInstance: {fileID: 545354769}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
---- !u!1 &524954301 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4364729139815074331, guid: 71723c9b621c8764fb6ce4f33da0664c, type: 3}
-  m_PrefabInstance: {fileID: 545354769}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &524954307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 524954301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60caa175b000d5d43bfd9286d1b3a8b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  dialogText: {fileID: 545354770}
-  characterName: {fileID: 127818985}
-  characterSprite: {fileID: 0}
-  characterImage: {fileID: 507550221}
-  onDialogFinished:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1001 &545354769
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -688,12 +642,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4548777920402729400, guid: 71723c9b621c8764fb6ce4f33da0664c, type: 3}
-      propertyPath: m_text
-      value: '
-
-'
-      objectReference: {fileID: 0}
     - target: {fileID: 5962461237503428929, guid: 71723c9b621c8764fb6ce4f33da0664c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -709,10 +657,6 @@ PrefabInstance:
     - target: {fileID: 5962461237503428929, guid: 71723c9b621c8764fb6ce4f33da0664c, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6544496514822969396, guid: 71723c9b621c8764fb6ce4f33da0664c, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7385004515527807045, guid: 71723c9b621c8764fb6ce4f33da0664c, type: 3}
       propertyPath: m_AnchorMax.y
@@ -749,13 +693,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4364729139815074331, guid: 71723c9b621c8764fb6ce4f33da0664c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 524954307}
-    - targetCorrespondingSourceObject: {fileID: 6831158968616055094, guid: 71723c9b621c8764fb6ce4f33da0664c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1945096487}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71723c9b621c8764fb6ce4f33da0664c, type: 3}
 --- !u!114 &545354770 stripped
 MonoBehaviour:
@@ -1429,10 +1367,6 @@ PrefabInstance:
       propertyPath: m_Size.x
       value: 1.0235837
       objectReference: {fileID: 0}
-    - target: {fileID: 4843283080146060342, guid: 39ea8172047fee447855c50de249e49d, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.0017348826
-      objectReference: {fileID: 0}
     - target: {fileID: 8632493399321058803, guid: 39ea8172047fee447855c50de249e49d, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.4181331
@@ -1578,57 +1512,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1945096482 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6831158968616055094, guid: 71723c9b621c8764fb6ce4f33da0664c, type: 3}
-  m_PrefabInstance: {fileID: 545354769}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &1945096487
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1945096482}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1001 &1542352877720982498
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1677,62 +1560,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[0].text
-      value: '"You must be the auditor that Mr Hale mentioned. He''s tied up with the board at the moment, but he asked me to give you this."'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[1].text
-      value: She hands over a burned CD in a paper sleeve.
-      objectReference: {fileID: 0}
-    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[2].text
-      value: '"It''s a copy of the Q3 financial report. Nothing dramatic as far as I know, just some figures don''t quite add up."'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[3].text
-      value: '"What sort of discrepancies?"'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[4].text
-      value: '"I''m not an accountant. I just remember Finance sending revisions back and forth for almost a week. The final numbers apparently don''t match the supporting data."'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[5].text
-      value: '"Anyone particular worried about it?"'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[6].text
-      value: '"The CEO was. That''s why you''re here, isn''t it?"'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[0].character
-      value: 
-      objectReference: {fileID: 11400000, guid: 66288176f0d64d55a642533492dab6c6, type: 2}
-    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[2].character
-      value: 
-      objectReference: {fileID: 11400000, guid: 66288176f0d64d55a642533492dab6c6, type: 2}
-    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[3].character
-      value: 
-      objectReference: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
-    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[4].character
-      value: 
-      objectReference: {fileID: 11400000, guid: 66288176f0d64d55a642533492dab6c6, type: 2}
-    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[5].character
-      value: 
-      objectReference: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
-    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[6].character
-      value: 
-      objectReference: {fileID: 11400000, guid: 66288176f0d64d55a642533492dab6c6, type: 2}
     - target: {fileID: 4889285028667515705, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
       propertyPath: m_Name
       value: Secretary
