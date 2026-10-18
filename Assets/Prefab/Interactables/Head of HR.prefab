@@ -104,10 +104,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProductManagerInteractable
   dialogLinesWithCharacterInfo:
   - text: Line for Head of HR
-    character: {fileID: 11400000, guid: 0ef43d2e83704a55b083bf30c304b9a3, type: 2}
+    character: {fileID: 11400000, guid: 65181e84e9c64dcc8477f95d0e0d485f, type: 2}
   repeatableLine:
     text: Repeatable line for Head of HR
-    character: {fileID: 11400000, guid: 0ef43d2e83704a55b083bf30c304b9a3, type: 2}
+    character: {fileID: 11400000, guid: 65181e84e9c64dcc8477f95d0e0d485f, type: 2}
 --- !u!60 &6813529360823359505
 PolygonCollider2D:
   m_ObjectHideFlags: 0

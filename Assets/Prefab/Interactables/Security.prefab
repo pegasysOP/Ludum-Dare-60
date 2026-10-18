@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7610190429214833476
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1323051372723007196, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323051372723007196, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323051372723007196, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323051372723007196, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323051372723007196, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323051372723007196, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323051372723007196, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323051372723007196, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323051372723007196, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323051372723007196, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4889285028667515705, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: m_Name
+      value: Security
+      objectReference: {fileID: 0}
+    - target: {fileID: 5019537581400960372, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: outlineScale
+      value: 1.05
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2351423012424160451, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5439513432788928827}
+  m_SourcePrefab: {fileID: 100100000, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+--- !u!1 &5277441522547421063 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2351423012424160451, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+  m_PrefabInstance: {fileID: 7610190429214833476}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5439513432788928827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5277441522547421063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13207926ca803674293b6f9244e50057, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProductManagerInteractable
+  dialogLinesWithCharacterInfo:
+  - text: Why is the wall on fire? Someone should put it out
+    character: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
+  repeatableLine:
+    text: FIRE!!!!!!!!!!!!!!
+    character: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
