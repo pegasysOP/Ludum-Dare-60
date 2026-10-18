@@ -50,10 +50,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4889285028667515705, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
       propertyPath: m_Name
-      value: Secretary
+      value: Engineer
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2351423012424160451, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8143242966682691316}
   m_SourcePrefab: {fileID: 100100000, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+--- !u!1 &65943902086694740 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2351423012424160451, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+  m_PrefabInstance: {fileID: 2327139880884474775}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8143242966682691316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65943902086694740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13207926ca803674293b6f9244e50057, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProductManagerInteractable
+  dialogLinesWithCharacterInfo:
+  - text: What do you mean missing semicolon on line 89. This file is only 40 lines long
+    character: {fileID: 11400000, guid: cc20f72f74b140d2bfee77910408b697, type: 2}
+  repeatableLine:
+    text: I hate programming
+    character: {fileID: 11400000, guid: cc20f72f74b140d2bfee77910408b697, type: 2}
