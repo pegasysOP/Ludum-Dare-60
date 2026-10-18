@@ -21,7 +21,7 @@ public class ComputerScreen : MonoBehaviour
 
     private ComputerSfxLibrary sounds;
     private Vector2 screenPos;
-    private bool loggedIn = false;
+    [SerializeField] private bool loggedIn = false;
     private Sequence sequence;
     private float fanVolume;
 
