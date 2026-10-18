@@ -341,6 +341,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: MotivationalPoster
       objectReference: {fileID: 0}
+    - target: {fileID: 3949163562240085618, guid: 07e685c48921e4a4392f5206e1cbbb0e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 3949163562240085618, guid: 07e685c48921e4a4392f5206e1cbbb0e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.18
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
