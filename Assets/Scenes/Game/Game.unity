@@ -1179,6 +1179,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a40004bf4fa1a3445affbab64d0ed465, type: 3}
+--- !u!114 &1195132844 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1775934543541353095, guid: a40004bf4fa1a3445affbab64d0ed465, type: 3}
+  m_PrefabInstance: {fileID: 1195132843}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff0757593b445b2b625d04280e40aa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ComputerScreen
 --- !u!224 &1201750797 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 806111932919082927, guid: 354a11d35b1f50244b3d17ebe1044edf, type: 3}
@@ -1507,10 +1518,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Computer
       objectReference: {fileID: 0}
-    - target: {fileID: 4843283080146060342, guid: 39ea8172047fee447855c50de249e49d, type: 3}
-      propertyPath: m_Size.x
-      value: 1.0235837
-      objectReference: {fileID: 0}
     - target: {fileID: 8632493399321058803, guid: 39ea8172047fee447855c50de249e49d, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.4181331
@@ -1559,6 +1566,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8934672759922024192, guid: 39ea8172047fee447855c50de249e49d, type: 3}
+      propertyPath: computerScreen
+      value: 
+      objectReference: {fileID: 1195132844}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
