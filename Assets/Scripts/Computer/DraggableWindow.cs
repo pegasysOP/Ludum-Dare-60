@@ -9,7 +9,8 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
-        canvas = GetComponentInParent<Canvas>();
+        // root canvas holds the real scale, the desktop is a nested canvas
+        canvas = GetComponentInParent<Canvas>().rootCanvas;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
