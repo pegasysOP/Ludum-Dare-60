@@ -1,0 +1,242 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2139452215941310401
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1323051372723007196, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323051372723007196, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323051372723007196, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323051372723007196, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323051372723007196, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323051372723007196, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323051372723007196, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323051372723007196, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323051372723007196, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323051372723007196, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: repeatableLine.text
+      value: 'Feel free to take a look at my Computer. It''s already unlocked. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: repeatableLine.character
+      value: 
+      objectReference: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.size
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[0].text
+      value: I assume you've already spoken to Finance.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[1].text
+      value: Why Finance?
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[2].text
+      value: Because whenever numbers stop adding up, everyone immediately blames the software. Nobody ever considers the accountants.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[3].text
+      value: He lets out a tired laugh.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[4].text
+      value: Although to be fair, the accountants say exactly the same thing about us.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[5].text
+      value: You've got an explanation for the discrepancies?
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[6].text
+      value: I've got six explanations. Three involve software, two involve spreadsheets, and one involves setting fire to the building and starting over.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[7].text
+      value: I've got six explanations. Three involve software, two involve spreadsheets, and one involves setting fire to the building and starting over.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[8].text
+      value: He rubs his eyes
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[9].text
+      value: It's been a long week.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[10].text
+      value: Anyway. Workstation's unlocked. Feel free.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[11].text
+      value: You seem fairly relaxed.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[12].text
+      value: Relaxed isn't the word.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[13].text
+      value: Yesterday I sat through a two-hour meeting about whether a button should say 'Submit' or 'Confirm'.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[14].text
+      value: Nothing you find on that computer can hurt me more than that meeting did.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[0].character
+      value: 
+      objectReference: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[1].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[2].character
+      value: 
+      objectReference: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[3].character
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[4].character
+      value: 
+      objectReference: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[5].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[6].character
+      value: 
+      objectReference: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[7].character
+      value: 
+      objectReference: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[8].character
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[9].character
+      value: 
+      objectReference: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[10].character
+      value: 
+      objectReference: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[11].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[12].character
+      value: 
+      objectReference: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[13].character
+      value: 
+      objectReference: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[14].character
+      value: 
+      objectReference: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+    - target: {fileID: 4889285028667515705, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: m_Name
+      value: ProductManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2351423012424160451, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4609968992102095395}
+  m_SourcePrefab: {fileID: 100100000, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+--- !u!1 &4400354050955162370 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2351423012424160451, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+  m_PrefabInstance: {fileID: 2139452215941310401}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4609968992102095395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4400354050955162370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13207926ca803674293b6f9244e50057, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProductManagerInteractable
+  dialogLinesWithCharacterInfo:
+  - text: I assume you've already spoken to Finance.
+    character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+  - text: Why Finance?
+    character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
+  - text: Because whenever numbers stop adding up, everyone immediately blames the product. Nobody ever considers the accountants.
+    character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+  - text: He lets out a tired laugh.
+    character: {fileID: 0}
+  - text: Although to be fair, the accountants say exactly the same thing about us.
+    character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+  - text: You've got an explanation for the discrepancies?
+    character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
+  - text: I've got six explanations. Three involve software, two involve spreadsheets, and one involves setting fire to the building and starting over.
+    character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+  - text: It's been a long week.
+    character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+  - text: Anyway. Workstation's unlocked. Feel free.
+    character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+  - text: You seem fairly relaxed.
+    character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
+  - text: Relaxed isn't the word.
+    character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+  - text: Yesterday I sat through a two-hour meeting about whether a button should say 'Submit' or 'Confirm'.
+    character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+  - text: Nothing you find on that computer can hurt me more than that meeting did.
+    character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+  repeatableLine:
+    text: Honestly, at this point I'd settle for a boring explanation.
+    character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
