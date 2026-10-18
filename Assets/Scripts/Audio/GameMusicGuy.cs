@@ -13,6 +13,13 @@ public enum GameMood
     Red = 3         // finale ramp, mad & determined
 }
 
+/// <summary>How the case ends. Each maps to one play-once <see cref="MusicTrack"/>.</summary>
+public enum GameEnding
+{
+    Good = 0,       // 07_ending_good: the case is solved
+    Bad = 1         // 08_ending_bad: the case is lost
+}
+
 /// <summary>
 /// Drives music selection from a single place.
 ///
@@ -28,6 +35,10 @@ public enum GameMood
 /// <code>GameMusicGuy.SetMood(GameMood.Orange);</code>
 /// It is static, so it is safe to call from anywhere at any time (even before this component
 /// has started); setting the mood that is already playing does nothing.
+///
+/// To end the game's music, call:
+/// <code>GameMusicGuy.PlayEnding(GameEnding.Good);</code>
+/// The ending plays once and stops; mood changes are ignored after it until the Game scene reloads.
 ///
 /// Everything here is hardcoded on purpose - there are no inspector fields.
 /// Track mapping and tuning values are project-wide creative decisions; we
@@ -51,6 +62,11 @@ public class GameMusicGuy : MonoBehaviour
     // The bloom's tail rings under the theme's first bars.
     private const float GameStartMusicDelay = 3f;
 
+    // OST plan: the good ending should feel like an arrival (the mood crossfades into its swell),
+    // the bad ending like a stop (the mood cuts dead; the file opens on a beat of silence).
+    private const float GoodEndingCrossfade = 2f;
+    private const float BadEndingCrossfade = 0f;
+
     // ---------- Public API ----------
 
     /// <summary>The mood the Game scene is playing (or will play once music starts).</summary>
@@ -63,6 +79,27 @@ public class GameMusicGuy : MonoBehaviour
     public static void SetMood(GameMood mood)
     {
         CurrentMood = mood;
+    }
+
+    /// <summary>The ending playing, if any. While set, mood changes no longer steer the music.</summary>
+    public static GameEnding? CurrentEnding { get; private set; }
+
+    /// <summary>
+    /// Play the music for <paramref name="ending"/> once, out of whatever is playing. Static and safe to call
+    /// from anywhere; needs a <see cref="MusicManager"/> in the scene.
+    /// </summary>
+    public static void PlayEnding(GameEnding ending)
+    {
+        MusicLibrary lib = Resources.Load<MusicLibrary>(MusicLibraryResourcePath);
+        if (lib == null || MusicManager.Instance == null)
+        {
+            Debug.LogError($"{nameof(GameMusicGuy)}: cannot play the {ending} ending: no MusicLibrary or MusicManager.");
+            return;
+        }
+        CurrentEnding = ending;
+        bool good = ending == GameEnding.Good;
+        MusicManager.Instance.PlayEnding(lib.Get(good ? MusicTrack.EndingGood : MusicTrack.EndingBad),
+                                         good ? GoodEndingCrossfade : BadEndingCrossfade);
     }
 
     // ---------- Runtime state ----------
@@ -82,6 +119,7 @@ public class GameMusicGuy : MonoBehaviour
         gameStartPlayed = false;
         gameStartMusicTime = 0f;
         CurrentMood = StartingMood;
+        CurrentEnding = null;
     }
 
     private void Awake()
@@ -155,12 +193,15 @@ public class GameMusicGuy : MonoBehaviour
     {
         // Leaving the Game scene: the next run starts back on the first mood.
         if (gameModeActive)
+        {
             CurrentMood = StartingMood;
+            CurrentEnding = null;
+        }
     }
 
     private void Update()
     {
-        if (!gameModeActive || menuModeActive) return;
+        if (!gameModeActive || menuModeActive || CurrentEnding != null) return;
         if (library == null || MusicManager.Instance == null)
             return;
 

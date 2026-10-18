@@ -17,7 +17,9 @@ public enum MusicTrack
     GameBlue = 2,       // 03_game_blue: early investigation, happy & calm
     GameYellow = 3,     // 04_game_yellow: mid investigation, puzzled & worried
     GameOrange = 4,     // 05_game_orange: late investigation, drama & tense
-    GameRed = 5         // 06_game_red: finale ramp, mad & determined
+    GameRed = 5,        // 06_game_red: finale ramp, mad & determined
+    EndingGood = 6,     // 07_ending_good: the case is solved; a one-shot, then the credits
+    EndingBad = 7       // 08_ending_bad: the case is lost; a one-shot
 }
 
 /// <summary>
@@ -37,6 +39,9 @@ public class MusicTrackEntry
              "is only for the OST.")]
     public int loopStartSample;
     public int loopEndSample;
+
+    [Tooltip("Play the clip once and stop instead of looping it (the endings). Ignored when the entry has a loop region.")]
+    public bool playOnce;
 
     public bool HasLoopRegion => loopEndSample > loopStartSample && loopStartSample >= 0;
 }
@@ -112,6 +117,18 @@ public class MusicLibrary : ScriptableObject
                 endSample = e.loopEndSample;
                 return true;
             }
+        }
+        return false;
+    }
+
+    /// <summary>True if <paramref name="clip"/>'s entry plays once instead of looping.</summary>
+    public bool IsPlayOnce(AudioClip clip)
+    {
+        if (clip == null || entries == null) return false;
+        foreach (MusicTrackEntry e in entries)
+        {
+            if (e != null && e.clip == clip && e.playOnce && !e.HasLoopRegion)
+                return true;
         }
         return false;
     }

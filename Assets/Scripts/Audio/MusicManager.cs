@@ -31,7 +31,8 @@ using UnityEngine.Audio;
 /// Tracks whose <see cref="MusicLibrary"/> entry has a loop region (the studio renders: intro, body,
 /// outro) play the intro once and then loop the body sample-accurately: each music source gets a twin,
 /// and the two are scheduled on the DSP clock to hand over exactly at the loop points. Tracks without a
-/// loop region loop the whole clip as before.
+/// loop region loop the whole clip as before, unless their entry is marked play-once (the endings), which
+/// play through once and stop. <see cref="PlayEnding"/> crossfades out of the current track into one.
 ///
 /// Re-requesting the clip that is already playing is a no-op in both modes.
 /// All interpolation happens in perceived-loudness space via
@@ -245,6 +246,28 @@ public class MusicManager : MonoBehaviour
         currentModeDebug = Mode.Menu;
         currentPerceivedMultiplierDebug = fullVolumeMultiplier;
         phaseDebug = "FullVolume";
+    }
+
+    /// <summary>
+    /// Play an ending (or any one-shot track) at full volume, like <see cref="PlayMusic"/>, but crossfading
+    /// out of whatever is playing over <paramref name="crossfadeSeconds"/>; 0 cuts the current track dead.
+    /// Ignores <see cref="IsGameMusicSuspended"/>: an ending isn't game music. Whether the clip plays once
+    /// comes from its <see cref="MusicLibrary"/> entry (<see cref="MusicTrackEntry.playOnce"/>).
+    /// </summary>
+    public void PlayEnding(AudioClip clip, float crossfadeSeconds)
+    {
+        if (clip == null) return;
+        if (IsAlreadyPlaying(clip)) return;
+        if (crossfadeSeconds <= 0f || !IsPlayingPair(activeSource))
+        {
+            PlayMusic(clip);
+            return;
+        }
+
+        StopRoutine();
+        currentClipDebug = clip;
+        currentModeDebug = Mode.Menu;
+        routine = StartCoroutine(EndingRoutine(clip, crossfadeSeconds));
     }
 
     /// <summary>
@@ -495,7 +518,7 @@ public class MusicManager : MonoBehaviour
             pausedLoopSample = -1;
             return;
         }
-        src.loop = true;
+        src.loop = loopLibrary == null || !loopLibrary.IsPlayOnce(clip);
         src.timeSamples = Mathf.Clamp(fromSample, 0, Mathf.Max(0, clip.samples - 1));
         src.Play();
     }
@@ -611,6 +634,38 @@ public class MusicManager : MonoBehaviour
         to.volume = TargetLinear(backgroundMultiplier);
         currentPerceivedMultiplierDebug = backgroundMultiplier;
         phaseDebug = "Background";
+        routine = null;
+    }
+
+    // Crossfade from the current track into a full-volume track (the endings); no envelope after that.
+    private IEnumerator EndingRoutine(AudioClip clip, float crossfadeSeconds)
+    {
+        AudioSource from = activeSource;
+        AudioSource to = OtherSource(from);
+        float fromStartLinear = from.volume;
+
+        to.volume = 0f;
+        StartSource(to, clip);
+
+        phaseDebug = "Crossfade";
+        float t = 0f;
+        while (t < crossfadeSeconds)
+        {
+            t += Time.deltaTime;
+            float n = Ease(t / crossfadeSeconds);
+            to.volume = AudioVolume.LerpAmplitudePerceived(0f, TargetLinear(fullVolumeMultiplier), n);
+            from.volume = AudioVolume.LerpAmplitudePerceived(fromStartLinear, 0f, n);
+            currentPerceivedMultiplierDebug = Mathf.Lerp(0f, fullVolumeMultiplier, n);
+            yield return null;
+        }
+
+        StopSource(from);
+        from.volume = 0f;
+        from.clip = null;
+        activeSource = to;
+        to.volume = TargetLinear(fullVolumeMultiplier);
+        currentPerceivedMultiplierDebug = fullVolumeMultiplier;
+        phaseDebug = "FullVolume";
         routine = null;
     }
 
