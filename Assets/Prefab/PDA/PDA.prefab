@@ -258,6 +258,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2037307278234133727}
   - component: {fileID: 9141340776029815490}
+  - component: {fileID: 5710179702591840253}
   m_Layer: 5
   m_Name: Closed
   m_TagString: Untagged
@@ -967,6 +968,7 @@ GameObject:
   - component: {fileID: 6494541066763556266}
   - component: {fileID: 6796656300066550121}
   - component: {fileID: 6549459105312983336}
+  - component: {fileID: 1664683784477107706}
   m_Layer: 5
   m_Name: Frame
   m_TagString: Untagged
@@ -1185,6 +1187,7 @@ GameObject:
   - component: {fileID: 4666503195132182777}
   - component: {fileID: 7527145569365650840}
   - component: {fileID: 599572787572842322}
+  - component: {fileID: 1733284777645220055}
   m_Layer: 5
   m_Name: Closed Screen
   m_TagString: Untagged
@@ -1233,7 +1236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1260,7 +1263,7 @@ GameObject:
   - component: {fileID: 3942985937851227072}
   - component: {fileID: 812311989838560089}
   - component: {fileID: 8184519721893550464}
-  - component: {fileID: 5710179702591840253}
+  - component: {fileID: 477245690684694002}
   m_Layer: 5
   m_Name: Closed Frame
   m_TagString: Untagged
@@ -1331,7 +1334,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9104935503966884347}
+  m_GameObject: {fileID: 2257655096335723651}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -2842,3 +2845,42 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3540112093721375910, guid: 63ee703226b5a734da8833b533c5656d, type: 3}
   m_PrefabInstance: {fileID: 8200429402243611006}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1664683784477107706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7570284371695242760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e63a9c2baf492a9b14741871d7df7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AlphaRaycast
+  threshold: 0.5
+--- !u!114 &477245690684694002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9104935503966884347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e63a9c2baf492a9b14741871d7df7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AlphaRaycast
+  threshold: 0.5
+--- !u!114 &1733284777645220055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9068491864294160620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e63a9c2baf492a9b14741871d7df7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AlphaRaycast
+  threshold: 0.5
