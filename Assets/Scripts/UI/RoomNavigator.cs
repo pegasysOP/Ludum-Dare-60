@@ -53,7 +53,9 @@ public class RoomNavigator : MonoBehaviour
     private void ShowRoom(int index)
     {
         currentRoom = index;
-        Vector3 roomPos = rooms.GetChild(index).position;
+        Transform room = rooms.GetChild(index);
+        AmbiencePlayer.SetRoom(room.name);
+        Vector3 roomPos = room.position;
         mainCamera.transform.position = new Vector3(roomPos.x, roomPos.y, mainCamera.transform.position.z);
 
         leftButton.gameObject.SetActive(index > 0);

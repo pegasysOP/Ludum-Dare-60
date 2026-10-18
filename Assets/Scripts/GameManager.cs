@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
     public void TriggerEnding(Character character)
     {
         EndingText endingText = FindAnyObjectByType<EndingText>();
+        AmbiencePlayer.FadeOut();
         // the lazy ending is a lost case too, so it shares the bad ending music
         if (!hasCD)
         {

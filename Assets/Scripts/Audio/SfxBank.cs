@@ -49,7 +49,13 @@ public class SfxBank
         }
     }
 
-    public void Play()
+    public void Play() => Play(1f);
+
+    /// <summary>
+    /// <see cref="Play"/> with an extra perceived-loudness multiplier on top of <see cref="gain"/>
+    /// (e.g. the ambience master volume).
+    /// </summary>
+    public void Play(float gainScale)
     {
         if (clips == null || clips.Count == 0 || AudioManager.Instance == null)
             return;
@@ -66,7 +72,7 @@ public class SfxBank
             if (entry == null || entry.Clip == null)
                 continue;
 
-            float perceived = entry.Volume * gain;
+            float perceived = entry.Volume * gain * gainScale;
             if (volumeJitter > 0f)
                 perceived *= 1f + Random.Range(-volumeJitter, volumeJitter);
 
