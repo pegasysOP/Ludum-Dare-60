@@ -13,7 +13,11 @@ using UnityEngine;
 public enum MusicTrack
 {
     MainMenu = 0,
-    Credits = 1
+    Credits = 1,
+    GameBlue = 2,       // 03_game_blue: early investigation, happy & calm
+    GameYellow = 3,     // 04_game_yellow: mid investigation, puzzled & worried
+    GameOrange = 4,     // 05_game_orange: late investigation, drama & tense
+    GameRed = 5         // 06_game_red: finale ramp, mad & determined
 }
 
 /// <summary>
@@ -27,6 +31,14 @@ public class MusicTrackEntry
     public AudioClip clip;
     public string displayText;
     public Sprite sprite;
+
+    [Tooltip("Loop region in samples (the studio render's loop.json). Both 0 = loop the whole clip. " +
+             "The intro before loopStartSample plays once; the body loops; the outro after loopEndSample " +
+             "is only for the OST.")]
+    public int loopStartSample;
+    public int loopEndSample;
+
+    public bool HasLoopRegion => loopEndSample > loopStartSample && loopStartSample >= 0;
 }
 
 /// <summary>
@@ -85,6 +97,23 @@ public class MusicLibrary : ScriptableObject
 
         Debug.LogError($"MusicLibrary: clip for track {track} is not assigned.");
         return null;
+    }
+
+    /// <summary>The loop region for <paramref name="clip"/>, if its entry has one.</summary>
+    public bool TryGetLoopRegion(AudioClip clip, out int startSample, out int endSample)
+    {
+        startSample = endSample = 0;
+        if (clip == null || entries == null) return false;
+        foreach (MusicTrackEntry e in entries)
+        {
+            if (e != null && e.clip == clip && e.HasLoopRegion)
+            {
+                startSample = e.loopStartSample;
+                endSample = e.loopEndSample;
+                return true;
+            }
+        }
+        return false;
     }
 
     /// <summary>Returns display text for the track, or the enum name if none assigned.</summary>

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -26,6 +27,11 @@ using UnityEngine.Audio;
 ///     </description>
 ///   </item>
 /// </list>
+///
+/// Tracks whose <see cref="MusicLibrary"/> entry has a loop region (the studio renders: intro, body,
+/// outro) play the intro once and then loop the body sample-accurately: each music source gets a twin,
+/// and the two are scheduled on the DSP clock to hand over exactly at the loop points. Tracks without a
+/// loop region loop the whole clip as before.
 ///
 /// Re-requesting the clip that is already playing is a no-op in both modes.
 /// All interpolation happens in perceived-loudness space via
@@ -89,6 +95,21 @@ public class MusicManager : MonoBehaviour
 
     private AudioSource activeSource;
     private AudioSource stingerSource;
+
+    // ---------- Loop regions ----------
+    private class LoopState
+    {
+        public AudioSource primary, twin, playing;
+        public AudioClip clip;
+        public int start, end;
+        public double nextSwitch;
+    }
+
+    private const double ScheduleLead = 0.05;      // seconds of DSP lead time when starting a scheduled track
+    private readonly Dictionary<AudioSource, LoopState> loops = new Dictionary<AudioSource, LoopState>();
+    private AudioSource twinA, twinB;
+    private MusicLibrary loopLibrary;
+    private int pausedLoopSample = -1;
     private Coroutine routine;
     private Coroutine prewarmRoutine;
 
@@ -118,6 +139,7 @@ public class MusicManager : MonoBehaviour
                 ? null
                 : Resources.Load<MusicLibrary>(prewarmLibraryResourcePath));
 
+        loopLibrary = lib;
         if (lib == null)
         {
             prewarmCompleteDebug = true;
@@ -125,6 +147,28 @@ public class MusicManager : MonoBehaviour
         }
 
         prewarmRoutine = StartCoroutine(PrewarmRoutine(lib));
+    }
+
+    private void Update()
+    {
+        if (loops.Count == 0) return;
+        double now = AudioSettings.dspTime;
+        foreach (LoopState st in loops.Values)
+        {
+            // The primary carries the envelope (crossfades, ducking for settings); the twin follows it.
+            st.twin.volume = st.primary.volume;
+            if (pausedLoopSample >= 0 || now < st.nextSwitch)
+                continue;
+            // The handover just happened: re-arm the source that finished for the next pass.
+            AudioSource ended = st.playing;
+            st.playing = ended == st.primary ? st.twin : st.primary;
+            double body = (st.end - st.start) / (double)st.clip.frequency;
+            st.nextSwitch += body;
+            ended.Stop();
+            ended.timeSamples = st.start;
+            ended.PlayScheduled(st.nextSwitch);
+            ended.SetScheduledEndTime(st.nextSwitch + body);
+        }
     }
 
     private void OnDestroy()
@@ -189,14 +233,13 @@ public class MusicManager : MonoBehaviour
         AudioSource other = OtherSource(activeSource);
         if (other != null)
         {
-            other.Stop();
+            StopSource(other);
             other.volume = 0f;
             other.clip = null;
         }
 
-        activeSource.clip = clip;
         activeSource.volume = TargetLinear(fullVolumeMultiplier);
-        activeSource.Play();
+        StartSource(activeSource, clip);
 
         currentClipDebug = clip;
         currentModeDebug = Mode.Menu;
@@ -214,6 +257,18 @@ public class MusicManager : MonoBehaviour
             Debug.LogWarning("MusicManager: no active source to pause.");
             return;
         }
+        if (loops.TryGetValue(activeSource, out LoopState st))
+        {
+            // Scheduled hand-overs live on the DSP clock, which keeps running while paused:
+            // remember where we are and restart from there on UnPause.
+            if (pausedLoopSample < 0)
+            {
+                pausedLoopSample = st.playing.timeSamples;
+                st.primary.Pause();
+                st.twin.Pause();
+            }
+            return;
+        }
         if (activeSource.isPlaying)
             activeSource.Pause();
     }
@@ -228,6 +283,13 @@ public class MusicManager : MonoBehaviour
             Debug.LogWarning("MusicManager: no active source to un-pause.");
             return;
         }
+        if (pausedLoopSample >= 0 && loops.TryGetValue(activeSource, out LoopState st))
+        {
+            int from = pausedLoopSample;
+            pausedLoopSample = -1;
+            StartSource(activeSource, st.clip, from);
+            return;
+        }
         if (activeSource.clip != null && !activeSource.isPlaying)
             activeSource.UnPause();
     }
@@ -235,7 +297,40 @@ public class MusicManager : MonoBehaviour
     /// <summary>
     /// True if the active music source is currently playing.
     /// </summary>
-    public bool IsMusicPlaying => activeSource != null && activeSource.isPlaying;
+    public bool IsMusicPlaying => activeSource != null && IsPlayingPair(activeSource);
+
+    /// <summary>Playback position of the active track in samples (whichever source of a loop pair is sounding).</summary>
+    public int CurrentTimeSamples
+    {
+        get
+        {
+            if (activeSource == null) return 0;
+            if (loops.TryGetValue(activeSource, out LoopState st)) return st.playing.timeSamples;
+            return activeSource.clip != null ? activeSource.timeSamples : 0;
+        }
+    }
+
+    /// <summary>The active track's loop region in samples, if it has one.</summary>
+    public bool TryGetActiveLoopRegion(out int startSample, out int endSample)
+    {
+        startSample = endSample = 0;
+        if (activeSource == null || !loops.TryGetValue(activeSource, out LoopState st)) return false;
+        startSample = st.start;
+        endSample = st.end;
+        return true;
+    }
+
+    /// <summary>
+    /// Restart the active looped track a few seconds before its loop end, to hear the seam.
+    /// Returns false if the active track has no loop region.
+    /// </summary>
+    public bool JumpBeforeLoopEnd(float seconds = 4f)
+    {
+        if (activeSource == null || !loops.TryGetValue(activeSource, out LoopState st)) return false;
+        int at = Mathf.Max(0, st.end - Mathf.RoundToInt(seconds * st.clip.frequency));
+        StartSource(activeSource, st.clip, at);
+        return true;
+    }
 
     /// <summary>
     /// Returns the clip currently assigned to the active source, or null.
@@ -345,7 +440,77 @@ public class MusicManager : MonoBehaviour
     {
         return activeSource != null
             && activeSource.clip == clip
-            && activeSource.isPlaying;
+            && IsPlayingPair(activeSource);
+    }
+
+    private bool IsPlayingPair(AudioSource src)
+    {
+        if (src == null) return false;
+        if (pausedLoopSample >= 0 && loops.ContainsKey(src)) return false;
+        return src.isPlaying || (loops.TryGetValue(src, out LoopState st) && st.twin.isPlaying);
+    }
+
+    private AudioSource TwinOf(AudioSource src)
+    {
+        if (src == sourceA)
+        {
+            EnsureSource(ref twinA, "MusicSourceA Loop");
+            return twinA;
+        }
+        EnsureSource(ref twinB, "MusicSourceB Loop");
+        return twinB;
+    }
+
+    /// <summary>
+    /// Start <paramref name="clip"/> on <paramref name="src"/> (volume already set by the caller). With a loop
+    /// region: plays from <paramref name="fromSample"/> to the loop end, then hands over sample-accurately to the
+    /// twin playing the loop body, and so on. Without: loops the whole clip.
+    /// </summary>
+    private void StartSource(AudioSource src, AudioClip clip, int fromSample = 0)
+    {
+        StopSource(src);
+        src.clip = clip;
+        if (loopLibrary != null && loopLibrary.TryGetLoopRegion(clip, out int ls, out int le) && le <= clip.samples)
+        {
+            AudioSource twin = TwinOf(src);
+            int from = Mathf.Clamp(fromSample, 0, le - 1);
+            double t0 = AudioSettings.dspTime + ScheduleLead;
+            double switchAt = t0 + (le - from) / (double)clip.frequency;
+            double body = (le - ls) / (double)clip.frequency;
+
+            src.loop = false;
+            src.timeSamples = from;
+            src.PlayScheduled(t0);
+            src.SetScheduledEndTime(switchAt);
+
+            twin.loop = false;
+            twin.clip = clip;
+            twin.volume = src.volume;
+            twin.timeSamples = ls;
+            twin.PlayScheduled(switchAt);
+            twin.SetScheduledEndTime(switchAt + body);
+
+            loops[src] = new LoopState { primary = src, twin = twin, playing = src, clip = clip, start = ls, end = le,
+                                         nextSwitch = switchAt };
+            pausedLoopSample = -1;
+            return;
+        }
+        src.loop = true;
+        src.timeSamples = Mathf.Clamp(fromSample, 0, Mathf.Max(0, clip.samples - 1));
+        src.Play();
+    }
+
+    private void StopSource(AudioSource src)
+    {
+        if (src == null) return;
+        if (loops.TryGetValue(src, out LoopState st))
+        {
+            st.twin.Stop();
+            st.twin.clip = null;
+            st.twin.volume = 0f;
+            loops.Remove(src);
+        }
+        src.Stop();
     }
 
     private AudioSource OtherSource(AudioSource src)
@@ -364,8 +529,9 @@ public class MusicManager : MonoBehaviour
 
     private void SilenceAll()
     {
-        if (sourceA != null) { sourceA.Stop(); sourceA.volume = 0f; sourceA.clip = null; }
-        if (sourceB != null) { sourceB.Stop(); sourceB.volume = 0f; sourceB.clip = null; }
+        if (sourceA != null) { StopSource(sourceA); sourceA.volume = 0f; sourceA.clip = null; }
+        if (sourceB != null) { StopSource(sourceB); sourceB.volume = 0f; sourceB.clip = null; }
+        pausedLoopSample = -1;
     }
 
     private void ResetDebug()
@@ -382,12 +548,11 @@ public class MusicManager : MonoBehaviour
         AudioSource from = activeSource;
         AudioSource to = OtherSource(from);
 
-        float fromStartLinear = (from != null && from.isPlaying) ? from.volume : 0f;
+        float fromStartLinear = (from != null && IsPlayingPair(from)) ? from.volume : 0f;
         float peakLinear = TargetLinear(peakMultiplier);
 
-        to.clip = clip;
         to.volume = 0f;
-        to.Play();
+        StartSource(to, clip);
 
         // Phase 1: crossfade (previous track fades out as new track rises to peak)
         phaseDebug = "Crossfade";
@@ -407,7 +572,7 @@ public class MusicManager : MonoBehaviour
         to.volume = peakLinear;
         if (from != null && from != to)
         {
-            from.Stop();
+            StopSource(from);
             from.volume = 0f;
             from.clip = null;
         }
@@ -502,7 +667,7 @@ public class MusicManager : MonoBehaviour
     private IEnumerator FadeOutRoutine(float duration)
     {
         AudioSource src = activeSource;
-        if (src == null || !src.isPlaying)
+        if (src == null || !IsPlayingPair(src))
         {
             SilenceAll();
             ResetDebug();

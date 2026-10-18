@@ -21,3 +21,28 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: ba5b205e420c47d408a3c32c099f8fb2, type: 3}
     displayText: 'Credits Theme '
     sprite: {fileID: 21300000, guid: 67c8eaf2e330419478e7b82320745eb4, type: 3}
+  - id: 2
+    clip: {fileID: 8300000, guid: a4c2e242b2b24f84a39c1632322f25d2, type: 3}
+    displayText: 'Blue - Early Investigation'
+    sprite: {fileID: 0}
+    loopStartSample: 9261000
+    loopEndSample: 18081000
+  - id: 3
+    clip: {fileID: 8300000, guid: b2913ad59c60418984661831e92ff5da, type: 3}
+    displayText: 'Yellow - Mid Investigation'
+    sprite: {fileID: 0}
+    loopStartSample: 6920308
+    loopEndSample: 13433538
+  - id: 4
+    clip: {fileID: 8300000, guid: 8d4d55b382dd4298912b6207a88e772c, type: 3}
+    displayText: 'Orange - Late Investigation'
+    sprite: {fileID: 0}
+    loopStartSample: 6426000
+    loopEndSample: 12474000
+  - id: 5
+    clip: {fileID: 8300000, guid: 893c326ff6d548f09c4aa821b57c3c2a, type: 3}
+    displayText: 'Red - Finale Ramp'
+    sprite: {fileID: 0}
+    loopStartSample: 5622750
+    loopEndSample: 10914750
+  gameStartStinger: {fileID: 8300000, guid: 25ebeffb73c540db8bffee6ae18fd7b5, type: 3}

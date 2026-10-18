@@ -2,42 +2,37 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Drives in-game music selection from a single place. On Start it primes
-/// <see cref="MusicManager"/> with the intro track (or, when the active scene
-/// is the menu or credits scene, snaps to that scene's track using the
-/// non-envelope playback path and stops steering after that). While the gameplay scene is running,
-/// each frame it chooses the desired track based on a small priority ladder
-/// and asks <see cref="MusicManager"/> to crossfade into it (respecting the
-/// in-game envelope). Track ids follow the creative ordering in
-/// <c>_silas_design/music/tracklist-v2.md</c>.
+/// The four in-game music moods, in story order. Each maps to one
+/// <see cref="MusicTrack"/> (see <c>_silas_design/music/tracklist-v2.md</c>).
+/// </summary>
+public enum GameMood
+{
+    Blue = 0,       // early investigation, happy & calm
+    Yellow = 1,     // mid investigation, puzzled & worried
+    Orange = 2,     // late investigation, drama & tense
+    Red = 3         // finale ramp, mad & determined
+}
+
+/// <summary>
+/// Drives music selection from a single place.
+///
+/// <list type="bullet">
+///   <item><description>Menu / credits scenes: snaps to that scene's track using the
+///   non-envelope playback path and stops steering after that.</description></item>
+///   <item><description>Game scene: plays the current <see cref="GameMood"/> through
+///   <see cref="MusicManager.PlayGameMusic"/>, so every mood change crossfades in, swells and
+///   settles into the background. Every Game scene load starts on <see cref="GameMood.Blue"/>.</description></item>
+/// </list>
+///
+/// To change the mood from gameplay code, call:
+/// <code>GameMusicGuy.SetMood(GameMood.Orange);</code>
+/// It is static, so it is safe to call from anywhere at any time (even before this component
+/// has started); setting the mood that is already playing does nothing.
 ///
 /// Everything here is hardcoded on purpose - there are no inspector fields.
 /// Track mapping and tuning values are project-wide creative decisions; we
 /// do NOT want them drifting across scenes / prefabs. The single shared
 /// <see cref="MusicLibrary"/> is loaded from <c>Resources/MusicLibrary</c>.
-///
-/// Priority ladder (first rule that matches wins):
-/// <list type="number">
-///   <item><description>Monster Minigame active with at least
-///   <see cref="PanicStrikeThreshold"/> strikes accumulated -> peak track
-///   (the about-to-kill-you cue).</description></item>
-///   <item><description>Monster Minigame active below that strike threshold
-///   -> minigame track.</description></item>
-///   <item><description>Just exited the Monster Minigame -> GotAway
-///   (latched until the intensity zone changes or the minigame re-activates).
-///   Falls through to the intensity-implied track if GotAway is unassigned
-///   in the library.</description></item>
-///   <item><description>Otherwise, mapped from <see cref="IntensityLevel"/>:
-///   Calm -> NormalStation during the opening intro (before the starting
-///   door is opened) or DamagedStationLowAnxiety once the intro has ended;
-///   Elevated -> MonsterAround; Intense -> MonsterNear; Overload ->
-///   MonsterAboutToKill. Each tier falls back to the next-lower tier if its
-///   clip is unassigned in the library.</description></item>
-/// </list>
-///
-/// Track swaps only fire when the desired clip actually changes, so we
-/// don't keep restarting <c>MusicManager</c>'s crossfade coroutine while
-/// a fade is already in flight.
 /// </summary>
 [DisallowMultipleComponent]
 public class GameMusicGuy : MonoBehaviour
@@ -47,41 +42,46 @@ public class GameMusicGuy : MonoBehaviour
     private const MusicTrack MenuTrack = MusicTrack.MainMenu;
     private const MusicTrack CreditsTrack = MusicTrack.Credits;
 
+    private const GameMood StartingMood = GameMood.Blue;
+
     // Name of the MusicLibrary ScriptableObject under any Resources folder.
     private const string MusicLibraryResourcePath = "MusicLibrary";
 
-    // Crossfade length (seconds) used when the Monster Minigame begins.
-    // Intentionally short so the monster cue lands like a stinger.
-    private const float MonsterEncounterCrossfade = 0.3f;
-
-    // Strike count at which the Monster Minigame music escalates from the
-    // minigame track to the peak track. 2 means the final (third) attempt
-    // plays the about-to-kill-you cue.
-    private const int PanicStrikeThreshold = 2;
-
-    // Seconds after the game start stinger begins before the menu music comes in.
+    // Seconds after the game start stinger begins before the music comes in.
     // The bloom's tail rings under the theme's first bars.
     private const float GameStartMusicDelay = 3f;
+
+    // ---------- Public API ----------
+
+    /// <summary>The mood the Game scene is playing (or will play once music starts).</summary>
+    public static GameMood CurrentMood { get; private set; } = StartingMood;
+
+    /// <summary>
+    /// Switch the in-game music to <paramref name="mood"/>. Crossfades over
+    /// <see cref="MusicManager.crossfadeDuration"/>; no-op if that mood is already playing.
+    /// </summary>
+    public static void SetMood(GameMood mood)
+    {
+        CurrentMood = mood;
+    }
 
     // ---------- Runtime state ----------
 
     private MusicLibrary library;
     private AudioClip lastRequestedClip;
-    private bool wasMinigameActive;
-    private bool wasMinigamePanicked;
-    private bool postEscapeLatched;
     private bool menuModeActive;
-    private StateTracker subscribedStateTracker;
+    private bool gameModeActive;
 
     // The game start stinger plays once per session, in whichever scene loads first.
     private static bool gameStartPlayed;
     private static float gameStartMusicTime;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-    private static void ResetGameStart()
+    private static void ResetStatics()
     {
         gameStartPlayed = false;
         gameStartMusicTime = 0f;
+        CurrentMood = StartingMood;
     }
 
     private void Awake()
@@ -136,6 +136,9 @@ public class GameMusicGuy : MonoBehaviour
             }
             return;
         }
+
+        // Other scenes (soundtrack player, test scenes) drive the music themselves.
+        gameModeActive = IsGameScene();
     }
 
     /// <summary>Starts a menu/credits track, held back while the game start stinger has its moment.</summary>
@@ -150,39 +153,32 @@ public class GameMusicGuy : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (subscribedStateTracker != null)
-        {
-            subscribedStateTracker = null;
-        }
-    }
-
-    private void HandleStartingDoorOpened()
-    {
-        // Forces a re-evaluation on the next Update; if we're currently in the
-        // Calm zone the Calm clip will swap from the intro track to the
-        // post-intro (damaged-station) track immediately instead of waiting for
-        // the next intensity-level change.
-        lastRequestedClip = null;
+        // Leaving the Game scene: the next run starts back on the first mood.
+        if (gameModeActive)
+            CurrentMood = StartingMood;
     }
 
     private void Update()
     {
-        if (menuModeActive) return;
+        if (!gameModeActive || menuModeActive) return;
         if (library == null || MusicManager.Instance == null)
             return;
 
         // While the PowerDownSequence (or anything else) has game music suspended,
         // stay out of the way entirely. Clear the cached clip so when music resumes
-        // we re-evaluate the priority ladder and crossfade the correct track in,
-        // rather than short-circuiting because lastRequestedClip still matches the
-        // track that was playing before the suspension fade-out.
+        // we crossfade the current mood back in, rather than short-circuiting because
+        // lastRequestedClip still matches the track that was playing before the fade-out.
         if (MusicManager.Instance.IsGameMusicSuspended)
         {
             lastRequestedClip = null;
             return;
         }
 
-        EnsureStateTrackerSubscription();
+        // Hold the music back while the game start stinger has its moment.
+        if (Time.realtimeSinceStartup < gameStartMusicTime)
+            return;
+
+        RequestClip(library.Get(TrackFor(CurrentMood)));
     }
 
     private void RequestClip(AudioClip clip, float crossfadeOverride = -1f)
@@ -193,24 +189,20 @@ public class GameMusicGuy : MonoBehaviour
         MusicManager.Instance.PlayGameMusic(clip, crossfadeOverride);
     }
 
-    private static bool IsIntroComplete()
+    private static MusicTrack TrackFor(GameMood mood)
     {
-        // The "intro" is a concept that only exists inside the main Game scene.
-        // Anywhere else (non-menu / non-game scenes: victory screen, game-over,
-        // credits, debug scenes...) we treat the intro as already finished so
-        // the Calm bed defaults to the post-intro (damaged-station) track
-        // instead of the NormalStation intro cue.
-        if (SceneManager.GetActiveScene().name != SceneUtils.GAME_SCENE)
-            return true;
-
-        return StateTracker.Instance != null; 
-            //&& StateTracker.Instance.StartingDoorOpened;
+        switch (mood)
+        {
+            case GameMood.Yellow: return MusicTrack.GameYellow;
+            case GameMood.Orange: return MusicTrack.GameOrange;
+            case GameMood.Red: return MusicTrack.GameRed;
+            default: return MusicTrack.GameBlue;
+        }
     }
 
-    private void EnsureStateTrackerSubscription()
+    private static bool IsGameScene()
     {
-        StateTracker tracker = StateTracker.Instance;
-        if (tracker == subscribedStateTracker) return;
+        return SceneManager.GetActiveScene().name == SceneUtils.GAME_SCENE;
     }
 
     private static bool IsMenuScene()
