@@ -148,7 +148,7 @@ public class GameMusicGuy : MonoBehaviour
         {
             gameStartPlayed = true;
             gameStartMusicTime = Time.realtimeSinceStartup + GameStartMusicDelay;
-            MusicManager.Instance.PlayStinger(library.gameStartStinger);
+            MusicManager.Instance.PlayStinger(library.gameStartStinger, library.gameStartStingerVolume);
         }
 
         if (IsMenuScene())

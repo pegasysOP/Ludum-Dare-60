@@ -60,3 +60,4 @@ MonoBehaviour:
     loopEndSample: 0
     playOnce: 1
   gameStartStinger: {fileID: 8300000, guid: 25ebeffb73c540db8bffee6ae18fd7b5, type: 3}
+  gameStartStingerVolume: 0.8

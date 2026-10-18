@@ -62,6 +62,8 @@ public class MusicLibrary : ScriptableObject
     [Header("Stingers")]
     [Tooltip("11_stinger_game_start: the first sound of the game, played once at launch. The menu theme comes in on its tail.")]
     public AudioClip gameStartStinger;
+    [Tooltip("Perceived loudness of the game start stinger (1 = as rendered), on top of the music volume setting.")]
+    [Range(0f, 1f)] public float gameStartStingerVolume = 1f;
 
     private Dictionary<MusicTrack, MusicTrackEntry> trackToEntryMap;
 
