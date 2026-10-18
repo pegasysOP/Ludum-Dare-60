@@ -50,7 +50,6 @@ public class DialogManager :Interactable
 
             Debug.Log("There are no more lines so we are clearing");
             onDialogFinished.Invoke();
-            //Trigger an event or callback to indicate that the dialog has finished
             return;
         }
 
@@ -61,8 +60,6 @@ public class DialogManager :Interactable
             Debug.Log("Displaying line: " + currentLine);
             string line = dialogLines[currentLine];
             dialogText.text = line;
-            // Ensure TextMeshPro has generated its mesh/textInfo so characterCount is valid
-            //dialogText.ForceMeshUpdate();
             dialogText.maxVisibleCharacters = 0;
             StartCoroutine(AddCharactersOneByOne());
             currentLine++;
