@@ -17,6 +17,7 @@ public class ComputerScreen : MonoBehaviour
     public Button powerButton;
     public AudioSource fanSource;
     public Button insertCDButton;
+    public GameObject ReportGameObject;
 
     public string password = "password"; //TODO: Change this to be based on the clue
 
@@ -109,6 +110,8 @@ public class ComputerScreen : MonoBehaviour
         {
             Debug.Log("CD inserted");
             insertCDButton.gameObject.SetActive(false);
+            //TODO: Add a loading icon and wait then show? 
+            ReportGameObject.gameObject.SetActive(true);
         }   
     }
 
