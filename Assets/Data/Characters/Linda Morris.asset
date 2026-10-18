@@ -15,3 +15,4 @@ MonoBehaviour:
   characterName: Linda Morris
   jobTitle: Executive Assistant
   headshot: {fileID: 0}
+  voiceSemitones: 5

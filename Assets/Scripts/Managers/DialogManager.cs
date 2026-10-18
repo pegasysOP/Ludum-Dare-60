@@ -23,6 +23,11 @@ public class DialogManager :Interactable
     public UnityEvent onDialogFinished;
     private Coroutine typingCoroutine;
 
+    // open / next line / close sounds and the per-letter voice blips
+    private DialogSfx sfx;
+    private DialogSfx Sfx => sfx != null ? sfx : (sfx = DialogSfx.Attach(gameObject));
+    private bool boxOpen;
+
     //TODO: Maybe pass in a dialogue speed. Some people talk fast some slow
 
     public void Start()
@@ -45,7 +50,10 @@ public class DialogManager :Interactable
     {
         if (currentLine >= dialogLinesWithCharacterInfo.Count)
         {
+            bool wasOpen = boxOpen;
             ClearDialog();
+            if (wasOpen)
+                Sfx.Close();
 
             Debug.Log("There are no more lines so we are clearing");
             onDialogFinished.Invoke();
@@ -63,6 +71,13 @@ public class DialogManager :Interactable
             characterName.text = character != null ? character.characterName : "";
 
             characterImage.sprite = character != null ? character.headshot : null;
+
+            if (boxOpen)
+                Sfx.Advance();
+            else
+                Sfx.Open();
+            boxOpen = true;
+            Sfx.StartLine(character);
 
             // Stop any previous typing coroutine so multiple clicks don't race
             if (typingCoroutine != null)
@@ -90,11 +105,19 @@ public class DialogManager :Interactable
 
     private IEnumerator AddCharactersOneByOne()
     {
+        float delay = speed;
         while (dialogText.maxVisibleCharacters < dialogText.textInfo.characterCount)
         {
-            yield return new WaitForSeconds(speed);
+            yield return new WaitForSeconds(delay);
             dialogText.maxVisibleCharacters++;
-            //TODO: Add a sound for each letter?
+
+            // voice blip for the letter that just appeared, then hold a little longer on punctuation
+            int i = dialogText.maxVisibleCharacters - 1;
+            TMP_CharacterInfo[] chars = dialogText.textInfo.characterInfo;
+            char c = chars[i].character;
+            char next = i + 1 < dialogText.textInfo.characterCount ? chars[i + 1].character : '\0';
+            Sfx.Letter(c);
+            delay = speed * Sfx.PauseFactor(c, next);
         }
         typingCoroutine = null;
     }
@@ -108,6 +131,7 @@ public class DialogManager :Interactable
         }
         dialogLinesWithCharacterInfo.Clear();
         currentLine = 0;
+        boxOpen = false;
         if (dialogText != null)
         {
             characterName.text = "";

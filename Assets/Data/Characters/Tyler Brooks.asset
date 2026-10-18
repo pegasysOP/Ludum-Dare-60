@@ -15,3 +15,4 @@ MonoBehaviour:
   characterName: Tyler Brooks
   jobTitle: Intern
   headshot: {fileID: 0}
+  voiceSemitones: 7

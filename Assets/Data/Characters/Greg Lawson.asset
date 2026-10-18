@@ -15,3 +15,4 @@ MonoBehaviour:
   characterName: Greg Lawson
   jobTitle: Product Manager
   headshot: {fileID: 0}
+  voiceSemitones: -2

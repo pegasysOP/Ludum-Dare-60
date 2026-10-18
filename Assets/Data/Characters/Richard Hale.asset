@@ -15,3 +15,4 @@ MonoBehaviour:
   characterName: Richard Hale
   jobTitle: Chief Executive Officer
   headshot: {fileID: 0}
+  voiceSemitones: -5
