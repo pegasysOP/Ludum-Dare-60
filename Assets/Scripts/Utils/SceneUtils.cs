@@ -10,8 +10,8 @@ public static class SceneUtils
 
     public static void LoadGameScene()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
         SceneManager.LoadScene(GAME_SCENE);
     }
