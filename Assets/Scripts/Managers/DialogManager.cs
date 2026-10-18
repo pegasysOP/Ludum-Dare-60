@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class DialogManager :Interactable
@@ -12,7 +13,9 @@ public class DialogManager :Interactable
 
     TextMeshProUGUI dialogText;
 
-    private float speed; 
+    private float speed;
+
+    public UnityEvent onDialogFinished;
 
     //TODO: Maybe pass in a dialogue speed. Some people talk fast some slow
 
@@ -23,6 +26,8 @@ public class DialogManager :Interactable
         dialogLines.Add("You can add more lines of dialog as needed.");
         dialogText = GetComponentInChildren<TextMeshProUGUI>();
         speed = 0.05f; // Default speed
+        if (onDialogFinished == null)
+            onDialogFinished = new UnityEvent();
     }
     public override void OnPointerDown(PointerEventData eventData)
     {
@@ -44,6 +49,7 @@ public class DialogManager :Interactable
             dialogText.text = "";
 
             Debug.Log("There are no more lines so we are clearing");
+            onDialogFinished.Invoke();
             //Trigger an event or callback to indicate that the dialog has finished
             return;
         }
