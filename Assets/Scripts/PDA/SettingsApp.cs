@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class SettingsApp : MonoBehaviour
 {
-    public Slider sensitivitySlider;
     public Slider volumeSlider;
     public Slider musicSlider;
     public Slider sfxSlider;
@@ -18,7 +17,6 @@ public class SettingsApp : MonoBehaviour
     {
         sounds = PhoneSfxLibrary.Load();
 
-        sensitivitySlider.value = SettingsUtils.GetSensitivity();
         volumeSlider.value = SettingsUtils.GetMasterVolume();
         musicSlider.value = SettingsUtils.GetMusicVolume();
         sfxSlider.value = SettingsUtils.GetSFXVolume();
@@ -26,7 +24,6 @@ public class SettingsApp : MonoBehaviour
 
     private void OnEnable()
     {
-        sensitivitySlider.onValueChanged.AddListener(OnSensitivityValueChanged);
         volumeSlider.onValueChanged.AddListener(OnVolumeValueChanged);
         musicSlider.onValueChanged.AddListener(OnMusicVolumeChanged);
         sfxSlider.onValueChanged.AddListener(OnSFXVolumeChanged);
@@ -35,17 +32,10 @@ public class SettingsApp : MonoBehaviour
 
     private void OnDisable()
     {
-        sensitivitySlider.onValueChanged.RemoveListener(OnSensitivityValueChanged);
         volumeSlider.onValueChanged.RemoveListener(OnVolumeValueChanged);
         musicSlider.onValueChanged.RemoveListener(OnMusicVolumeChanged);
         sfxSlider.onValueChanged.RemoveListener(OnSFXVolumeChanged);
         quitButton.onClick.RemoveListener(OnQuitButtonClick);
-    }
-
-    private void OnSensitivityValueChanged(float newValue)
-    {
-        SettingsUtils.SetSensitivity(newValue);
-        PlaySliderTick();
     }
 
     private void OnVolumeValueChanged(float newValue)
