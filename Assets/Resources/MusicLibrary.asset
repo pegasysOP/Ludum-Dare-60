@@ -25,24 +25,38 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: a4c2e242b2b24f84a39c1632322f25d2, type: 3}
     displayText: 'Blue - Early Investigation'
     sprite: {fileID: 0}
-    loopStartSample: 9261000
-    loopEndSample: 18081000
+    loopStartSample: 2562284
+    loopEndSample: 8321743
   - id: 3
     clip: {fileID: 8300000, guid: b2913ad59c60418984661831e92ff5da, type: 3}
     displayText: 'Yellow - Mid Investigation'
     sprite: {fileID: 0}
-    loopStartSample: 6920308
-    loopEndSample: 13433538
+    loopStartSample: 1377077
+    loopEndSample: 6693965
   - id: 4
     clip: {fileID: 8300000, guid: 8d4d55b382dd4298912b6207a88e772c, type: 3}
     displayText: 'Orange - Late Investigation'
     sprite: {fileID: 0}
-    loopStartSample: 6426000
-    loopEndSample: 12474000
+    loopStartSample: 2530746
+    loopEndSample: 8696288
   - id: 5
     clip: {fileID: 8300000, guid: 893c326ff6d548f09c4aa821b57c3c2a, type: 3}
     displayText: 'Red - Finale Ramp'
     sprite: {fileID: 0}
-    loopStartSample: 5622750
-    loopEndSample: 10914750
+    loopStartSample: 2110356
+    loopEndSample: 8523842
+  - id: 6
+    clip: {fileID: 8300000, guid: eddd54c71c0b4e7d888ce2da02fd7488, type: 3}
+    displayText: Good Ending - Case Solved
+    sprite: {fileID: 0}
+    loopStartSample: 0
+    loopEndSample: 0
+    playOnce: 1
+  - id: 7
+    clip: {fileID: 8300000, guid: ec50b272dc0b47f790e37d297240626b, type: 3}
+    displayText: Bad Ending - Case Lost
+    sprite: {fileID: 0}
+    loopStartSample: 0
+    loopEndSample: 0
+    playOnce: 1
   gameStartStinger: {fileID: 8300000, guid: 25ebeffb73c540db8bffee6ae18fd7b5, type: 3}
