@@ -4,13 +4,19 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class DialogManager :Interactable
 {
-    List<string> dialogLines = new List<string>();
+    List<DialogLine> dialogLinesWithCharacterInfo = new List<DialogLine>();
     int currentLine = 0;
 
-    TextMeshProUGUI dialogText;
+    public TextMeshProUGUI dialogText;
+    public TextMeshProUGUI characterName;
+
+    public Sprite characterSprite;
+
+    public Image characterImage;
 
     private float speed;
 
@@ -21,8 +27,6 @@ public class DialogManager :Interactable
 
     public void Start()
     {
-        // Try to find the TMP text even if the dialog UI is inactive at start
-        dialogText = GetComponentInChildren<TextMeshProUGUI>(true);
         speed = 0.05f; // Default speed
         if (onDialogFinished == null)
             onDialogFinished = new UnityEvent();
@@ -39,8 +43,7 @@ public class DialogManager :Interactable
 
     public void PlayDialog()
     {
-        Debug.Log("Playing dialog. Current line: " + currentLine + ", Total lines: " + dialogLines.Count);
-        if (currentLine >= dialogLines.Count)
+        if (currentLine >= dialogLinesWithCharacterInfo.Count)
         {
             ClearDialog();
 
@@ -51,10 +54,13 @@ public class DialogManager :Interactable
 
         //If the user clicks do we want to finish the line immediately or do we want to do the next line? 
 
-        if (currentLine < dialogLines.Count)
+        if (currentLine < dialogLinesWithCharacterInfo.Count)
         {
-            Debug.Log("Displaying line: " + currentLine);
-            string line = dialogLines[currentLine];
+            string line = dialogLinesWithCharacterInfo[currentLine].text;
+
+            characterName.text = dialogLinesWithCharacterInfo[currentLine].characterName;
+
+            characterImage.sprite = dialogLinesWithCharacterInfo[currentLine].characterSprite;
 
             // Stop any previous typing coroutine so multiple clicks don't race
             if (typingCoroutine != null)
@@ -71,15 +77,12 @@ public class DialogManager :Interactable
         }
     }
 
-    public void AddDialogueLines(List<string> lines, float dialogSpeed = 0.05f)
+    public void AddDialogueLines(List<DialogLine> lines, float dialogSpeed = 0.05f)
     {
-        // Copy the incoming list so callers (inspectable lists) are not cleared when
-        // the dialog manager clears its internal queue. This prevents shared-reference
-        // bugs where the source list (e.g. a serialized list on an Interactable)
-        // gets emptied unexpectedly.
-        dialogLines = (lines == null) ? new List<string>() : new List<string>(lines);
+        // copy incoming list to avoid shared-reference mutation bugs
+        dialogLinesWithCharacterInfo = (lines == null) ? new List<DialogLine>() : new List<DialogLine>(lines);
         this.speed = dialogSpeed;
-        Debug.Log("Added " + lines.Count + " lines of dialog.");
+        Debug.Log("Added " + dialogLinesWithCharacterInfo.Count + " lines of dialog.");
         currentLine = 0;
     }
 
@@ -101,13 +104,29 @@ public class DialogManager :Interactable
             StopCoroutine(typingCoroutine);
             typingCoroutine = null;
         }
-        dialogLines.Clear();
+        dialogLinesWithCharacterInfo.Clear();
         currentLine = 0;
         if (dialogText != null)
         {
+            characterName.text = "";
+            characterImage.sprite = null;
             dialogText.text = "";
             dialogText.maxVisibleCharacters = 0;
         }
     }
 
+}
+
+[System.Serializable]
+public struct DialogLine
+{
+    public string text;
+    public string characterName;
+    public Sprite characterSprite;
+    public DialogLine(string text, string characterName = "", Sprite characterSprite = null)
+    {
+        this.text = text;
+        this.characterName = characterName;
+        this.characterSprite = characterSprite;
+    }
 }
