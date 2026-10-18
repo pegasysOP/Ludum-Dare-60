@@ -6,6 +6,8 @@ public class SecretaryInteractable : Interactable
 {
     public List<DialogLine> dialogLinesWithCharacterInfo;
 
+    public DialogLine repeatableLine;
+
     DialogManager dialogManager;
 
     public void Start()
@@ -28,6 +30,9 @@ public class SecretaryInteractable : Interactable
     private void OnDialogFinished()
     {
         GameManager.Instance.ActivateGotCDFlag();
+        dialogLinesWithCharacterInfo.Clear();
+        dialogLinesWithCharacterInfo = new List<DialogLine>();
+        dialogLinesWithCharacterInfo.Add(repeatableLine);
         Debug.Log("SecretaryInteractable OnDialogFinished");
     }
     
