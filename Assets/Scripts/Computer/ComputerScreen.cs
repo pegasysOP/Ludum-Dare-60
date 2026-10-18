@@ -64,6 +64,10 @@ public class ComputerScreen : MonoBehaviour
 
     public void Close()
     {
+        // already shutting down
+        if (!screenGroup.blocksRaycasts)
+            return;
+
         sequence?.Kill();
         screenGroup.blocksRaycasts = false;
         sounds.shutdown.Play();
