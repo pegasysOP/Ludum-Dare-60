@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 public class SecretaryInteractable : Interactable
 {
-    [SerializeField] private List<string> dialogLines;
+    public List<DialogLine> dialogLinesWithCharacterInfo;
 
     DialogManager dialogManager;
 
@@ -16,7 +16,7 @@ public class SecretaryInteractable : Interactable
     public override void OnPointerDown(PointerEventData eventData)
     {
         dialogManager.ClearDialog();
-        dialogManager.AddDialogueLines(dialogLines);
+        dialogManager.AddDialogueLines(dialogLinesWithCharacterInfo);
         dialogManager.PlayDialog();
     }
 

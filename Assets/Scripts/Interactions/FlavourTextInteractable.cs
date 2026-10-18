@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -18,7 +19,8 @@ public class FlavourTextInteractable : Interactable
 
     public override void OnPointerDown(PointerEventData eventData)
     {
-        dialogManager.AddDialogueLines(new System.Collections.Generic.List<string> { flavourText }, characterDelay);
+        List<DialogLine> list = new List<DialogLine> { new DialogLine(flavourText) };
+        dialogManager.AddDialogueLines(list, characterDelay);
         dialogManager.PlayDialog();
     }
 
