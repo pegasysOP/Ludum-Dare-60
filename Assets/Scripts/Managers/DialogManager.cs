@@ -14,6 +14,7 @@ public class DialogManager :Interactable
 
     public TextMeshProUGUI dialogText;
     public TextMeshProUGUI characterName;
+    public TextMeshProUGUI jobTitleText;
 
     public Sprite characterSprite;
 
@@ -112,6 +113,9 @@ public class DialogManager :Interactable
             if (character != null)
             {
                 characterName.text = character.characterName;
+                // the player has no job title, so this only shows for everyone else
+                jobTitleText.text = character.jobTitle;
+                jobTitleText.gameObject.SetActive(!string.IsNullOrEmpty(character.jobTitle));
 
                 // placeholder square until the headshots are drawn
                 characterImage.sprite = character.headshot;
