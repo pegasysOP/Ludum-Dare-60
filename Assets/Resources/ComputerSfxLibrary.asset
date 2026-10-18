@@ -15,14 +15,14 @@ MonoBehaviour:
   click:
     clips:
     - _clip: {fileID: 8300000, guid: 9353cc530269f418a9c0542e7dc74d02, type: 3}
-      _volume: 0
+      _volume: 1
       _delay: 0
-    pitchMin: 1
-    pitchMax: 1
-    gain: 1
-    volumeJitter: 0
+    pitchMin: 0.95
+    pitchMax: 1.05
+    gain: 0.5
+    volumeJitter: 0.1
     useFocusMixerGroup: 0
-  startup:
+  wake:
     clips:
     - _clip: {fileID: 8300000, guid: 0e1914231e50d47fdbb291b8ac596bbb, type: 3}
       _volume: 1
@@ -94,7 +94,7 @@ MonoBehaviour:
       _delay: 0
     pitchMin: 1
     pitchMax: 1
-    gain: 1
+    gain: 0.2
     volumeJitter: 0
     useFocusMixerGroup: 0
   boot:
@@ -104,6 +104,16 @@ MonoBehaviour:
       _delay: 0
     pitchMin: 1
     pitchMax: 1
-    gain: 1
+    gain: 0.2
+    volumeJitter: 0
+    useFocusMixerGroup: 0
+  cdInsert:
+    clips:
+    - _clip: {fileID: 8300000, guid: b06c06238f064029a40db6d3c9b40c6c, type: 3}
+      _volume: 1
+      _delay: 0
+    pitchMin: 1
+    pitchMax: 1
+    gain: 0.4
     volumeJitter: 0
     useFocusMixerGroup: 0

@@ -37,6 +37,10 @@ public class PhoneSfxLibrary : ScriptableObject
     public SfxBank notesKey = new SfxBank();
     public SfxBank photoDelete = new SfxBank();
 
+    [Header("Detective")]
+    [Tooltip("Confirming the report in SusPX. Ends the game, so it stays neutral: the ending music says if you were right.")]
+    public SfxBank reportConfirm = new SfxBank();
+
     private void OnEnable()
     {
         // Every phone sound goes to the Phone mixer group, so it stays clear while the world is muffled.
@@ -71,5 +75,6 @@ public class PhoneSfxLibrary : ScriptableObject
         yield return new KeyValuePair<string, SfxBank>("Shutter", camShutter);
         yield return new KeyValuePair<string, SfxBank>("Notes Key", notesKey);
         yield return new KeyValuePair<string, SfxBank>("Photo Delete", photoDelete);
+        yield return new KeyValuePair<string, SfxBank>("Report Confirm", reportConfirm);
     }
 }

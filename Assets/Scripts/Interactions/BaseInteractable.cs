@@ -8,12 +8,25 @@ public abstract class Interactable : MonoBehaviour, IPointerDownHandler, IPointe
 
 
     public abstract void OnPointerUp(PointerEventData eventData);
-    
+
     private SpriteOutline spriteOutline;
+    protected InteractSfxLibrary interactSounds;
+
+    // interactables with their own click sound (paper, footsteps) turn the generic select off
+    protected virtual bool PlaysSelectSound => true;
 
     public virtual void Awake()
     {
         spriteOutline = GetComponent<SpriteOutline>();
+        interactSounds = InteractSfxLibrary.Load();
+    }
+
+    // the event system calls this one, so every interactable clicks before doing its own thing
+    void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
+    {
+        if (PlaysSelectSound)
+            interactSounds?.select.Play();
+        OnPointerDown(eventData);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

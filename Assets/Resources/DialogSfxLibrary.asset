@@ -57,7 +57,7 @@ MonoBehaviour:
       _delay: 0
     pitchMin: 1
     pitchMax: 1
-    gain: 0.8
+    gain: 0.3
     volumeJitter: 0
     useFocusMixerGroup: 0
   advance:
@@ -67,7 +67,7 @@ MonoBehaviour:
       _delay: 0
     pitchMin: 1
     pitchMax: 1
-    gain: 0.8
+    gain: 0.2
     volumeJitter: 0
     useFocusMixerGroup: 0
   close:
@@ -77,7 +77,7 @@ MonoBehaviour:
       _delay: 0
     pitchMin: 1
     pitchMax: 1
-    gain: 0.8
+    gain: 0.3
     volumeJitter: 0
     useFocusMixerGroup: 0
   punctuationPause: 1
