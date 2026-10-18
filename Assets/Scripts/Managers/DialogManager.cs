@@ -58,9 +58,11 @@ public class DialogManager :Interactable
         {
             string line = dialogLinesWithCharacterInfo[currentLine].text;
 
-            characterName.text = dialogLinesWithCharacterInfo[currentLine].characterName;
+            // no character means narration, so no name or portrait
+            Character character = dialogLinesWithCharacterInfo[currentLine].character;
+            characterName.text = character != null ? character.characterName : "";
 
-            characterImage.sprite = dialogLinesWithCharacterInfo[currentLine].characterSprite;
+            characterImage.sprite = character != null ? character.headshot : null;
 
             // Stop any previous typing coroutine so multiple clicks don't race
             if (typingCoroutine != null)
@@ -121,12 +123,10 @@ public class DialogManager :Interactable
 public struct DialogLine
 {
     public string text;
-    public string characterName;
-    public Sprite characterSprite;
-    public DialogLine(string text, string characterName = "", Sprite characterSprite = null)
+    public Character character;
+    public DialogLine(string text, Character character = null)
     {
         this.text = text;
-        this.characterName = characterName;
-        this.characterSprite = characterSprite;
+        this.character = character;
     }
 }

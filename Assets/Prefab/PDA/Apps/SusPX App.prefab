@@ -181,30 +181,14 @@ MonoBehaviour:
   detailView: {fileID: 7102938465019283714}
   detailCard: {fileID: 3302938475610293822}
   suspects:
-  - name: Richard Hale
-    jobTitle: Chief Executive Officer
-    headshot: {fileID: 0}
-  - name: Linda Morris
-    jobTitle: Executive Assistant
-    headshot: {fileID: 0}
-  - name: Greg Lawson
-    jobTitle: Product Manager
-    headshot: {fileID: 0}
-  - name: Kevin Walsh
-    jobTitle: Software Engineer
-    headshot: {fileID: 0}
-  - name: Karen Doyle
-    jobTitle: Finance Manager
-    headshot: {fileID: 0}
-  - name: Dave Kowalski
-    jobTitle: Facilities Technician
-    headshot: {fileID: 0}
-  - name: Susan Price
-    jobTitle: Head of Human Resources
-    headshot: {fileID: 0}
-  - name: Tyler Brooks
-    jobTitle: Intern
-    headshot: {fileID: 0}
+  - {fileID: 11400000, guid: c19b6085ea1f4aa38032526b613408ae, type: 2}
+  - {fileID: 11400000, guid: 66288176f0d64d55a642533492dab6c6, type: 2}
+  - {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+  - {fileID: 11400000, guid: cc20f72f74b140d2bfee77910408b697, type: 2}
+  - {fileID: 11400000, guid: 0ef43d2e83704a55b083bf30c304b9a3, type: 2}
+  - {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
+  - {fileID: 11400000, guid: 65181e84e9c64dcc8477f95d0e0d485f, type: 2}
+  - {fileID: 11400000, guid: aff33ab34aa54fd2b0eb77c8158aa59c, type: 2}
 --- !u!1 &8172630495810273645
 GameObject:
   m_ObjectHideFlags: 0

@@ -1710,29 +1710,29 @@ PrefabInstance:
       value: '"The CEO was. That''s why you''re here, isn''t it?"'
       objectReference: {fileID: 0}
     - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[0].characterName
-      value: Secretary
-      objectReference: {fileID: 0}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[0].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 66288176f0d64d55a642533492dab6c6, type: 2}
     - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[2].characterName
-      value: Secretaru
-      objectReference: {fileID: 0}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[2].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 66288176f0d64d55a642533492dab6c6, type: 2}
     - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[3].characterName
-      value: '*Player*'
-      objectReference: {fileID: 0}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[3].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
     - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[4].characterName
-      value: Secretary
-      objectReference: {fileID: 0}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[4].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 66288176f0d64d55a642533492dab6c6, type: 2}
     - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[5].characterName
-      value: '*Player*'
-      objectReference: {fileID: 0}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[5].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
     - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[6].characterName
-      value: Secretary
-      objectReference: {fileID: 0}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[6].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 66288176f0d64d55a642533492dab6c6, type: 2}
     - target: {fileID: 4889285028667515705, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
       propertyPath: m_Name
       value: Secretary

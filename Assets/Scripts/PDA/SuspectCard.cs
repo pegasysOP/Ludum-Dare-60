@@ -10,13 +10,13 @@ public class SuspectCard : MonoBehaviour
     public TextMeshProUGUI titleText;
     public Color placeholderColour = Color.black;
 
-    public void Show(Suspect suspect)
+    public void Show(Character character)
     {
-        nameText.text = suspect.name;
-        titleText.text = suspect.jobTitle;
+        nameText.text = character.characterName;
+        titleText.text = character.jobTitle;
 
         // placeholder square until the headshots are drawn
-        headshot.sprite = suspect.headshot;
-        headshot.color = suspect.headshot != null ? Color.white : placeholderColour;
+        headshot.sprite = character.headshot;
+        headshot.color = character.headshot != null ? Color.white : placeholderColour;
     }
 }

@@ -7,7 +7,7 @@ public class SusPXApp : MonoBehaviour, IAppContent
     public RectTransform list;
     public GameObject detailView;
     public SuspectCard detailCard;
-    public Suspect[] suspects;
+    public Character[] suspects;
 
     private PhoneSfxLibrary sounds;
     private Vector2 detailCardPos;
@@ -17,7 +17,7 @@ public class SusPXApp : MonoBehaviour, IAppContent
         sounds = PhoneSfxLibrary.Load();
         detailCardPos = ((RectTransform)detailCard.transform).anchoredPosition;
 
-        foreach (Suspect suspect in suspects)
+        foreach (Character suspect in suspects)
         {
             SuspectCard row = Instantiate(rowTemplate, list);
             row.gameObject.SetActive(true);
@@ -43,7 +43,7 @@ public class SusPXApp : MonoBehaviour, IAppContent
         detailView.SetActive(false);
     }
 
-    private void ShowSuspect(SuspectCard row, Suspect suspect)
+    private void ShowSuspect(SuspectCard row, Character suspect)
     {
         sounds.tap.Play();
         detailCard.Show(suspect);
@@ -58,12 +58,4 @@ public class SusPXApp : MonoBehaviour, IAppContent
         cardRect.DOAnchorPos(detailCardPos, 0.3f).SetEase(Ease.OutExpo);
         cardRect.DOScale(1f, 0.3f).SetEase(Ease.OutExpo);
     }
-}
-
-[System.Serializable]
-public class Suspect
-{
-    public string name;
-    public string jobTitle;
-    public Sprite headshot;
 }
