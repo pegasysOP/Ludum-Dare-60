@@ -15,6 +15,7 @@ public class ComputerScreen : MonoBehaviour
     public GameObject wrongPasswordText;
     public GameObject desktop;
     public Button powerButton;
+    public AudioSource fanSource;
 
     public string password = "password"; //TODO: Change this to be based on the clue
 
@@ -22,11 +23,14 @@ public class ComputerScreen : MonoBehaviour
     private Vector2 screenPos;
     private bool loggedIn = false;
     private Sequence sequence;
+    private float fanVolume;
 
     private void Awake()
     {
         sounds = ComputerSfxLibrary.Load();
         screenPos = screen.anchoredPosition;
+
+        fanVolume = fanSource.volume;
 
         enterButton.onClick.AddListener(TryLogin);
         passwordField.onSubmit.AddListener(_ => TryLogin());
@@ -52,6 +56,7 @@ public class ComputerScreen : MonoBehaviour
         passwordField.text = "";
         wrongPasswordText.SetActive(false);
 
+        // fan source plays on awake, so it starts whenever this canvas turns on
         sounds.boot.Play();
         sequence = DOTween.Sequence()
             .Append(screenGroup.DOFade(1f, 0.4f))
@@ -72,11 +77,21 @@ public class ComputerScreen : MonoBehaviour
         screenGroup.blocksRaycasts = false;
         sounds.shutdown.Play();
 
+        const float blackoutDuration = 0.25f;
+        const float flyDuration = 0.45f;
+
         // monitor goes black, then the whole screen flies off the top
         sequence = DOTween.Sequence()
-            .Append(blackout.DOFade(1f, 0.25f))
-            .Append(screen.DOAnchorPosY(screenPos.y + screen.rect.height + 200f, 0.45f).SetEase(Ease.InBack))
-            .OnComplete(() => gameObject.SetActive(false));
+            .Append(blackout.DOFade(1f, blackoutDuration))
+            .Append(screen.DOAnchorPosY(screenPos.y + screen.rect.height + 200f, flyDuration).SetEase(Ease.InBack))
+            .OnComplete(() =>
+            {
+                gameObject.SetActive(false);
+                fanSource.volume = fanVolume;
+            });
+
+        // fan winds down over the whole shut down
+        fanSource.DOFade(0f, blackoutDuration + flyDuration);
     }
 
     private void OnPasswordTyped(string text)

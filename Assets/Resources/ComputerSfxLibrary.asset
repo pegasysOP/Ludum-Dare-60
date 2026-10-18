@@ -100,7 +100,7 @@ MonoBehaviour:
   boot:
     clips:
     - _clip: {fileID: 8300000, guid: c74f258d452134524a805c271bbe8dd4, type: 3}
-      _volume: 0
+      _volume: 1
       _delay: 0
     pitchMin: 1
     pitchMax: 1
