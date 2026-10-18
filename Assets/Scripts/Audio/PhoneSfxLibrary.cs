@@ -33,6 +33,10 @@ public class PhoneSfxLibrary : ScriptableObject
     [Header("Camera")]
     public SfxBank camShutter = new SfxBank();
 
+    [Header("Apps")]
+    public SfxBank notesKey = new SfxBank();
+    public SfxBank photoDelete = new SfxBank();
+
     private void OnEnable()
     {
         // Every phone sound goes to the Phone mixer group, so it stays clear while the world is muffled.
@@ -65,5 +69,7 @@ public class PhoneSfxLibrary : ScriptableObject
         yield return new KeyValuePair<string, SfxBank>("Phone Down", modeClose);
         yield return new KeyValuePair<string, SfxBank>("Message", notifMessage);
         yield return new KeyValuePair<string, SfxBank>("Shutter", camShutter);
+        yield return new KeyValuePair<string, SfxBank>("Notes Key", notesKey);
+        yield return new KeyValuePair<string, SfxBank>("Photo Delete", photoDelete);
     }
 }

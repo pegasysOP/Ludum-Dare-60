@@ -99,7 +99,7 @@ public class PicturesApp : MonoBehaviour, IAppContent
         Destroy(viewing.gameObject);
         emptyText.SetActive(photos.Count == 0);
         deleteButton.interactable = false;
-        sounds.swipe.Play();
+        sounds.photoDelete.Play();
 
         // little hop, then fling it off the bottom, over the delete button
         RectTransform photoRect = fullPhoto.rectTransform;

@@ -28,6 +28,7 @@ public class ComputerInteractable : Interactable
         loginButton.onClick.AddListener(OnLoginButtonClicked);
         turnOnButton.onClick.AddListener(OnTurnOnButtonClicked);
         turnOnButton2.onClick.AddListener(OnTurnOnButtonClicked);
+        passwordInputField.onValueChanged.AddListener(OnPasswordTyped);
 
         keyboard = Keyboard.current;
     }
@@ -44,8 +45,16 @@ public class ComputerInteractable : Interactable
         //TODO: Should we do anything on pointer up? 
     }
 
+    private void OnPasswordTyped(string text)
+    {
+        // only real typing, not the field being cleared on shutdown
+        if (passwordInputField.isFocused)
+            sounds.keyPress.Play();
+    }
+
     private void OnLoginButtonClicked()
     {
+        sounds.submit.Play();
         if (passwordInputField.text == password)
         {
             //TODO: If correct, change to homescreen canvas

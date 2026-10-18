@@ -17,6 +17,8 @@ public class UiSfxLibrary : ScriptableObject
     public SfxBank buttonHover = new SfxBank();
     [Tooltip("Seconds between hover sounds so sweeping across a row of buttons doesn't machine-gun.")]
     [Min(0f)] public float hoverMinInterval = 0.05f;
+    [Tooltip("Plays when a menu button is clicked (main menu, credits, soundtrack).")]
+    public SfxBank buttonPress = new SfxBank();
 
     private void OnEnable()
     {
@@ -38,5 +40,6 @@ public class UiSfxLibrary : ScriptableObject
     public IEnumerable<KeyValuePair<string, SfxBank>> AllBanks()
     {
         yield return new KeyValuePair<string, SfxBank>("Button Hover", buttonHover);
+        yield return new KeyValuePair<string, SfxBank>("Button Press", buttonPress);
     }
 }

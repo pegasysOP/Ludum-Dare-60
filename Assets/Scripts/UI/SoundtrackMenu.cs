@@ -45,6 +45,15 @@ public class SoundtrackMenu : MonoBehaviour
         nextSongButton.onClick.AddListener(OnNextSongClicked);
         menuButton.onClick.AddListener(SceneUtils.LoadMenuScene);
 
+        // the menu button loads a scene straight away, which would cut its click off
+        UiSfxLibrary uiSounds = UiSfxLibrary.Load();
+        if (uiSounds != null)
+        {
+            previousSongButton.onClick.AddListener(uiSounds.buttonPress.Play);
+            playSongButton.onClick.AddListener(uiSounds.buttonPress.Play);
+            nextSongButton.onClick.AddListener(uiSounds.buttonPress.Play);
+        }
+
         if (clipScrubberSlider != null)
             clipScrubberSlider.onValueChanged.AddListener(OnScrubberValueChanged);
     }

@@ -19,7 +19,17 @@ MonoBehaviour:
       _delay: 0
     pitchMin: 0.97
     pitchMax: 1.03
-    gain: 0.4
+    gain: 0.2
     volumeJitter: 0.05
     useFocusMixerGroup: 0
   hoverMinInterval: 0.05
+  buttonPress:
+    clips:
+    - _clip: {fileID: 8300000, guid: 96266c544af864a4383302484d86726b, type: 3}
+      _volume: 1
+      _delay: 0
+    pitchMin: 0.97
+    pitchMax: 1.03
+    gain: 0.4
+    volumeJitter: 0.05
+    useFocusMixerGroup: 0

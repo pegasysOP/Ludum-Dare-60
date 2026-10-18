@@ -7,10 +7,21 @@ public class NotesApp : MonoBehaviour, IAppContent
 {
     public TMP_InputField inputField;
 
+    private PhoneSfxLibrary sounds;
+
     private void Awake()
     {
+        sounds = PhoneSfxLibrary.Load();
+        inputField.onValueChanged.AddListener(OnTyped);
+
         // tab is a pda close key, so keep it out of the text
         inputField.onValidateInput = (text, index, character) => character == '\t' ? '\0' : character;
+    }
+
+    private void OnTyped(string text)
+    {
+        if (inputField.isFocused)
+            sounds.notesKey.Play();
     }
 
     public bool Back()

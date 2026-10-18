@@ -12,6 +12,8 @@ public class ComputerSfxLibrary : ScriptableObject
     public SfxBank startup = new SfxBank();
     public SfxBank shutdown = new SfxBank();
     public SfxBank error = new SfxBank();
+    public SfxBank keyPress = new SfxBank();
+    public SfxBank submit = new SfxBank();
 
     [Header("Misc")]
     public SfxBank fan = new SfxBank();
@@ -38,6 +40,8 @@ public class ComputerSfxLibrary : ScriptableObject
         yield return new KeyValuePair<string, SfxBank>("startup", startup);
         yield return new KeyValuePair<string, SfxBank>("shutdown", shutdown);
         yield return new KeyValuePair<string, SfxBank>("Error", error);
+        yield return new KeyValuePair<string, SfxBank>("Key Press", keyPress);
+        yield return new KeyValuePair<string, SfxBank>("Submit", submit);
         yield return new KeyValuePair<string, SfxBank>("Fan", fan);
         yield return new KeyValuePair<string, SfxBank>("Boot", boot);
     }

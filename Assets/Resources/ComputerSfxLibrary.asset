@@ -24,8 +24,8 @@ MonoBehaviour:
     useFocusMixerGroup: 0
   startup:
     clips:
-    - _clip: {fileID: 0}
-      _volume: 0
+    - _clip: {fileID: 8300000, guid: 0e1914231e50d47fdbb291b8ac596bbb, type: 3}
+      _volume: 1
       _delay: 0
     pitchMin: 1
     pitchMax: 1
@@ -34,8 +34,8 @@ MonoBehaviour:
     useFocusMixerGroup: 0
   shutdown:
     clips:
-    - _clip: {fileID: 0}
-      _volume: 0
+    - _clip: {fileID: 8300000, guid: 6c845777251694f4881d5f22d9ac99ce, type: 3}
+      _volume: 1
       _delay: 0
     pitchMin: 1
     pitchMax: 1
@@ -50,6 +50,41 @@ MonoBehaviour:
     pitchMin: 1
     pitchMax: 1
     gain: 1
+    volumeJitter: 0
+    useFocusMixerGroup: 0
+  keyPress:
+    clips:
+    - _clip: {fileID: 8300000, guid: e8b2301cf52df4aae8181222baf92edc, type: 3}
+      _volume: 1
+      _delay: 0
+    - _clip: {fileID: 8300000, guid: d4bca02ac63de4a6fb441fb4fb17af1d, type: 3}
+      _volume: 1
+      _delay: 0
+    - _clip: {fileID: 8300000, guid: 777943b158b5f4b048cab41bdc354d36, type: 3}
+      _volume: 1
+      _delay: 0
+    - _clip: {fileID: 8300000, guid: d15d1cb618af246c18df8af78550ed06, type: 3}
+      _volume: 1
+      _delay: 0
+    - _clip: {fileID: 8300000, guid: 090e418a491bb4e348ae8cf768ba341b, type: 3}
+      _volume: 1
+      _delay: 0
+    - _clip: {fileID: 8300000, guid: c22293591f01f46c68210ad93c6051a2, type: 3}
+      _volume: 1
+      _delay: 0
+    pitchMin: 0.94
+    pitchMax: 1.06
+    gain: 0.5
+    volumeJitter: 0.1
+    useFocusMixerGroup: 0
+  submit:
+    clips:
+    - _clip: {fileID: 8300000, guid: 7aae25c2da28344fe97cd1fcecb5a9aa, type: 3}
+      _volume: 1
+      _delay: 0
+    pitchMin: 1
+    pitchMax: 1
+    gain: 0.6
     volumeJitter: 0
     useFocusMixerGroup: 0
   fan:

@@ -142,3 +142,23 @@ MonoBehaviour:
     gain: 1
     volumeJitter: 0
     useFocusMixerGroup: 0
+  notesKey:
+    clips:
+    - _clip: {fileID: 8300000, guid: 4a3bea4c41d4747e3b3d9aa0f72509bf, type: 3}
+      _volume: 1
+      _delay: 0
+    pitchMin: 0.95
+    pitchMax: 1.05
+    gain: 0.4
+    volumeJitter: 0.1
+    useFocusMixerGroup: 0
+  photoDelete:
+    clips:
+    - _clip: {fileID: 8300000, guid: fbec8a334ec504c0b9b2b36539b99815, type: 3}
+      _volume: 1
+      _delay: 0
+    pitchMin: 1
+    pitchMax: 1
+    gain: 1
+    volumeJitter: 0
+    useFocusMixerGroup: 0
