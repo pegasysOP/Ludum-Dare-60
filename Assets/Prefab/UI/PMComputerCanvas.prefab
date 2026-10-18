@@ -8,6 +8,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 703761991012807421, guid: a40004bf4fa1a3445affbab64d0ed465, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3093138223503585591, guid: a40004bf4fa1a3445affbab64d0ed465, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3194101779818764523, guid: a40004bf4fa1a3445affbab64d0ed465, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3194101779818764523, guid: a40004bf4fa1a3445affbab64d0ed465, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1fbe4dc49c042db4093095f93dfdc9aa, type: 3}
+    - target: {fileID: 3669008097344246227, guid: a40004bf4fa1a3445affbab64d0ed465, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1150.4048
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669008097344246227, guid: a40004bf4fa1a3445affbab64d0ed465, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 821.7178
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669008097344246227, guid: a40004bf4fa1a3445affbab64d0ed465, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -20.8045
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669008097344246227, guid: a40004bf4fa1a3445affbab64d0ed465, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 15.2825
+      objectReference: {fileID: 0}
     - target: {fileID: 3937681271355612236, guid: a40004bf4fa1a3445affbab64d0ed465, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -88,12 +120,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3944559020895937588, guid: a40004bf4fa1a3445affbab64d0ed465, type: 3}
+      propertyPath: m_text
+      value: RAID.pdf - Document Viewer
+      objectReference: {fileID: 0}
+    - target: {fileID: 4492163149056024865, guid: a40004bf4fa1a3445affbab64d0ed465, type: 3}
+      propertyPath: m_Name
+      value: RaidPDF
+      objectReference: {fileID: 0}
     - target: {fileID: 5535878608067804240, guid: a40004bf4fa1a3445affbab64d0ed465, type: 3}
       propertyPath: m_Name
-      value: ComputerCanvas
+      value: PMComputerCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5535878608067804240, guid: a40004bf4fa1a3445affbab64d0ed465, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5928730471927930467, guid: a40004bf4fa1a3445affbab64d0ed465, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7807399910922352297, guid: a40004bf4fa1a3445affbab64d0ed465, type: 3}
+      propertyPath: m_text
+      value: "\u200B"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6335811285494634755, guid: a40004bf4fa1a3445affbab64d0ed465, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a40004bf4fa1a3445affbab64d0ed465, type: 3}
