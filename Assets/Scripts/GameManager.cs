@@ -59,16 +59,20 @@ public class GameManager : MonoBehaviour
     public void TriggerEnding(Character character)
     {
         EndingText endingText = FindAnyObjectByType<EndingText>();
+        // the lazy ending is a lost case too, so it shares the bad ending music
         if (!hasCD)
         {
+            GameMusicGuy.PlayEnding(GameEnding.Bad);
             endingText.StartEndingText(ENDINGS.LAZY);
         }
         else if (character.characterName == "Greg Lawson")
         {
+            GameMusicGuy.PlayEnding(GameEnding.Good);
             endingText.StartEndingText(ENDINGS.GOOD);
         }
         else
         {
+            GameMusicGuy.PlayEnding(GameEnding.Bad);
             endingText.StartEndingText(ENDINGS.BAD);
         }
         
