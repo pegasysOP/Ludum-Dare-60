@@ -729,22 +729,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlavourTextCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 7385004515527807045, guid: 71723c9b621c8764fb6ce4f33da0664c, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385004515527807045, guid: 71723c9b621c8764fb6ce4f33da0664c, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385004515527807045, guid: 71723c9b621c8764fb6ce4f33da0664c, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7385004515527807045, guid: 71723c9b621c8764fb6ce4f33da0664c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
