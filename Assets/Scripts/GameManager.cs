@@ -46,4 +46,9 @@ public class GameManager : MonoBehaviour
     {
         hasCD = true;
     }
+
+    public bool HasCD()
+    {
+        return hasCD;
+    }
 }
