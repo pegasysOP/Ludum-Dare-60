@@ -27,6 +27,7 @@ public class SecretaryInteractable : Interactable
     
     private void OnDialogFinished()
     {
+        GameManager.Instance.ActivateGotCDFlag();
         Debug.Log("SecretaryInteractable OnDialogFinished");
     }
     
