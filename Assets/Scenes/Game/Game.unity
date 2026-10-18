@@ -2086,6 +2086,99 @@ Transform:
   - {fileID: 1691850381}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1303347388
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 740627548562250552, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 740627548562250552, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570933938377881732, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
+      propertyPath: repeatableLine.text
+      value: Repeatable line for head of HR
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570933938377881732, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570933938377881732, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[0].text
+      value: Line for head of HR
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570933938377881732, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[0].character
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580528502822705574, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -27.327272
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580528502822705574, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.8287814
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580528502822705574, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580528502822705574, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580528502822705574, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580528502822705574, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580528502822705574, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580528502822705574, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580528502822705574, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580528502822705574, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929608354600522819, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
+      propertyPath: m_Name
+      value: Head of HR
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833332770404682112, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833332770404682112, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 3.2864366
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833332770404682112, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 4.2277775
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
 --- !u!212 &1329208875
 SpriteRenderer:
   serializedVersion: 3
@@ -2536,3 +2629,4 @@ SceneRoots:
   - {fileID: 885891056}
   - {fileID: 1707149359}
   - {fileID: 461232919}
+  - {fileID: 1303347388}
