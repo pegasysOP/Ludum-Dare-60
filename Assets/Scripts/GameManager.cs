@@ -58,7 +58,9 @@ public class GameManager : MonoBehaviour
 
     public void TriggerEnding(Character character)
     {
-         //TODO: Based on flags we should trigger the correct ending.
-         Debug.Log("TriggerEnding called, but no ending is implemented yet.");
+        //TODO: Based on flags we should trigger the correct ending.
+        Debug.Log("TriggerEnding called, but no ending is implemented yet.");
+        EndingText endingText = FindAnyObjectByType<EndingText>();
+        endingText.StartEndingText(ENDINGS.GOOD);
     }
 }
