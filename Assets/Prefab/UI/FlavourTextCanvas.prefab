@@ -425,6 +425,7 @@ GameObject:
   - component: {fileID: 6544496514822969396}
   - component: {fileID: 2240622806103447227}
   - component: {fileID: 7941473359892938171}
+  - component: {fileID: 1902123799465678017}
   m_Layer: 5
   m_Name: FlavourTextCanvas
   m_TagString: Untagged
@@ -474,7 +475,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &2240622806103447227
 MonoBehaviour:
@@ -516,6 +517,25 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1902123799465678017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4364729139815074331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60caa175b000d5d43bfd9286d1b3a8b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  dialogText: {fileID: 8160496191465274518}
+  characterName: {fileID: 4548777920402729400}
+  characterSprite: {fileID: 0}
+  characterImage: {fileID: 6123675125645579850}
+  onDialogFinished:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6831158968616055094
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,6 +548,7 @@ GameObject:
   - component: {fileID: 6988673261917372581}
   - component: {fileID: 5500907105600817549}
   - component: {fileID: 4732600807407545552}
+  - component: {fileID: 8191480977756932857}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -620,3 +641,49 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!61 &8191480977756932857
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6831158968616055094}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
