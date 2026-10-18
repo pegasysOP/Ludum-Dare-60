@@ -21,6 +21,9 @@ public class ProductManagerInteractable : Interactable
         {
             dialogLinesWithCharacterInfo[^1].onLineCompleted = OnFinalLineCompleted;
         }
+
+        //TODO: We probably want a DOTWeen animation for him moving away from the computer. 
+        //Check what dialog line that is and add method for that
         dialogManager.AddDialogueLines(dialogLinesWithCharacterInfo);
         dialogManager.PlayDialog();
     }
