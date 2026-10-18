@@ -78,6 +78,12 @@ public class DialogManager :Interactable
 
     public void PlayDialog()
     {
+        if (currentLine > 0 && currentLine - 1 < dialogLinesWithCharacterInfo.Count)
+        {
+            dialogLinesWithCharacterInfo[currentLine - 1]
+                ?.onLineCompleted?.Invoke();
+        }
+
         if (currentLine >= dialogLinesWithCharacterInfo.Count)
         {
             bool wasOpen = boxOpen;
@@ -153,6 +159,7 @@ public class DialogManager :Interactable
     private IEnumerator AddCharactersOneByOne()
     {
         float delay = speed;
+
         while (dialogText.maxVisibleCharacters < dialogText.textInfo.characterCount)
         {
             yield return new WaitForSeconds(delay);
@@ -163,10 +170,16 @@ public class DialogManager :Interactable
             TMP_CharacterInfo[] chars = dialogText.textInfo.characterInfo;
             char c = chars[i].character;
             char next = i + 1 < dialogText.textInfo.characterCount ? chars[i + 1].character : '\0';
+
             Sfx.Letter(c);
             delay = speed * Sfx.PauseFactor(c, next);
         }
+
         typingCoroutine = null;
+
+        dialogLinesWithCharacterInfo[currentLine - 1]
+            ?.onLineFinishedTyping?.Invoke();
+
         ShowContinue(true);
     }
 
@@ -256,13 +269,23 @@ public class DialogManager :Interactable
 }
 
 [System.Serializable]
-public struct DialogLine
+public class DialogLine
 {
     public string text;
     public Character character;
-    public DialogLine(string text, Character character = null)
+
+    public UnityAction onLineFinishedTyping;
+    public UnityAction onLineCompleted;
+
+    public DialogLine(
+        string text,
+        Character character = null,
+        UnityAction onLineFinishedTyping = null,
+        UnityAction onLineCompleted = null)
     {
         this.text = text;
         this.character = character;
+        this.onLineFinishedTyping = onLineFinishedTyping;
+        this.onLineCompleted = onLineCompleted;
     }
 }

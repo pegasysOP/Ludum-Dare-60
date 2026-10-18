@@ -13,7 +13,6 @@ public class EndingText : MonoBehaviour
     void Start()
     {
         dialogManager = FindAnyObjectByType<DialogManager>();
-        dialogManager.onDialogFinished.AddListener(OnDialogFinished);
     }
 
     public void StartEndingText(ENDINGS ending)
@@ -46,19 +45,16 @@ public class EndingText : MonoBehaviour
         dialogManager.PlayDialog();
     }
 
-    private void OnDialogFinished()
-    {
-        Debug.Log("EndingText OnDialogFinished");
-        //Load the credits automatically for now. Perhaps add a manual credits later
-        //SceneUtils.LoadCreditScene();
-    }
-
     public void LoadGoodEndingText()
     {
         DialogLine line1 = new DialogLine("The Product Manager did it! Seeing the CEO buy his 4th Yacht while they're toiling away. No reward. No promotion.");
         DialogLine line2 = new DialogLine("2 years later");
         DialogLine line3 = new DialogLine("ClearSky™ saw an 8th consecutive quarter of record profits.");
-        DialogLine line4 = new DialogLine("Congratulations, you got the good ending!");
+        DialogLine line4 = new DialogLine("Congratulations, you got the good ending!",
+        null,
+        null,
+        () => SceneUtils.LoadCreditScene()
+        );
 
         dialogLinesWithCharacterInfo.Add(line1);
         dialogLinesWithCharacterInfo.Add(line2);
@@ -72,7 +68,11 @@ public class EndingText : MonoBehaviour
         DialogLine line2 = new DialogLine("2 years later");
         DialogLine line3 = new DialogLine("ClearSky™ is foreclosed. After years of embezzlement the coffers are empty.");
         DialogLine line4 = new DialogLine("Company wide email reads: Everyone is fired. Effective immediately!");
-        DialogLine line5 = new DialogLine("Better luck next time, you got the bad ending!");
+        DialogLine line5 = new DialogLine("Better luck next time, you got the bad ending!",
+        null,
+        null,
+        () => SceneUtils.LoadCreditScene()
+        );
 
         dialogLinesWithCharacterInfo.Add(line1);
         dialogLinesWithCharacterInfo.Add(line2);
@@ -87,7 +87,11 @@ public class EndingText : MonoBehaviour
         DialogLine line2 = new DialogLine("2 days later");
         DialogLine line3 = new DialogLine("You're pulled into the HR office at DwT");
         DialogLine line4 = new DialogLine("You've made this company look like an absolute joke. You're fired!");
-        DialogLine line5 = new DialogLine("Better luck next time, you got the Speedrunner ending!");
+        DialogLine line5 = new DialogLine("Better luck next time, you got the Speedrunner ending!",
+        null,
+        null,
+        () => SceneUtils.LoadCreditScene()
+        );
 
         dialogLinesWithCharacterInfo.Add(line1);
         dialogLinesWithCharacterInfo.Add(line2);
