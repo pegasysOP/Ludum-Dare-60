@@ -8,6 +8,8 @@ public class CameraApp : MonoBehaviour, IAppContent
 {
     public PdaController pda;
     public RectTransform viewfinder;
+    // window between the frame's bars, what actually ends up in the photo
+    public RectTransform captureArea;
     public Image flash;
     public RawImage photo;
     public Button retakeButton;
@@ -17,6 +19,7 @@ public class CameraApp : MonoBehaviour, IAppContent
 
     public float flashDuration = 0.5f;
 
+    // photo height, width follows the capture area's shape
     public int photoResolution = 180;
 
     // cheap early 2000s sensor look
@@ -133,22 +136,23 @@ public class CameraApp : MonoBehaviour, IAppContent
         yield return new WaitForEndOfFrame();
 
         Vector3[] corners = new Vector3[4];
-        viewfinder.GetWorldCorners(corners);
+        captureArea.GetWorldCorners(corners);
         Rect area = new Rect(corners[0].x, corners[0].y, corners[2].x - corners[0].x, corners[2].y - corners[0].y);
 
         int width = (int)area.width;
         int height = (int)area.height;
+        int photoWidth = Mathf.RoundToInt(photoResolution * area.width / area.height);
 
         Texture2D capture = new Texture2D(width, height, TextureFormat.RGB24, false);
         capture.ReadPixels(area, 0, 0);
-        Color[] pixels = Downscale(capture.GetPixels(), width, height, photoResolution);
+        Color[] pixels = Downscale(capture.GetPixels(), width, height, photoWidth, photoResolution);
         ColourGrade(pixels);
         Destroy(capture);
 
         if (photoTexture != null)
             Destroy(photoTexture);
 
-        photoTexture = new Texture2D(photoResolution, photoResolution, TextureFormat.RGB24, false);
+        photoTexture = new Texture2D(photoWidth, photoResolution, TextureFormat.RGB24, false);
         photoTexture.filterMode = FilterMode.Bilinear;
         photoTexture.wrapMode = TextureWrapMode.Clamp;
         photoTexture.SetPixels(pixels);
@@ -224,26 +228,26 @@ public class CameraApp : MonoBehaviour, IAppContent
     }
 
     // averages each block of source pixels into one output pixel
-    private Color[] Downscale(Color[] source, int width, int height, int size)
+    private Color[] Downscale(Color[] source, int width, int height, int outWidth, int outHeight)
     {
-        Color[] result = new Color[size * size];
+        Color[] result = new Color[outWidth * outHeight];
 
-        for (int y = 0; y < size; y++)
+        for (int y = 0; y < outHeight; y++)
         {
-            int yMin = y * height / size;
-            int yMax = Mathf.Max(yMin + 1, (y + 1) * height / size);
+            int yMin = y * height / outHeight;
+            int yMax = Mathf.Max(yMin + 1, (y + 1) * height / outHeight);
 
-            for (int x = 0; x < size; x++)
+            for (int x = 0; x < outWidth; x++)
             {
-                int xMin = x * width / size;
-                int xMax = Mathf.Max(xMin + 1, (x + 1) * width / size);
+                int xMin = x * width / outWidth;
+                int xMax = Mathf.Max(xMin + 1, (x + 1) * width / outWidth);
 
                 Color sum = Color.clear;
                 for (int sy = yMin; sy < yMax; sy++)
                     for (int sx = xMin; sx < xMax; sx++)
                         sum += source[sy * width + sx];
 
-                result[y * size + x] = sum / ((xMax - xMin) * (yMax - yMin));
+                result[y * outWidth + x] = sum / ((xMax - xMin) * (yMax - yMin));
             }
         }
 

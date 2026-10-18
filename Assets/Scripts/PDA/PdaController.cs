@@ -1,19 +1,25 @@
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class PdaController : MonoBehaviour
 {
-    public Button sideButton;
-    public TextMeshProUGUI sideText;
+    public Button openButton;
+    public Button closeButton;
     public RectTransform rect;
     public CanvasGroup canvasGroup;
     public HomescreenApp[] apps;
     public Image notificationLight;
+    public CanvasGroup openGroup;
+    public CanvasGroup closedGroup;
+
+    // top left of the phone from the bottom left of the screen
+    public Vector2 openPosition = new Vector2(-120f, 1100f);
+    public Vector2 closedPosition = new Vector2(16f, 360f);
+    public float closedScale = 0.38f;
 
     private bool open = false;
     private HomescreenApp openApp;
@@ -26,7 +32,8 @@ public class PdaController : MonoBehaviour
     {
         sounds = PhoneSfxLibrary.Load();
 
-        sideButton.onClick.AddListener(ToggleOpen);
+        openButton.onClick.AddListener(() => SetOpen(true));
+        closeButton.onClick.AddListener(() => SetOpen(false));
 
         foreach (HomescreenApp app in apps)
         {
@@ -48,6 +55,13 @@ public class PdaController : MonoBehaviour
         }
 
         RefreshNotificationLight();
+
+        rect.anchoredPosition = closedPosition;
+        rect.localScale = Vector3.one * closedScale;
+        openGroup.alpha = 0f;
+        openGroup.blocksRaycasts = false;
+        closedGroup.alpha = 1f;
+        closedGroup.blocksRaycasts = true;
     }
 
     private void Start()
@@ -85,8 +99,23 @@ public class PdaController : MonoBehaviour
             AudioManager.Instance.SetPhoneMode(opening);
 
         rect.DOKill();
-        rect.DOAnchorPosX(opening ? 50 : -550, 0.5f).SetEase(Ease.OutExpo);
-        sideText.text = opening ? "<" : ">";
+        openGroup.DOKill();
+        closedGroup.DOKill();
+
+        Ease ease = opening ? Ease.OutBack : Ease.OutExpo;
+        rect.DOAnchorPos(opening ? openPosition : closedPosition, 0.45f).SetEase(ease);
+        rect.DOScale(opening ? 1f : closedScale, 0.45f).SetEase(ease);
+
+        // closed lid sits on top, so fade it rather than the open phone to avoid seeing through both
+        if (opening)
+        {
+            openGroup.alpha = 1f;
+            closedGroup.DOFade(0f, 0.15f);
+        }
+        else
+            closedGroup.DOFade(1f, 0.15f).OnComplete(() => openGroup.alpha = 0f);
+        openGroup.blocksRaycasts = opening;
+        closedGroup.blocksRaycasts = !opening;
         open = opening;
     }
 

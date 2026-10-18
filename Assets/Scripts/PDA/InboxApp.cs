@@ -85,6 +85,8 @@ public class InboxApp : MonoBehaviour, IAppContent, IAppNotification
         fromText.text = "From: " + email.from;
         dateText.text = "Sent: " + email.date;
         bodyText.text = email.body;
+        // body scrolls, start each email at the top
+        bodyText.rectTransform.anchoredPosition = Vector2.zero;
         emailView.SetActive(true);
 
         // grow the email out of the row that was tapped

@@ -102,63 +102,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4093817265530981746, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
       propertyPath: m_fontColorGradient.topLeft.b
-      value: 1
+      value: 0.61960787
       objectReference: {fileID: 0}
     - target: {fileID: 4093817265530981746, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
       propertyPath: m_fontColorGradient.topLeft.g
-      value: 0.7529412
+      value: 0.92941177
       objectReference: {fileID: 0}
     - target: {fileID: 4093817265530981746, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
       propertyPath: m_fontColorGradient.topLeft.r
-      value: 0.8392157
-      objectReference: {fileID: 0}
-    - target: {fileID: 4093817265530981746, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
-      propertyPath: m_fontColorGradient.topRight.b
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4093817265530981746, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
+      propertyPath: m_fontColorGradient.topRight.b
+      value: 0.61960787
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093817265530981746, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
       propertyPath: m_fontColorGradient.topRight.g
-      value: 0.7529412
+      value: 0.92941177
       objectReference: {fileID: 0}
     - target: {fileID: 4093817265530981746, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
       propertyPath: m_fontColorGradient.topRight.r
-      value: 0.8392157
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6659679769260762834, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
       propertyPath: m_Color.b
-      value: 0.7494118
+      value: 0.09803922
       objectReference: {fileID: 0}
     - target: {fileID: 6659679769260762834, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
       propertyPath: m_Color.g
-      value: 0.3762353
+      value: 0.4745098
       objectReference: {fileID: 0}
     - target: {fileID: 6659679769260762834, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
       propertyPath: m_Color.r
-      value: 0.5016471
+      value: 0.65882355
       objectReference: {fileID: 0}
     - target: {fileID: 481976165637272635, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
       propertyPath: m_Color.r
-      value: 0.47058824
+      value: 0.5568628
       objectReference: {fileID: 0}
     - target: {fileID: 481976165637272635, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
       propertyPath: m_Color.g
-      value: 0.41960785
+      value: 0.49803922
       objectReference: {fileID: 0}
     - target: {fileID: 481976165637272635, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
       propertyPath: m_Color.b
-      value: 0.6
+      value: 0.35686275
       objectReference: {fileID: 0}
     - target: {fileID: 5262575926867631387, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
       propertyPath: m_Color.r
+      value: 0.45882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 5262575926867631387, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
+      propertyPath: m_Color.g
       value: 0.32941177
       objectReference: {fileID: 0}
     - target: {fileID: 5262575926867631387, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
-      propertyPath: m_Color.g
-      value: 0.2509804
-      objectReference: {fileID: 0}
-    - target: {fileID: 5262575926867631387, guid: 0b7d2b3d485436c49a49695870314883, type: 3}
       propertyPath: m_Color.b
-      value: 0.52156866
+      value: 0.078431375
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -207,8 +207,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -40}
-  m_SizeDelta: {x: 0, y: -80}
+  m_AnchoredPosition: {x: 0, y: -25}
+  m_SizeDelta: {x: -48, y: -110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2290384756102938403
 MonoBehaviour:
@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.29411766, g: 0.24705882, b: 0.41960785, a: 1}
+  m_Color: {r: 0.29803923, g: 0.23529412, b: 0.09803922, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -385,7 +385,7 @@ MonoBehaviour:
       m_Calls: []
   m_CaretColor: {r: 1, g: 1, b: 1, a: 1}
   m_CustomCaretColor: 1
-  m_SelectionColor: {r: 0.7764706, g: 0.6745098, b: 1, a: 0.5019608}
+  m_SelectionColor: {r: 1, g: 0.8666667, b: 0.34901962, a: 0.5019608}
   m_Text: 
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 2
