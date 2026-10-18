@@ -288,11 +288,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 128581250162342921, guid: 07e685c48921e4a4392f5206e1cbbb0e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.9
+      value: -3.94
       objectReference: {fileID: 0}
     - target: {fileID: 128581250162342921, guid: 07e685c48921e4a4392f5206e1cbbb0e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.8727245
+      value: 3.84
       objectReference: {fileID: 0}
     - target: {fileID: 128581250162342921, guid: 07e685c48921e4a4392f5206e1cbbb0e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -333,14 +333,6 @@ PrefabInstance:
     - target: {fileID: 2081416291629142466, guid: 07e685c48921e4a4392f5206e1cbbb0e, type: 3}
       propertyPath: m_Name
       value: MotivationalPoster
-      objectReference: {fileID: 0}
-    - target: {fileID: 3949163562240085618, guid: 07e685c48921e4a4392f5206e1cbbb0e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -7.95
-      objectReference: {fileID: 0}
-    - target: {fileID: 3949163562240085618, guid: 07e685c48921e4a4392f5206e1cbbb0e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.52
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

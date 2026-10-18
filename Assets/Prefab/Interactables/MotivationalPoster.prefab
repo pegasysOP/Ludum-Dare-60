@@ -200,5 +200,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlavourTextInteractable
   flavourText: Teamwork makes the dream work
-  flavourTextUI: {fileID: 0}
   characterDelay: 0.1
