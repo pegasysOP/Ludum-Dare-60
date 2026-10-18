@@ -17,6 +17,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 873fd3b55584b064599f047167b386fd, type: 3}
     displayText: 'Menu Theme '
     sprite: {fileID: 21300000, guid: 1a9e81ee9bb4f334eb4ee29c7f111ab9, type: 3}
+    loopStartSample: 1590831
+    loopEndSample: 7870122
   - id: 1
     clip: {fileID: 8300000, guid: de7cd74e58754daf9411802fe1ba24e2, type: 3}
     displayText: Glass City - Credits
