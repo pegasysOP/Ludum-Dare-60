@@ -4,11 +4,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public HudController hudController;
 
     [SerializeField] private TextMeshProUGUI  flavourText;
 
-    public bool LOCKED = false;
+    bool hasCD = false;
 
     private void Awake()
     {
@@ -28,14 +27,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateUI();
-
-        SetLocked(false);
-    }
-
-    private void UpdateUI()
-    {
-        //TODO: Implement UI 
     }
 
     public void DestroySelf()
@@ -45,16 +36,14 @@ public class GameManager : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void SetLocked(bool locked)
-    {
-        LOCKED = locked;
-        Cursor.visible = locked;
-        Cursor.lockState = locked ? CursorLockMode.None : CursorLockMode.Locked;
-    }
-
     public void ResetFlavourText()
     {
         flavourText.text = "";
         flavourText.maxVisibleCharacters = 0;
+    }
+
+    public void ActivateGotCDFlag()
+    {
+        hasCD = true;
     }
 }
