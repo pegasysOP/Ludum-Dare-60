@@ -13,14 +13,14 @@ public class RoomNavigator : MonoBehaviour
     public float fadeDuration = 0.5f;
 
     private Camera mainCamera;
-    private UiSfxLibrary sounds;
+    private InteractSfxLibrary sounds;
     private int currentRoom;
     private Sequence moveSequence;
 
     private void Awake()
     {
         mainCamera = Camera.main;
-        sounds = UiSfxLibrary.Load();
+        sounds = InteractSfxLibrary.Load();
 
         leftButton.onClick.AddListener(() => Move(-1));
         rightButton.onClick.AddListener(() => Move(1));
@@ -36,7 +36,8 @@ public class RoomNavigator : MonoBehaviour
         if (moveSequence.IsActive() || target < 0 || target >= rooms.childCount)
             return;
 
-        sounds.buttonPress.Play();
+        // three footsteps on carpet while the screen is black
+        sounds.roomMove.Play();
 
         // black out, jump the camera, then fade back so the seams between rooms never show
         fade.blocksRaycasts = true;

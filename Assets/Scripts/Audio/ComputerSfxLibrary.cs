@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Audio/Computer Sfx Library", fileName = "ComputerSfxLibrary")]
 public class ComputerSfxLibrary : ScriptableObject
@@ -9,7 +10,7 @@ public class ComputerSfxLibrary : ScriptableObject
 
     [Header("OS")]
     public SfxBank click = new SfxBank();
-    public SfxBank startup = new SfxBank();
+    [FormerlySerializedAs("startup")] public SfxBank wake = new SfxBank();
     public SfxBank shutdown = new SfxBank();
     public SfxBank error = new SfxBank();
     public SfxBank keyPress = new SfxBank();
@@ -18,6 +19,7 @@ public class ComputerSfxLibrary : ScriptableObject
     [Header("Misc")]
     public SfxBank fan = new SfxBank();
     public SfxBank boot = new SfxBank();
+    public SfxBank cdInsert = new SfxBank();
 
     private void OnEnable()
     {
@@ -37,13 +39,14 @@ public class ComputerSfxLibrary : ScriptableObject
     public IEnumerable<KeyValuePair<string, SfxBank>> AllBanks()
     {
         yield return new KeyValuePair<string, SfxBank>("Click", click);
-        yield return new KeyValuePair<string, SfxBank>("startup", startup);
+        yield return new KeyValuePair<string, SfxBank>("Wake", wake);
         yield return new KeyValuePair<string, SfxBank>("shutdown", shutdown);
         yield return new KeyValuePair<string, SfxBank>("Error", error);
         yield return new KeyValuePair<string, SfxBank>("Key Press", keyPress);
         yield return new KeyValuePair<string, SfxBank>("Submit", submit);
         yield return new KeyValuePair<string, SfxBank>("Fan", fan);
         yield return new KeyValuePair<string, SfxBank>("Boot", boot);
+        yield return new KeyValuePair<string, SfxBank>("CD Insert", cdInsert);
     }
 
 }

@@ -89,7 +89,7 @@ public class SusPXApp : MonoBehaviour, IAppContent
             return;
         }
 
-        sounds.swipe.Play();
+        sounds.reportConfirm.Play();
         reportButton.transform.DOKill();
         reportButton.transform.localScale = Vector3.one;
         reportButton.interactable = false;

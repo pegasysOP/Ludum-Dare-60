@@ -1,6 +1,7 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ComputerScreen : MonoBehaviour
@@ -26,6 +27,7 @@ public class ComputerScreen : MonoBehaviour
     [SerializeField] private bool loggedIn = false;
     private Sequence sequence;
     private float fanVolume;
+    private int openedFrame;
 
     private void Awake()
     {
@@ -50,6 +52,7 @@ public class ComputerScreen : MonoBehaviour
             return;
 
         gameObject.SetActive(true);
+        openedFrame = Time.frameCount;
         sequence?.Kill();
 
         screen.anchoredPosition = screenPos;
@@ -63,7 +66,7 @@ public class ComputerScreen : MonoBehaviour
         wrongPasswordText.SetActive(false);
 
         // fan source plays on awake, so it starts whenever this canvas turns on
-        sounds.boot.Play();
+        sounds.wake.Play();
         sequence = DOTween.Sequence()
             .Append(screenGroup.DOFade(1f, 0.4f))
             .OnComplete(() =>
@@ -71,6 +74,14 @@ public class ComputerScreen : MonoBehaviour
                 if (!loggedIn)
                     passwordField.ActivateInputField();
             });
+    }
+
+    private void Update()
+    {
+        // every press of the real mouse clicks, whatever it lands on. Skip the click that opened the screen
+        if (screenGroup.blocksRaycasts && Time.frameCount != openedFrame
+            && Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+            sounds.click.Play();
     }
 
     public void Close()
@@ -109,6 +120,7 @@ public class ComputerScreen : MonoBehaviour
         else
         {
             Debug.Log("CD inserted");
+            sounds.cdInsert.Play();
             insertCDButton.gameObject.SetActive(false);
             //TODO: Add a loading icon and wait then show? 
             ReportGameObject.gameObject.SetActive(true);
@@ -129,7 +141,7 @@ public class ComputerScreen : MonoBehaviour
         if (passwordField.text == password)
         {
             loggedIn = true;
-            sounds.startup.Play();
+            sounds.boot.Play();
             login.SetActive(false);
             desktop.SetActive(true);
             return;

@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f16331564824b3eab6431cc5c3f9499, type: 3}
+  m_Name: InteractSfxLibrary
+  m_EditorClassIdentifier: Assembly-CSharp::InteractSfxLibrary
+  select:
+    clips:
+    - _clip: {fileID: 8300000, guid: 8c2a08e40e9c34fa68aecc8b09dc7cf0, type: 3}
+      _volume: 1
+      _delay: 0
+    pitchMin: 0.96
+    pitchMax: 1.04
+    gain: 0.4
+    volumeJitter: 0.05
+    useFocusMixerGroup: 0
+  itemGet:
+    clips:
+    - _clip: {fileID: 8300000, guid: 03219171efc1040b0b27cdec9fc5cea4, type: 3}
+      _volume: 1
+      _delay: 0.3
+    pitchMin: 1
+    pitchMax: 1
+    gain: 0.4
+    volumeJitter: 0
+    useFocusMixerGroup: 0
+  paperOpen:
+    clips:
+    - _clip: {fileID: 8300000, guid: faf63850eb936409fa3e1cc62dd12545, type: 3}
+      _volume: 1
+      _delay: 0
+    - _clip: {fileID: 8300000, guid: 61a7dab22a36450da6fbabd968ee1ea3, type: 3}
+      _volume: 1
+      _delay: 0
+    pitchMin: 0.97
+    pitchMax: 1.03
+    gain: 0.8
+    volumeJitter: 0.05
+    useFocusMixerGroup: 0
+  paperClose:
+    clips:
+    - _clip: {fileID: 8300000, guid: c30a5f41a77904413bdc857d012e5629, type: 3}
+      _volume: 1
+      _delay: 0
+    - _clip: {fileID: 8300000, guid: 1e6c5c90a420417c97ba0a18ae4051e0, type: 3}
+      _volume: 1
+      _delay: 0
+    pitchMin: 0.97
+    pitchMax: 1.03
+    gain: 0.7
+    volumeJitter: 0.05
+    useFocusMixerGroup: 0
+  roomMove:
+    clips:
+    - _clip: {fileID: 8300000, guid: d2400fe7063a4b6b82a8fdc58f6837af, type: 3}
+      _volume: 1
+      _delay: 0
+    pitchMin: 0.97
+    pitchMax: 1.03
+    gain: 0.8
+    volumeJitter: 0
+    useFocusMixerGroup: 0

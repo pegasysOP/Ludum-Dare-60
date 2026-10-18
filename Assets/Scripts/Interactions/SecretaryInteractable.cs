@@ -32,7 +32,9 @@ public class SecretaryInteractable : Interactable
     
     private void OnFinalLineCompleted()
     {
-
+        // the repeatable line also lands here, so only chime the first time
+        if (!GameManager.Instance.HasCD())
+            interactSounds.itemGet.Play();
         GameManager.Instance.ActivateGotCDFlag();
         
         dialogLinesWithCharacterInfo.Clear();

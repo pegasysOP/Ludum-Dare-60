@@ -11,6 +11,8 @@ public class ChangeRoomInteractable : Interactable
 
     [SerializeField] float moveDuration;
 
+    protected override bool PlaysSelectSound => false;
+
     public void Start()
     {
         //TODO: This may not work if the camera app also has an additional camera
@@ -30,8 +32,8 @@ public class ChangeRoomInteractable : Interactable
         targetPos.y += yOffset; 
 
         //TODO: Do we want to do fading or other transitions. 
-        //TODO: Do we want to play a sound when we move? 
 
+        interactSounds.roomMove.Play();
         StartCoroutine(MoveCamera(targetPos));
     }
 
