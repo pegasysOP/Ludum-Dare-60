@@ -13,11 +13,14 @@ public class SecretaryInteractable : Interactable
     public void Start()
     {
         dialogManager = FindAnyObjectByType<DialogManager>();
-        dialogManager.onDialogFinished.AddListener(OnDialogFinished);
     }
     public override void OnPointerDown(PointerEventData eventData)
     {
         dialogManager.ClearDialog();
+        if (dialogLinesWithCharacterInfo.Count > 0)
+        {
+            dialogLinesWithCharacterInfo[^1].onLineCompleted = OnFinalLineCompleted;
+        }
         dialogManager.AddDialogueLines(dialogLinesWithCharacterInfo);
         dialogManager.PlayDialog();
     }
@@ -27,9 +30,11 @@ public class SecretaryInteractable : Interactable
         Debug.Log("SecretaryInteractable OnPointerUp");
     }
     
-    private void OnDialogFinished()
+    private void OnFinalLineCompleted()
     {
+
         GameManager.Instance.ActivateGotCDFlag();
+        
         dialogLinesWithCharacterInfo.Clear();
         dialogLinesWithCharacterInfo = new List<DialogLine>();
         dialogLinesWithCharacterInfo.Add(repeatableLine);
