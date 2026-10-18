@@ -16,6 +16,7 @@ public class ComputerScreen : MonoBehaviour
     public GameObject desktop;
     public Button powerButton;
     public AudioSource fanSource;
+    public Button insertCDButton;
 
     public string password = "password"; //TODO: Change this to be based on the clue
 
@@ -36,6 +37,10 @@ public class ComputerScreen : MonoBehaviour
         passwordField.onSubmit.AddListener(_ => TryLogin());
         passwordField.onValueChanged.AddListener(OnPasswordTyped);
         powerButton.onClick.AddListener(Close);
+        if(insertCDButton != null)
+        {
+            insertCDButton.onClick.AddListener(CheckCD);
+        }
     }
 
     public void Open()
@@ -92,6 +97,19 @@ public class ComputerScreen : MonoBehaviour
 
         // fan winds down over the whole shut down
         fanSource.DOFade(0f, blackoutDuration + flyDuration);
+    }
+
+    public void CheckCD()
+    {
+        if (!GameManager.Instance.HasCD())
+        {
+            sounds.error.Play();
+        }
+        else
+        {
+            Debug.Log("CD inserted");
+            insertCDButton.gameObject.SetActive(false);
+        }   
     }
 
     private void OnPasswordTyped(string text)
