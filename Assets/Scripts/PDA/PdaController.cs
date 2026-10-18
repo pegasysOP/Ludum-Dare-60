@@ -28,6 +28,14 @@ public class PdaController : MonoBehaviour
         {
             app.button.onClick.AddListener(() => OpenApp(app));
             app.fullscreenApp.backButton.onClick.AddListener(Back);
+
+            // apps start hidden, so hook up any that can light their icon now
+            IAppNotification notifier = app.fullscreenApp.GetComponentInChildren<IAppNotification>(true);
+            if (notifier != null)
+            {
+                notifier.NotificationChanged += () => app.SetNotification(notifier.HasNotification);
+                app.SetNotification(notifier.HasNotification);
+            }
         }
     }
 
