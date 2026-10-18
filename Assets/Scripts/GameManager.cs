@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI  flavourText;
 
+    SusPXApp suspectApp;
+
     bool hasCD = false;
 
     private void Awake()
@@ -27,6 +29,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        suspectApp = FindAnyObjectByType<SusPXApp>(FindObjectsInactive.Include);
+        suspectApp.onReport.AddListener(TriggerEnding);  
     }
 
     public void DestroySelf()
@@ -50,5 +54,11 @@ public class GameManager : MonoBehaviour
     public bool HasCD()
     {
         return hasCD;
+    }
+
+    public void TriggerEnding(Character character)
+    {
+         //TODO: Based on flags we should trigger the correct ending.
+         Debug.Log("TriggerEnding called, but no ending is implemented yet.");
     }
 }
