@@ -8,6 +8,7 @@ using UnityEngine.UI;
 /// <see cref="MusicManager"/> (PlayGameMusic), so what you hear is what the game will do. The readout shows
 /// where the track is (intro, or which pass of the looping body) and "Hear the loop seam" jumps to just
 /// before the loop end so the wrap can be checked by ear. Keys 1-4 pick a mood, S hears the seam, Space stops.
+/// G and B play the good and bad endings through <see cref="GameMusicGuy.PlayEnding"/>, out of the current mood.
 /// The UI is built in code so the scene stays tiny.
 /// </summary>
 public class SilasMusicTest : MonoBehaviour
@@ -37,6 +38,7 @@ public class SilasMusicTest : MonoBehaviour
     private readonly Outline[] outlines = new Outline[4];
     private TextMeshProUGUI status;
     private int current = -1;
+    private string playingName;
 
     private void Start()
     {
@@ -61,6 +63,8 @@ public class SilasMusicTest : MonoBehaviour
             if (kb.digit3Key.wasPressedThisFrame) Play(2);
             if (kb.digit4Key.wasPressedThisFrame) Play(3);
             if (kb.sKey.wasPressedThisFrame) HearSeam();
+            if (kb.gKey.wasPressedThisFrame) PlayEnding(GameEnding.Good);
+            if (kb.bKey.wasPressedThisFrame) PlayEnding(GameEnding.Bad);
             if (kb.spaceKey.wasPressedThisFrame) Stop();
         }
         UpdateStatus();
@@ -77,8 +81,18 @@ public class SilasMusicTest : MonoBehaviour
         }
         mm.PlayGameMusic(clip, crossfadeSeconds);
         current = i;
+        playingName = Moods[i].name;
         for (int k = 0; k < outlines.Length; k++)
             outlines[k].enabled = k == i;
+    }
+
+    private void PlayEnding(GameEnding ending)
+    {
+        GameMusicGuy.PlayEnding(ending);
+        current = -1;
+        playingName = ending + " ending";
+        foreach (Outline o in outlines)
+            o.enabled = false;
     }
 
     private void HearSeam()
@@ -92,6 +106,7 @@ public class SilasMusicTest : MonoBehaviour
         if (MusicManager.Instance != null)
             MusicManager.Instance.StopMusic(1.5f);
         current = -1;
+        playingName = null;
         foreach (Outline o in outlines)
             o.enabled = false;
     }
@@ -100,9 +115,9 @@ public class SilasMusicTest : MonoBehaviour
     {
         MusicManager mm = MusicManager.Instance;
         if (status == null) return;
-        if (mm == null || current < 0 || !mm.IsMusicPlaying || mm.CurrentClip == null)
+        if (mm == null || playingName == null || !mm.IsMusicPlaying || mm.CurrentClip == null)
         {
-            status.text = "Pick a mood (1-4). Crossfades take " + crossfadeSeconds.ToString("0.#") + " s.";
+            status.text = "Pick a mood (1-4) or an ending (G, B). Crossfades take " + crossfadeSeconds.ToString("0.#") + " s.";
             return;
         }
         AudioClip clip = mm.CurrentClip;
@@ -110,9 +125,11 @@ public class SilasMusicTest : MonoBehaviour
         string where;
         if (mm.TryGetActiveLoopRegion(out int ls, out int le))
             where = pos < ls ? "intro (plays once)" : $"loop body {Time(pos - ls, clip.frequency)} / {Time(le - ls, clip.frequency)}";
+        else if (library != null && library.IsPlayOnce(clip))
+            where = $"plays once, {Time(clip.samples, clip.frequency)}";
         else
             where = "whole clip loops";
-        status.text = $"{Moods[current].name}  ·  {Time(pos, clip.frequency)}  ·  {where}";
+        status.text = $"{playingName}  ·  {Time(pos, clip.frequency)}  ·  {where}";
     }
 
     private static string Time(int samples, int freq)
@@ -139,7 +156,7 @@ public class SilasMusicTest : MonoBehaviour
         bg.color = new Color(.85f, .93f, .98f);
 
         Label(root, "Silas Music Test", 64, FontStyles.Bold, new Vector2(0, 380), new Vector2(1600, 100));
-        Label(root, "The four in-game moods through the real MusicManager: crossfade between them, and check each loop seam.",
+        Label(root, "The four in-game moods and both endings through the real MusicManager: crossfade between them, check each loop seam.",
               28, FontStyles.Normal, new Vector2(0, 300), new Vector2(1600, 60));
 
         for (int i = 0; i < Moods.Length; i++)
@@ -154,8 +171,10 @@ public class SilasMusicTest : MonoBehaviour
         }
 
         status = Label(root, "", 34, FontStyles.Normal, new Vector2(0, -210), new Vector2(1600, 60));
-        SmallButton(root, "Hear the loop seam (S)", new Vector2(-220, -330)).onClick.AddListener(HearSeam);
-        SmallButton(root, "Stop (Space)", new Vector2(220, -330)).onClick.AddListener(Stop);
+        SmallButton(root, "Hear the loop seam (S)", new Vector2(-660, -330)).onClick.AddListener(HearSeam);
+        SmallButton(root, "Good ending (G)", new Vector2(-220, -330)).onClick.AddListener(() => PlayEnding(GameEnding.Good));
+        SmallButton(root, "Bad ending (B)", new Vector2(220, -330)).onClick.AddListener(() => PlayEnding(GameEnding.Bad));
+        SmallButton(root, "Stop (Space)", new Vector2(660, -330)).onClick.AddListener(Stop);
     }
 
     private Button MoodButton(RectTransform parent, Mood mood, Vector2 pos)
