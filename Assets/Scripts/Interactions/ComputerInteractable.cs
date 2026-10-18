@@ -9,7 +9,7 @@ public class ComputerInteractable : Interactable
     {
         // the screen is on its own canvas, so find it if the scene didn't link it
         if (computerScreen == null)
-            computerScreen = FindAnyObjectByType<ComputerScreen>(FindObjectsInactive.Include);
+            Debug.LogError("ComputerInteractable: computerScreen is not set in the inspector.");
     }
 
     public override void OnPointerDown(PointerEventData eventData)
