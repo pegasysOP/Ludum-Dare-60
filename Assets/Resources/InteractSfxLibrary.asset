@@ -19,7 +19,7 @@ MonoBehaviour:
       _delay: 0
     pitchMin: 0.96
     pitchMax: 1.04
-    gain: 0.4
+    gain: 0.2
     volumeJitter: 0.05
     useFocusMixerGroup: 0
   itemGet:
