@@ -28,6 +28,9 @@ public class ComputerScreen : MonoBehaviour
     private Sequence sequence;
     private float fanVolume;
     private int openedFrame;
+    private Color insertCDColour;
+
+    private static readonly Color DisabledButtonColour = new Color(0.6f, 0.63f, 0.68f);
 
     private void Awake()
     {
@@ -43,6 +46,7 @@ public class ComputerScreen : MonoBehaviour
         if(insertCDButton != null)
         {
             insertCDButton.onClick.AddListener(CheckCD);
+            insertCDColour = insertCDButton.targetGraphic.color;
         }
     }
 
@@ -64,6 +68,7 @@ public class ComputerScreen : MonoBehaviour
         desktop.SetActive(loggedIn);
         passwordField.text = "";
         wrongPasswordText.SetActive(false);
+        RefreshInsertCD();
 
         // fan source plays on awake, so it starts whenever this canvas turns on
         sounds.wake.Play();
@@ -130,6 +135,17 @@ public class ComputerScreen : MonoBehaviour
         }   
     }
 
+    // greyed out until there's a CD to put in
+    private void RefreshInsertCD()
+    {
+        if (insertCDButton == null)
+            return;
+
+        bool canInsert = GameManager.Instance.HasCD() && !GameManager.Instance.UsedCD();
+        insertCDButton.interactable = canInsert;
+        insertCDButton.targetGraphic.color = canInsert ? insertCDColour : DisabledButtonColour;
+    }
+
     private void OnPasswordTyped(string text)
     {
         // only real typing, not the field being cleared
@@ -147,6 +163,7 @@ public class ComputerScreen : MonoBehaviour
             sounds.boot.Play();
             login.SetActive(false);
             desktop.SetActive(true);
+            RefreshInsertCD();
             return;
         }
 
