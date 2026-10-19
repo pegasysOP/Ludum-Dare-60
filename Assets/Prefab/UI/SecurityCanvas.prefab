@@ -2519,12 +2519,12 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: dc87e38dec8c03347a939eeb85226c92, type: 3}
   - date: Jul 27, 2005
     time: 14:03:27
-    location: CAM 01 - Reception Display
-    image: {fileID: 2800000, guid: dc87e38dec8c03347a939eeb85226c92, type: 3}
+    location: CAM 01 - Cafeteria
+    image: {fileID: 2800000, guid: 125c398d8cf542f48a49224f0aea13b3, type: 3}
   - date: Aug 5, 2005
     time: 20:37:43
     location: CAM 02 - Office Entrance
-    image: {fileID: 2800000, guid: 3ea00e8d84994a978460c3d06ab79935, type: 3}
+    image: {fileID: 2800000, guid: 47173265899d9a04baf731989309220a, type: 3}
 --- !u!1 &5626888603389778931
 GameObject:
   m_ObjectHideFlags: 0
