@@ -2743,10 +2743,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProductManagerInteractable
   dialogLinesWithCharacterInfo:
-  - text: Oh. You're the auditor.
-    character: {fileID: 11400000, guid: aff33ab34aa54fd2b0eb77c8158aa59c, type: 2}
-  - text: That's right.
-    character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
   - text: I'm just an intern, okay? Still at college. I really need this job.
     character: {fileID: 11400000, guid: aff33ab34aa54fd2b0eb77c8158aa59c, type: 2}
   - text: You seem worried.
