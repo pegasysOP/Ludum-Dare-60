@@ -153,10 +153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dc050a0b59d48a4fa66fa3eb51c9334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteOutline
-  idleColour: {r: 0.55, g: 0.8, b: 1, a: 0.85}
+  idleColour: {r: 0.1, g: 0.5, b: 1, a: 1}
   hoverColour: {r: 0.92, g: 0.16, b: 0.12, a: 1}
-  usedColour: {r: 0.8, g: 0.82, b: 0.85, a: 0.85}
-  idleWidth: 0.02
+  usedColour: {r: 0.4, g: 0.45, b: 0.53, a: 1}
+  idleWidth: 0.03
   hoverWidth: 0.05
   gapWidth: 0.02
 --- !u!114 &4367762906428727593
@@ -172,15 +172,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CalendarInteractable
   dialogLinesWithCharacterInfo:
-  - text: Show's various events in the office
+  - text: Shows various events in the office
     character: {fileID: 0}
-  - text: 'Susan Annual Leave - 2nd August till 16th August  '
-    character: {fileID: 0}
-  - text: Pretzel Day - Thursday 19th August
-    character: {fileID: 0}
-  - text: Office Summer Party - Friday 26th August
+  - text: "Annual Leave: Karen Doyle, Finance Manager - Tuesday 2nd to Tuesday 16th August\nPretzel Day - Thursday 18th August\nOffice Summer Party - Friday 26th August"
     character: {fileID: 0}
   repeatableLine:
-    text: Show's various events in the office
+    text: "Annual Leave: Karen Doyle, Finance Manager - Tuesday 2nd to Tuesday 16th August\nPretzel Day - Thursday 18th August\nOffice Summer Party - Friday 26th August"
     character: {fileID: 0}
   performanceCanvas: {fileID: 0}

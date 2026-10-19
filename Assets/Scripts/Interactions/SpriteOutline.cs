@@ -5,10 +5,10 @@ using UnityEngine;
 public class SpriteOutline : MonoBehaviour
 {
     // sizes are in world units so the line scales with the screen
-    [SerializeField] private Color idleColour = new Color(0.55f, 0.8f, 1f, 0.85f);
+    [SerializeField] private Color idleColour = new Color(0.1f, 0.5f, 1f, 1f);
     [SerializeField] private Color hoverColour = new Color(0.92f, 0.16f, 0.12f, 1f);
-    [SerializeField] private Color usedColour = new Color(0.8f, 0.82f, 0.85f, 0.85f);
-    [SerializeField] private float idleWidth = 0.02f;
+    [SerializeField] private Color usedColour = new Color(0.4f, 0.45f, 0.53f, 1f);
+    [SerializeField] private float idleWidth = 0.03f;
     [SerializeField] private float hoverWidth = 0.05f;
     [SerializeField] private float gapWidth = 0.02f;
 

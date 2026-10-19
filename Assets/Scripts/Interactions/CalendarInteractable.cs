@@ -17,7 +17,6 @@ public class CalendarInteractable : Interactable
     }
     public override void OnPointerDown(PointerEventData eventData)
     {
-        GameManager.Instance.ActivateCheckedReviewFlag();
         performanceCanvas.gameObject.SetActive(true);
         dialogManager.ClearDialog();
         if (dialogLinesWithCharacterInfo.Count > 0)
