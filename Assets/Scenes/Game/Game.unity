@@ -2563,9 +2563,53 @@ PrefabInstance:
       value: Security
       objectReference: {fileID: 0}
     - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[6].text
-      value: False alarm. Just an employee working late.
+      propertyPath: dialogLinesWithCharacterInfo.Array.size
+      value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[4].text
+      value: Right. Well, I checked it out right away. False alarm. Just an employee working late.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[5].text
+      value: Do you remember who?
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[6].text
+      value: I checked it out right away. I didn't say I checked it out well.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[7].text
+      value: '... '
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[8].text
+      value: The security cameras should have it. Feel free to take a look.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[9].text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[10].text
+      value: And?
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[5].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[6].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[7].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[10].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
     - target: {fileID: 7235219105007621894, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.94
