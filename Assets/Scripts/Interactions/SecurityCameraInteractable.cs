@@ -8,6 +8,7 @@ public class SecurityCameraInteractable : Interactable
     public override void OnPointerDown(PointerEventData eventData)
     {
         securityScreen.Open();
+        GameManager.Instance.ActivateCheckedCameraFlag();
     }
 
     public override void OnPointerUp(PointerEventData eventData)

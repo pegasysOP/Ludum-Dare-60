@@ -1,4 +1,3 @@
-using System.Reflection.Metadata.Ecma335;
 using TMPro;
 using UnityEngine;
 
@@ -10,9 +9,11 @@ public class GameManager : MonoBehaviour
 
     SusPXApp suspectApp;
 
-    bool hasCD = false;
 
+    bool hasCD = false;
     bool usedCD = false;
+    bool checkedCamera = false;
+    bool checkedReview = false;
 
     private void Awake()
     {
@@ -67,6 +68,26 @@ public class GameManager : MonoBehaviour
     public bool UsedCD()
     {
         return usedCD;
+    }
+
+    public void ActivateCheckedCameraFlag()
+    {
+        checkedCamera = true;
+    }
+
+    public bool CheckedCamera()
+    {
+        return checkedCamera;
+    }
+
+    public void ActivateCheckedReviewFlag()
+    {
+        checkedReview = true;
+    }
+
+    public bool CheckedReview()
+    {
+        return checkedReview;
     }
 
     public void TriggerEnding(Character character)
