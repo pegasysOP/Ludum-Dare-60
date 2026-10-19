@@ -2815,8 +2815,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProductManagerInteractable
   dialogLinesWithCharacterInfo:
-  - text: 'Is 3 yachts enough? '
+  - text: Welcome, welcome!
+    character: {fileID: 11400000, guid: c19b6085ea1f4aa38032526b613408ae, type: 2}
+  - text: Please find out what's going on. Everyone keeps using words like 'root cause analysis.
+    character: {fileID: 11400000, guid: c19b6085ea1f4aa38032526b613408ae, type: 2}
+  - text: I suspect nobody knows what that means.
     character: {fileID: 11400000, guid: c19b6085ea1f4aa38032526b613408ae, type: 2}
   repeatableLine:
-    text: Hmmm....
+    text: If growing a beard improved profits, We'd be unstoppable.
     character: {fileID: 11400000, guid: c19b6085ea1f4aa38032526b613408ae, type: 2}
