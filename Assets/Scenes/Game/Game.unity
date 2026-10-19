@@ -1175,9 +1175,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 74725921}
     m_Modifications:
+    - target: {fileID: 587939059822236913, guid: 3bd36cce41d823941940dd07130d51d7, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[3].text
+      value: Maybe there's something on my computer that can help.
+      objectReference: {fileID: 0}
     - target: {fileID: 3981013730137166821, guid: 3bd36cce41d823941940dd07130d51d7, type: 3}
       propertyPath: m_Name
-      value: Finance Guy
+      value: Finance
       objectReference: {fileID: 0}
     - target: {fileID: 7402000271987236352, guid: 3bd36cce41d823941940dd07130d51d7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2562,54 +2566,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Security
       objectReference: {fileID: 0}
-    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.size
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[4].text
-      value: Right. Well, I checked it out right away. False alarm. Just an employee working late.
-      objectReference: {fileID: 0}
-    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[5].text
-      value: Do you remember who?
-      objectReference: {fileID: 0}
-    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[6].text
-      value: I checked it out right away. I didn't say I checked it out well.
-      objectReference: {fileID: 0}
-    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[7].text
-      value: '... '
-      objectReference: {fileID: 0}
-    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[8].text
-      value: The security cameras should have it. Feel free to take a look.
-      objectReference: {fileID: 0}
-    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[9].text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[10].text
-      value: And?
-      objectReference: {fileID: 0}
-    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[5].character
-      value: 
-      objectReference: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
-    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[6].character
-      value: 
-      objectReference: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
-    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[7].character
-      value: 
-      objectReference: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
-    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[10].character
-      value: 
-      objectReference: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
     - target: {fileID: 7235219105007621894, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.94

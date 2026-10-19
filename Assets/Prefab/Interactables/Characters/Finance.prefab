@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4889285028667515705, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
       propertyPath: m_Name
-      value: Finance Guy
+      value: Finance
       objectReference: {fileID: 0}
     - target: {fileID: 5019537581400960372, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
       propertyPath: outlineScale
@@ -520,8 +520,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProductManagerInteractable
   dialogLinesWithCharacterInfo:
-  - text: I like money :D
+  - text: I spent two weeks on a beach trying not to think about spreadsheets.
+    character: {fileID: 11400000, guid: 0ef43d2e83704a55b083bf30c304b9a3, type: 2}
+  - text: Did it work?
+    character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
+  - text: No.
+    character: {fileID: 11400000, guid: 0ef43d2e83704a55b083bf30c304b9a3, type: 2}
+  - text: Maybe there's something on my computer that can help.
+    character: {fileID: 11400000, guid: 0ef43d2e83704a55b083bf30c304b9a3, type: 2}
+  - text: Password?
+    character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
+  - text: 'It was on a sticky note... '
+    character: {fileID: 11400000, guid: 0ef43d2e83704a55b083bf30c304b9a3, type: 2}
+  - text: 'Which, in hindsight, may have been a security risk. '
     character: {fileID: 11400000, guid: 0ef43d2e83704a55b083bf30c304b9a3, type: 2}
   repeatableLine:
-    text: Repeatable money printer go brrrr
+    text: The password was definitely on a sticky note. Probably.
     character: {fileID: 11400000, guid: 0ef43d2e83704a55b083bf30c304b9a3, type: 2}
