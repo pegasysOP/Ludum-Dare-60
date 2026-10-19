@@ -22,7 +22,7 @@ public class EndingText : MonoBehaviour
         dialogManager = FindAnyObjectByType<DialogManager>();
     }
 
-    public void StartEndingText(ENDINGS ending)
+    public void StartEnding(ENDINGS ending)
     {
         endingCanvas.gameObject.SetActive(true);
         if(ending == ENDINGS.GOOD)

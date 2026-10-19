@@ -64,17 +64,17 @@ public class GameManager : MonoBehaviour
         if (!hasCD)
         {
             GameMusicGuy.PlayEnding(GameEnding.Bad);
-            endingText.StartEndingText(ENDINGS.LAZY);
+            endingText.StartEnding(ENDINGS.LAZY);
         }
         else if (character.characterName == "Greg Lawson")
         {
             GameMusicGuy.PlayEnding(GameEnding.Good);
-            endingText.StartEndingText(ENDINGS.GOOD);
+            endingText.StartEnding(ENDINGS.GOOD);
         }
         else
         {
             GameMusicGuy.PlayEnding(GameEnding.Bad);
-            endingText.StartEndingText(ENDINGS.BAD);
+            endingText.StartEnding(ENDINGS.BAD);
         }
         
     }
