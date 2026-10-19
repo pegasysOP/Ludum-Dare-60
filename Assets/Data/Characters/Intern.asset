@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16df92dd05534566a6575270a0aad1ff, type: 3}
-  m_Name: Greg Lawson
+  m_Name: Intern
   m_EditorClassIdentifier: Assembly-CSharp::Character
-  characterName: Greg Lawson
-  jobTitle: Product Manager
-  headshot: {fileID: 0}
-  voiceSemitones: -2
+  characterName: Tyler Brooks
+  jobTitle: Intern
+  headshot: {fileID: 21300000, guid: e963f56c5fa04b7aafca1dc040bdf8e4, type: 3}
+  voiceSemitones: 7

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16df92dd05534566a6575270a0aad1ff, type: 3}
-  m_Name: Karen Doyle
+  m_Name: Software Engineer
   m_EditorClassIdentifier: Assembly-CSharp::Character
-  characterName: Karen Doyle
-  jobTitle: Finance Manager
-  headshot: {fileID: 0}
-  voiceSemitones: 3
+  characterName: Kevin Walsh
+  jobTitle: Software Engineer
+  headshot: {fileID: 21300000, guid: e8bebeb67ed94b71a84928047d88761c, type: 3}
+  voiceSemitones: 2

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16df92dd05534566a6575270a0aad1ff, type: 3}
-  m_Name: Linda Morris
+  m_Name: HR
   m_EditorClassIdentifier: Assembly-CSharp::Character
-  characterName: Linda Morris
-  jobTitle: Executive Assistant
-  headshot: {fileID: 0}
-  voiceSemitones: 5
+  characterName: Susan Price
+  jobTitle: Head of Human Resources
+  headshot: {fileID: 21300000, guid: 8a2835fb2899477c9ddda2ba209a8f50, type: 3}
+  voiceSemitones: 4
