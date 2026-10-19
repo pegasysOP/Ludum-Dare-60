@@ -2452,7 +2452,7 @@ MonoBehaviour:
   - text: Meaning?
     character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
   - text: About ninety-eight percent sure. Which is basically certainty in our industry.
-    character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
+    character: {fileID: 11400000, guid: cc20f72f74b140d2bfee77910408b697, type: 2}
   repeatableLine:
     text: I fixed the bug. That's usually where my stories end.
     character: {fileID: 11400000, guid: cc20f72f74b140d2bfee77910408b697, type: 2}
