@@ -5494,6 +5494,7 @@ GameObject:
   - component: {fileID: 8965930814577880275}
   - component: {fileID: 1520448403207629735}
   - component: {fileID: 5343703011358534480}
+  - component: {fileID: 211557976005729691}
   m_Layer: 5
   m_Name: Mail Window
   m_TagString: Untagged
@@ -15912,3 +15913,16 @@ RectTransform:
   m_AnchoredPosition: {x: 16, y: -472}
   m_SizeDelta: {x: 810, y: 40}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &211557976005729691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2611769650446094030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 761538a9bc534704a675ed8484c57e93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EvidenceSource
+  evidence: 1

@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -12,8 +14,13 @@ public class GameManager : MonoBehaviour
 
     bool hasCD = false;
     bool usedCD = false;
-    bool checkedCamera = false;
-    bool checkedReview = false;
+
+    // everything that has to have been looked at, in any order, before an accusation is taken seriously
+    private static readonly Evidence[] RequiredEvidence =
+    {
+        Evidence.SoftwareUpdates, Evidence.Inbox, Evidence.Calendar, Evidence.CollegeTimetable, Evidence.SecurityFootage
+    };
+    private readonly HashSet<Evidence> foundEvidence = new HashSet<Evidence>();
 
     private void Awake()
     {
@@ -70,30 +77,40 @@ public class GameManager : MonoBehaviour
         return usedCD;
     }
 
+    public void FoundEvidence(Evidence evidence)
+    {
+        foundEvidence.Add(evidence);
+    }
+
+    public bool HasFound(Evidence evidence)
+    {
+        return foundEvidence.Contains(evidence);
+    }
+
     public void ActivateCheckedCameraFlag()
     {
-        checkedCamera = true;
+        FoundEvidence(Evidence.SecurityFootage);
         GameMusicGuy.SetMood(GameMood.Orange);
     }
 
     public bool CheckedCamera()
     {
-        return checkedCamera;
+        return HasFound(Evidence.SecurityFootage);
     }
 
     public void ActivateCheckedReviewFlag()
     {
-        checkedReview = true;
+        FoundEvidence(Evidence.PerformanceReview);
     }
 
     public bool CheckedReview()
     {
-        return checkedReview;
+        return HasFound(Evidence.PerformanceReview);
     }
 
     public void TriggerEnding(Character character)
     {
-        bool isLazy = !hasCD || !usedCD || !checkedCamera;
+        bool isLazy = !Array.TrueForAll(RequiredEvidence, HasFound);
         EndingText endingText = FindAnyObjectByType<EndingText>();
         AmbiencePlayer.FadeOut();
         // the lazy ending is a lost case too, so it shares the bad ending music
@@ -114,4 +131,15 @@ public class GameManager : MonoBehaviour
         }
         
     }
+}
+
+// things the player can look into, the required ones are listed in GameManager
+public enum Evidence
+{
+    SoftwareUpdates,
+    Inbox,
+    Calendar,
+    CollegeTimetable,
+    SecurityFootage,
+    PerformanceReview
 }

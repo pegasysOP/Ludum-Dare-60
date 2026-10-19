@@ -1146,6 +1146,8 @@ MonoBehaviour:
   flavourText: An overstuffed student planner shows Computer Science lectures every Thursday and Friday, with the rest of the week blocked out as 'Intern Stuff'
   characterDelay: 0.05
   fishTankTap: 0
+  countsAsEvidence: 1
+  evidence: 3
 --- !u!61 &535774378
 BoxCollider2D:
   m_ObjectHideFlags: 0
