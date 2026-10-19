@@ -9,6 +9,8 @@ public class EmailRow : MonoBehaviour
     public TextMeshProUGUI subjectText;
     public TextMeshProUGUI fromText;
     public Image unreadDot;
+    // optional tag marking an email the owner sent
+    public GameObject sentTag;
     public Image background;
     public Color unreadColour = new Color(0.09f, 0.36f, 0.76f, 0.92f);
     public Color readColour = new Color(0.05f, 0.19f, 0.4f, 0.82f);
@@ -18,7 +20,9 @@ public class EmailRow : MonoBehaviour
     public void Show(Email email)
     {
         subjectText.text = email.subject;
-        fromText.text = email.from;
+        fromText.text = email.sent ? "To: " + email.to : email.from;
+        if (sentTag != null)
+            sentTag.SetActive(email.sent);
         SetRead(email.read);
     }
 

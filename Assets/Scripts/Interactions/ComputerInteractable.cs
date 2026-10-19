@@ -5,10 +5,10 @@ public class ComputerInteractable : Interactable
 {
     [SerializeField] private ComputerScreen computerScreen;
 
-    private PMDesktop pmDesktop;
+    private ComputerDesktop desktop;
 
-    // the product manager's pc only counts as looked at once its mail has been read
-    protected override bool MarkUsedOnClick => pmDesktop == null;
+    // a pc with unread mail only counts as looked at once that mail has been read
+    protected override bool MarkUsedOnClick => desktop == null || !desktop.HasUnreadMail;
 
     public void Start()
     {
@@ -19,9 +19,9 @@ public class ComputerInteractable : Interactable
             return;
         }
 
-        pmDesktop = computerScreen.GetComponentInChildren<PMDesktop>(true);
-        if (pmDesktop != null)
-            pmDesktop.MailRead += MarkUsed;
+        desktop = computerScreen.GetComponentInChildren<ComputerDesktop>(true);
+        if (desktop != null)
+            desktop.MailRead += MarkUsed;
     }
 
     public override void OnPointerDown(PointerEventData eventData)
