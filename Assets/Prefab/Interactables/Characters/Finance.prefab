@@ -526,7 +526,7 @@ MonoBehaviour:
     character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
   - text: No.
     character: {fileID: 11400000, guid: 0ef43d2e83704a55b083bf30c304b9a3, type: 2}
-  - text: Maybe there's something on my computer that can help.
+  - text: Maybe there's something on my computer that can help you.
     character: {fileID: 11400000, guid: 0ef43d2e83704a55b083bf30c304b9a3, type: 2}
   - text: Password?
     character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
