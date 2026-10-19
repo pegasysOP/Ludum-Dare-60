@@ -1524,7 +1524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa727ad838d459244b6adecf266a03d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlavourTextInteractable
-  flavourText: Looking at the pie chart, you can see that the majority far exceeds the minority
+  flavourText: Looking at the pie chart, it's clear that the majority far exceeds the minority
   characterDelay: 0.05
 --- !u!212 &816783144
 SpriteRenderer:
