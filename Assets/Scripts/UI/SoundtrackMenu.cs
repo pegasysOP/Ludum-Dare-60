@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class SoundtrackMenu : MonoBehaviour
@@ -43,6 +44,7 @@ public class SoundtrackMenu : MonoBehaviour
     private bool userPaused = true;
     private bool wasPlaying = false;
     private bool leaving = false;
+    private bool scrubbing = false;
     private UiSfxLibrary uiSounds;
     private PhoneSfxLibrary sounds;
     private SmoothScrollRect scroll;
@@ -118,9 +120,20 @@ public class SoundtrackMenu : MonoBehaviour
             disc.Rotate(0f, 0f, -discSpinSpeed * Time.deltaTime);
 
         float length = clip != null ? clip.length : 0f;
+        // seek once on release, restarting the music on every frame of a drag would just stutter
+        if (scrubbing && (Mouse.current == null || !Mouse.current.leftButton.isPressed))
+        {
+            scrubbing = false;
+            Seek(scrubber.value);
+        }
+
         float time = ours ? music.CurrentTimeSamples / (float)clip.frequency : 0f;
         scrubber.interactable = ours;
-        scrubber.SetValueWithoutNotify(length > 0f ? Mathf.Clamp01(time / length) : 0f);
+        // while dragging, the handle and time show where it'll land instead of where it's playing
+        if (scrubbing)
+            time = scrubber.value * length;
+        else
+            scrubber.SetValueWithoutNotify(length > 0f ? Mathf.Clamp01(time / length) : 0f);
         currentTimeText.text = FormatTime(time);
         totalTimeText.text = FormatTime(length);
     }
@@ -197,6 +210,11 @@ public class SoundtrackMenu : MonoBehaviour
     }
 
     private void OnScrubbed(float value)
+    {
+        scrubbing = true;
+    }
+
+    private void Seek(float value)
     {
         MusicManager music = MusicManager.Instance;
         AudioClip clip = CurrentClip;

@@ -8,7 +8,7 @@ public class SmoothScrollRect : ScrollRect
     public float smoothTime = 0.12f;
 
     private float target;
-    private float velocity;
+    private float glideVelocity;
     private bool gliding = false;
 
     public override void OnScroll(PointerEventData data)
@@ -72,7 +72,7 @@ public class SmoothScrollRect : ScrollRect
         if (!gliding)
             return;
 
-        float position = Mathf.SmoothDamp(verticalNormalizedPosition, target, ref velocity, smoothTime, Mathf.Infinity, Time.unscaledDeltaTime);
+        float position = Mathf.SmoothDamp(verticalNormalizedPosition, target, ref glideVelocity, smoothTime, Mathf.Infinity, Time.unscaledDeltaTime);
         if (Mathf.Abs(position - target) < 0.0005f)
         {
             position = target;

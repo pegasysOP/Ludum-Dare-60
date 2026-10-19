@@ -91,8 +91,11 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private AudioClip currentClipDebug;
     [SerializeField, Range(0f, 1f)] private float currentPerceivedMultiplierDebug;
     [SerializeField] private Mode currentModeDebug = Mode.None;
+    // inspector readouts only, nothing in code reads them back
+#pragma warning disable 0414
     [SerializeField] private string phaseDebug = "Idle";
     [SerializeField] private bool prewarmCompleteDebug;
+#pragma warning restore 0414
 
     private AudioSource activeSource;
     private AudioSource stingerSource;
@@ -369,7 +372,17 @@ public class MusicManager : MonoBehaviour
         if (activeSource.clip == null) return;
         // the clip's full length is one past the last sample, which Unity rejects as a seek
         AudioClip clip = activeSource.clip;
-        activeSource.timeSamples = Mathf.Clamp(Mathf.FloorToInt(timeSeconds * clip.frequency), 0, clip.samples - 1);
+        int sample = Mathf.Clamp(Mathf.FloorToInt(timeSeconds * clip.frequency), 0, clip.samples - 1);
+        if (loops.TryGetValue(activeSource, out LoopState st))
+        {
+            // the loop hand-overs are scheduled ahead, so restart the pair from the new spot rather than nudge one source
+            if (pausedLoopSample >= 0)
+                pausedLoopSample = Mathf.Min(sample, st.end - 1);
+            else
+                StartSource(activeSource, clip, sample);
+            return;
+        }
+        activeSource.timeSamples = sample;
     }
 
     /// <summary>
