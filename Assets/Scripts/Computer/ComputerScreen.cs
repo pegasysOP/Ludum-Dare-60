@@ -126,6 +126,7 @@ public class ComputerScreen : MonoBehaviour
             //TODO: Add a loading icon and wait then show? 
             ReportGameObject.gameObject.SetActive(true);
             GameManager.Instance.ActivateUsedCDFlag();
+            GameMusicGuy.SetMood(GameMood.Yellow);
         }   
     }
 
