@@ -58,7 +58,7 @@ public class MusicLibrary : ScriptableObject
     [Header("Tracks")]
     public MusicTrackEntry[] entries;
 
-    // Stingers are separate from MusicTrack: SoundtrackMenu lists every MusicTrack value.
+    // Stingers are separate from MusicTrack: SoundtrackMenu lists the MusicTrack values (in its AlbumOrder).
     [Header("Stingers")]
     [Tooltip("11_stinger_game_start: the first sound of the game, played once at launch. The menu theme comes in on its tail.")]
     public AudioClip gameStartStinger;
