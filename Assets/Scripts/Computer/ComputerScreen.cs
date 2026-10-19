@@ -20,7 +20,7 @@ public class ComputerScreen : MonoBehaviour
     public Button insertCDButton;
     public GameObject ReportGameObject;
 
-    public string password = "1aa23dca18z8";
+    private string password = "12aa23dca19z88";
 
     private ComputerSfxLibrary sounds;
     private Vector2 screenPos;
