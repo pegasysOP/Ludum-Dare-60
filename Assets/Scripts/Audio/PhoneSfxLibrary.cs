@@ -29,6 +29,8 @@ public class PhoneSfxLibrary : ScriptableObject
 
     [Header("Notifications")]
     public SfxBank notifMessage = new SfxBank();
+    [Tooltip("Two-pulse buzz timed to PdaController.Buzz's two shakes, repeating while an app has something new.")]
+    public SfxBank vibrate = new SfxBank();
 
     [Header("Camera")]
     public SfxBank camShutter = new SfxBank();
@@ -72,6 +74,7 @@ public class PhoneSfxLibrary : ScriptableObject
         yield return new KeyValuePair<string, SfxBank>("Phone Up", modeOpen);
         yield return new KeyValuePair<string, SfxBank>("Phone Down", modeClose);
         yield return new KeyValuePair<string, SfxBank>("Message", notifMessage);
+        yield return new KeyValuePair<string, SfxBank>("Vibrate", vibrate);
         yield return new KeyValuePair<string, SfxBank>("Shutter", camShutter);
         yield return new KeyValuePair<string, SfxBank>("Notes Key", notesKey);
         yield return new KeyValuePair<string, SfxBank>("Photo Delete", photoDelete);
