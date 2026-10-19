@@ -2350,18 +2350,18 @@ MonoBehaviour:
   recLight: {fileID: 1033223568899442426}
   backButton: {fileID: 966662778941953453}
   recordings:
-  - date: 14/03/2003
-    time: 08:42:17
-    location: CAM 03 - Open Plan Office
-    image: {fileID: 2800000, guid: 52a17dc9bddd8c64ab3277f35147e353, type: 3}
-  - date: 14/03/2003
-    time: 19:58:04
+  - date: Jul 19, 2005
+    time: 10:14:52
     location: CAM 07 - Rear Grounds
     image: {fileID: 2800000, guid: f17b206458005454db730c37f441e0e0, type: 3}
-  - date: 15/03/2003
-    time: 02:16:41
+  - date: Jul 27, 2005
+    time: 14:03:27
     location: CAM 01 - Reception Display
     image: {fileID: 2800000, guid: 6fcbbfc354e8ad5498e1697bbe78e60c, type: 3}
+  - date: Aug 5, 2005
+    time: 20:37:43
+    location: CAM 02 - Office Entrance
+    image: {fileID: 2800000, guid: 3ea00e8d84994a978460c3d06ab79935, type: 3}
 --- !u!1 &5626888603389778931
 GameObject:
   m_ObjectHideFlags: 0
