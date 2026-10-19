@@ -1746,7 +1746,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1139003983346214975, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
       propertyPath: dialogLinesWithCharacterInfo.Array.size
-      value: 13
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1139003983346214975, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
       propertyPath: dialogLinesWithCharacterInfo.Array.data[2].text
@@ -1808,6 +1808,14 @@ PrefabInstance:
       propertyPath: dialogLinesWithCharacterInfo.Array.data[13].character
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1139003983346214975, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[12].character
+      value: 
+      objectReference: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+    - target: {fileID: 1139003983346214975, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[14].character
+      value: 
+      objectReference: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
     - target: {fileID: 1147485803453466909, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
       propertyPath: m_LocalScale.x
       value: 3.59
@@ -2949,22 +2957,6 @@ PrefabInstance:
     - target: {fileID: 740627548562250552, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.14
-      objectReference: {fileID: 0}
-    - target: {fileID: 1570933938377881732, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
-      propertyPath: repeatableLine.text
-      value: Repeatable line for head of HR
-      objectReference: {fileID: 0}
-    - target: {fileID: 1570933938377881732, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1570933938377881732, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[0].text
-      value: Line for head of HR
-      objectReference: {fileID: 0}
-    - target: {fileID: 1570933938377881732, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[0].character
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1580528502822705574, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
       propertyPath: m_LocalPosition.x
