@@ -155,5 +155,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa727ad838d459244b6adecf266a03d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlavourTextInteractable
-  flavourText: Teamwork makes the dream work
+  flavourText: 'Shia LaBeouf fills you with determination '
   characterDelay: 0.05
