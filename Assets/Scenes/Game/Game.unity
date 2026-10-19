@@ -2562,6 +2562,106 @@ PrefabInstance:
       propertyPath: m_Name
       value: Security
       objectReference: {fileID: 0}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: repeatableLine.text
+      value: The cameras remember things a lot better than I do.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[0].text
+      value: Look, it wasn't my fault!
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[1].text
+      value: Excuse me?
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[2].text
+      value: Oh. You're not here about the alarm?
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[3].text
+      value: ... actually, I am.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[4].text
+      value: Right. Well, I checked it out right away.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[5].text
+      value: And?
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[6].text
+      value: Do you remember who?
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[7].text
+      value: I checked it out right away. I didn't say I checked it out well.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[8].text
+      value: '... '
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[9].text
+      value: The security cameras should have it. Feel free to take a look.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[10].text
+      value: Why is the wall on fire? Someone should put it out
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[11].text
+      value: Why is the wall on fire? Someone should put it out
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[1].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[2].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[3].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[4].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[5].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[6].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[7].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[8].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[9].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[10].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
+    - target: {fileID: 5439513432788928827, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[11].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
     - target: {fileID: 7235219105007621894, guid: 492c163121c9b714cb45a0ea1153e2e3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.94
