@@ -8377,6 +8377,14 @@ PrefabInstance:
       propertyPath: user
       value: 
       objectReference: {fileID: 11400000, guid: 0ef43d2e83704a55b083bf30c304b9a3, type: 2}
+    - target: {fileID: 1775934543541353095, guid: a40004bf4fa1a3445affbab64d0ed465, type: 3}
+      propertyPath: evidence
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1775934543541353095, guid: a40004bf4fa1a3445affbab64d0ed465, type: 3}
+      propertyPath: countsAsEvidence
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6078802242350195985, guid: a40004bf4fa1a3445affbab64d0ed465, type: 3}
       propertyPath: m_Color.r
       value: 0.84

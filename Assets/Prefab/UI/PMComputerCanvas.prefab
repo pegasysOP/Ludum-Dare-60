@@ -672,6 +672,14 @@ PrefabInstance:
       propertyPath: user
       value: 
       objectReference: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+    - target: {fileID: 1775934543541353095, guid: a40004bf4fa1a3445affbab64d0ed465, type: 3}
+      propertyPath: evidence
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1775934543541353095, guid: a40004bf4fa1a3445affbab64d0ed465, type: 3}
+      propertyPath: countsAsEvidence
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 703761991012807421, guid: a40004bf4fa1a3445affbab64d0ed465, type: 3}
       propertyPath: m_IsActive
       value: 0

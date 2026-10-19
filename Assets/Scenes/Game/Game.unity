@@ -1145,11 +1145,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa727ad838d459244b6adecf266a03d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlavourTextInteractable
-  countsAsEvidence: 1
-  evidence: 3
   flavourText: An overstuffed student planner shows Computer Science lectures every Thursday and Friday, with the rest of the week blocked out as 'Intern Stuff'
   characterDelay: 0.05
   fishTankTap: 0
+  countsAsEvidence: 1
+  evidence: 3
 --- !u!61 &535774378
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1844,42 +1844,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1707149359}
     m_Modifications:
-    - target: {fileID: 1155292810267774709, guid: fc9fd4baf18297a42acbf96d4f53a6dc, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0.00012207
-      objectReference: {fileID: 0}
-    - target: {fileID: 1155292810267774709, guid: fc9fd4baf18297a42acbf96d4f53a6dc, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: -3.2786
-      objectReference: {fileID: 0}
-    - target: {fileID: 1155292810267774709, guid: fc9fd4baf18297a42acbf96d4f53a6dc, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.000061035156
-      objectReference: {fileID: 0}
-    - target: {fileID: 1155292810267774709, guid: fc9fd4baf18297a42acbf96d4f53a6dc, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -1.6391602
-      objectReference: {fileID: 0}
-    - target: {fileID: 1517616528433211098, guid: fc9fd4baf18297a42acbf96d4f53a6dc, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -500
-      objectReference: {fileID: 0}
-    - target: {fileID: 1517616528433211098, guid: fc9fd4baf18297a42acbf96d4f53a6dc, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: -250
-      objectReference: {fileID: 0}
-    - target: {fileID: 1517616528433211098, guid: fc9fd4baf18297a42acbf96d4f53a6dc, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1517616528433211098, guid: fc9fd4baf18297a42acbf96d4f53a6dc, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 125
-      objectReference: {fileID: 0}
-    - target: {fileID: 6694747952289947076, guid: fc9fd4baf18297a42acbf96d4f53a6dc, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 59de09f7055c25142bcb175c3f70cdbe, type: 3}
     - target: {fileID: 6751080490914067767, guid: fc9fd4baf18297a42acbf96d4f53a6dc, type: 3}
       propertyPath: m_Name
       value: EndingCanvas
@@ -7577,6 +7541,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 885891056}
     m_Modifications:
     - target: {fileID: 1194877380919235758, guid: c98ba4e82af4e744da21dd621fcb8573, type: 3}
+      propertyPath: backdrop
+      value: 
+      objectReference: {fileID: 6000116821007656560}
+    - target: {fileID: 1194877380919235758, guid: c98ba4e82af4e744da21dd621fcb8573, type: 3}
+      propertyPath: fade
+      value: 
+      objectReference: {fileID: 2219790027402488905}
+    - target: {fileID: 1194877380919235758, guid: c98ba4e82af4e744da21dd621fcb8573, type: 3}
+      propertyPath: titleText
+      value: 
+      objectReference: {fileID: 8228928286902228224}
+    - target: {fileID: 1194877380919235758, guid: c98ba4e82af4e744da21dd621fcb8573, type: 3}
       propertyPath: endingImage
       value: 
       objectReference: {fileID: 1769605758}
@@ -7633,6 +7609,33 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c98ba4e82af4e744da21dd621fcb8573, type: 3}
+--- !u!114 &6000116821007656560 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6000116820738719217, guid: fc9fd4baf18297a42acbf96d4f53a6dc, type: 3}
+  m_PrefabInstance: {fileID: 838589313}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8228928286902228224 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8228928287171366529, guid: fc9fd4baf18297a42acbf96d4f53a6dc, type: 3}
+  m_PrefabInstance: {fileID: 838589313}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!225 &2219790027402488905 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 2219790027661801416, guid: fc9fd4baf18297a42acbf96d4f53a6dc, type: 3}
+  m_PrefabInstance: {fileID: 838589313}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

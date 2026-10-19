@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +18,15 @@ public class EndingText : MonoBehaviour
     public Sprite badEndingSprite;
     public Sprite speedEndingSprite;
 
+    public CanvasGroup fade;
+    public Image backdrop;
+    public TextMeshProUGUI titleText;
+
+    // tints for the sky behind the art
+    public Color goodBackdrop = Color.white;
+    public Color badBackdrop = new Color(0.78f, 0.36f, 0.38f);
+    public Color speedBackdrop = new Color(0.62f, 0.64f, 0.7f);
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,34 +36,46 @@ public class EndingText : MonoBehaviour
     public void StartEnding(ENDINGS ending)
     {
         endingCanvas.gameObject.SetActive(true);
-        if(ending == ENDINGS.GOOD)
-        {
-            LoadGoodEndingText();
-        }
 
         switch (ending)
         {
             case ENDINGS.GOOD:
                 LoadGoodEndingText();
-                endingImage.sprite = goodEndingSprite;
+                ShowEnding(goodEndingSprite, goodBackdrop, "THE GOOD ENDING");
                 break;
             case ENDINGS.BAD:
                 LoadBadEndingText();
-                endingImage.sprite = badEndingSprite;
+                ShowEnding(badEndingSprite, badBackdrop, "THE BAD ENDING");
                 break;
             case ENDINGS.LAZY:
                 LoadLazyEndingText();
-                endingImage.sprite = speedEndingSprite;
+                ShowEnding(speedEndingSprite, speedBackdrop, "THE SPEEDRUNNER ENDING");
                 break;
             default:
                 Debug.LogError("Error: " + ending + " not implemented yet!");
                 break;
         }
 
-
-        
         dialogManager.AddDialogueLines(dialogLinesWithCharacterInfo);
-        dialogManager.PlayDialog();
+        // let the screen fade in before the story starts
+        DOVirtual.DelayedCall(1.4f, dialogManager.PlayDialog);
+    }
+
+    private void ShowEnding(Sprite sprite, Color backdropColour, string title)
+    {
+        endingImage.sprite = sprite;
+        backdrop.color = backdropColour;
+        titleText.text = title;
+
+        fade.alpha = 0f;
+        fade.DOFade(1f, 1f);
+
+        // the art drifts in and settles while the text plays
+        endingImage.transform.localScale = Vector3.one * 1.08f;
+        endingImage.transform.DOScale(1f, 6f).SetEase(Ease.OutSine);
+
+        titleText.alpha = 0f;
+        titleText.DOFade(1f, 0.8f).SetDelay(0.8f);
     }
 
     public void LoadGoodEndingText()

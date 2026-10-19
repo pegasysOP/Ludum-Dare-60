@@ -32,6 +32,10 @@ public class ComputerScreen : MonoBehaviour
     public TextMeshProUGUI loginNameText;
     public TextMeshProUGUI loginTitleText;
 
+    // counts as looked into once the desktop has been seen
+    [SerializeField] private bool countsAsEvidence = false;
+    [SerializeField] private Evidence evidence;
+
     private string password = "12aa23dca19z88";
 
     private ComputerSfxLibrary sounds;
@@ -100,6 +104,8 @@ public class ComputerScreen : MonoBehaviour
 
         login.SetActive(!loggedIn);
         desktop.SetActive(loggedIn);
+        if (loggedIn)
+            FoundEvidence();
         if (userBadge != null)
             userBadge.SetActive(loggedIn);
         passwordField.text = "";
@@ -200,6 +206,12 @@ public class ComputerScreen : MonoBehaviour
             sounds.keyPress.Play();
     }
 
+    private void FoundEvidence()
+    {
+        if (countsAsEvidence && GameManager.Instance != null)
+            GameManager.Instance.FoundEvidence(evidence);
+    }
+
     private void TryLogin()
     {
         sounds.submit.Play();
@@ -210,6 +222,7 @@ public class ComputerScreen : MonoBehaviour
             sounds.boot.Play();
             login.SetActive(false);
             desktop.SetActive(true);
+            FoundEvidence();
             if (userBadge != null)
                 userBadge.SetActive(true);
             RefreshInsertCD();

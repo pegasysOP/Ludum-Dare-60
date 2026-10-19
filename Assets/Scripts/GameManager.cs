@@ -18,9 +18,13 @@ public class GameManager : MonoBehaviour
     // everything that has to have been looked at, in any order, before an accusation is taken seriously
     private static readonly Evidence[] RequiredEvidence =
     {
-        Evidence.SoftwareUpdates, Evidence.Inbox, Evidence.Calendar, Evidence.CollegeTimetable, Evidence.SecurityFootage
+        Evidence.SecurityFootage, Evidence.StaffComputer
     };
     private readonly HashSet<Evidence> foundEvidence = new HashSet<Evidence>();
+
+    // reporting this fast without the evidence gets the speedrunner ending
+    private const float SpeedrunTime = 60f;
+    private float startTime;
 
     private void Awake()
     {
@@ -40,6 +44,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        startTime = Time.time;
         suspectApp = FindAnyObjectByType<SusPXApp>(FindObjectsInactive.Include);
         suspectApp.onReport.AddListener(TriggerEnding);  
     }
@@ -110,24 +115,25 @@ public class GameManager : MonoBehaviour
 
     public void TriggerEnding(Character character)
     {
-        bool isLazy = !Array.TrueForAll(RequiredEvidence, HasFound);
+        bool foundAll = Array.TrueForAll(RequiredEvidence, HasFound);
+        bool isLazy = !foundAll && Time.time - startTime < SpeedrunTime;
         EndingText endingText = FindAnyObjectByType<EndingText>();
         AmbiencePlayer.FadeOut();
         // the lazy ending is a lost case too, so it shares the bad ending music
-        if (!isLazy && character.characterName == "Greg Lawson")
+        if (foundAll && character.characterName == "Greg Lawson")
         {
             GameMusicGuy.PlayEnding(GameEnding.Good);
             endingText.StartEnding(ENDINGS.GOOD);
         }
-        else if (!isLazy)
+        else if (isLazy)
         {
             GameMusicGuy.PlayEnding(GameEnding.Bad);
-            endingText.StartEnding(ENDINGS.BAD);
+            endingText.StartEnding(ENDINGS.LAZY);
         }
         else
         {
             GameMusicGuy.PlayEnding(GameEnding.Bad);
-            endingText.StartEnding(ENDINGS.LAZY);
+            endingText.StartEnding(ENDINGS.BAD);
         }
         
     }
@@ -141,5 +147,7 @@ public enum Evidence
     Calendar,
     CollegeTimetable,
     SecurityFootage,
-    PerformanceReview
+    PerformanceReview,
+    // either the pm's or finance's pc
+    StaffComputer
 }
