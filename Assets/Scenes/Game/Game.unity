@@ -1145,11 +1145,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa727ad838d459244b6adecf266a03d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlavourTextInteractable
+  countsAsEvidence: 1
+  evidence: 3
   flavourText: An overstuffed student planner shows Computer Science lectures every Thursday and Friday, with the rest of the week blocked out as 'Intern Stuff'
   characterDelay: 0.05
   fishTankTap: 0
-  countsAsEvidence: 1
-  evidence: 3
 --- !u!61 &535774378
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1604,7 +1604,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7402000271987236352, guid: 3bd36cce41d823941940dd07130d51d7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.04
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 7402000271987236352, guid: 3bd36cce41d823941940dd07130d51d7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2032,7 +2032,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
     - target: {fileID: 1147485803453466909, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.01
+      value: -0.12
       objectReference: {fileID: 0}
     - target: {fileID: 1147485803453466909, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7475,6 +7475,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+--- !u!225 &2219790027402488905 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 2219790027661801416, guid: fc9fd4baf18297a42acbf96d4f53a6dc, type: 3}
+  m_PrefabInstance: {fileID: 838589313}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5601843187121391630
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7532,6 +7537,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c225751f90cf29947abbc8a6ae119f42, type: 3}
+--- !u!114 &6000116821007656560 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6000116820738719217, guid: fc9fd4baf18297a42acbf96d4f53a6dc, type: 3}
+  m_PrefabInstance: {fileID: 838589313}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &7375391805871928749
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7541,13 +7557,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 885891056}
     m_Modifications:
     - target: {fileID: 1194877380919235758, guid: c98ba4e82af4e744da21dd621fcb8573, type: 3}
-      propertyPath: backdrop
-      value: 
-      objectReference: {fileID: 6000116821007656560}
-    - target: {fileID: 1194877380919235758, guid: c98ba4e82af4e744da21dd621fcb8573, type: 3}
       propertyPath: fade
       value: 
       objectReference: {fileID: 2219790027402488905}
+    - target: {fileID: 1194877380919235758, guid: c98ba4e82af4e744da21dd621fcb8573, type: 3}
+      propertyPath: backdrop
+      value: 
+      objectReference: {fileID: 6000116821007656560}
     - target: {fileID: 1194877380919235758, guid: c98ba4e82af4e744da21dd621fcb8573, type: 3}
       propertyPath: titleText
       value: 
@@ -7609,17 +7625,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c98ba4e82af4e744da21dd621fcb8573, type: 3}
---- !u!114 &6000116821007656560 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6000116820738719217, guid: fc9fd4baf18297a42acbf96d4f53a6dc, type: 3}
-  m_PrefabInstance: {fileID: 838589313}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8228928286902228224 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8228928287171366529, guid: fc9fd4baf18297a42acbf96d4f53a6dc, type: 3}
@@ -7630,12 +7635,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
---- !u!225 &2219790027402488905 stripped
-CanvasGroup:
-  m_CorrespondingSourceObject: {fileID: 2219790027661801416, guid: fc9fd4baf18297a42acbf96d4f53a6dc, type: 3}
-  m_PrefabInstance: {fileID: 838589313}
-  m_PrefabAsset: {fileID: 0}
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

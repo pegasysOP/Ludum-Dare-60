@@ -83,7 +83,7 @@ public class EndingText : MonoBehaviour
         DialogLine line1 = new DialogLine("The trail leads directly to the Product Manager. The evidence all point to a scheme to quietly siphon money from the company while avoiding suspicion.");
         DialogLine line2 = new DialogLine("Following a brief trial, he is convicted of embezzlement and escorted away in handcuffs.");
         DialogLine line3 = new DialogLine("With the source of the losses removed, confidence returns. The company goes on to achieve eight consecutive quarters of growth.");
-        DialogLine line4 = new DialogLine("The CEO throws a company-wide holiday. Karen celebrates by buying more sticky notes. Susan finally finishes the performance reviews.");
+        DialogLine line4 = new DialogLine("The CEO throws a company-wide holiday. Marco celebrates by buying more sticky notes. Susan finally finishes the performance reviews.");
         DialogLine finalLine = new DialogLine("Congratulations! You got the GOOD ENDING.",
         null,
         null,

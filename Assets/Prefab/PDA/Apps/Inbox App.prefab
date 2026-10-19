@@ -237,10 +237,10 @@ MonoBehaviour:
   dateText: {fileID: 7351414678390760104}
   bodyText: {fileID: 6614261717069507065}
   emails:
-  - from: "Richard Hale, CEO"
+  - from: "Walter Hendricks, CEO"
     subject: "FW: URGENT - DwT Audits Interim Findings"
     date: "Today, 8:47 AM"
-    body: "Need you on this today. This came in from the auditors last night.\n\nSee Linda first, she'll get you whatever you need. Keep this quiet until we know more.\n\nWhen you know who's behind it, report them on SusPX. Only once you're certain it couldn't have been anyone else, there's no taking it back.\n\nRichard\n----- Forwarded message -----\nFrom: DwT Audits\n\nOur Q3 review found $1.2 million in outgoing payments with no invoices or sign-off. We cannot account for where these funds went. Please provide a full explanation by Friday, or we will escalate."
+    body: "Need you on this today. This came in from the auditors last night.\n\nSee Linda first, she'll get you whatever you need. Keep this quiet until we know more.\n\nWhen you know who's behind it, report them on SusPX. Only once you're certain it couldn't have been anyone else, there's no taking it back.\n\nWalter\n----- Forwarded message -----\nFrom: DwT Audits\n\nOur Q3 review found $1.2 million in outgoing payments with no invoices or sign-off. We cannot account for where these funds went. Please provide a full explanation by Friday, or we will escalate."
     read: 0
   - from: "Reception"
     subject: "Lost property at the front desk"
