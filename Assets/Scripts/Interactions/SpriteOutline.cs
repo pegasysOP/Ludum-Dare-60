@@ -22,6 +22,7 @@ public class SpriteOutline : MonoBehaviour
     private float thickness;
     private Tween hoverTween;
     private bool used = false;
+    private bool hovered = false;
 
     private void Awake()
     {
@@ -81,11 +82,13 @@ public class SpriteOutline : MonoBehaviour
 
     public void ShowOutline()
     {
+        hovered = true;
         Animate(hoverColour, hoverWidth);
     }
 
     public void HideOutline()
     {
+        hovered = false;
         Animate(used ? usedColour : idleColour, idleWidth);
     }
 
@@ -93,6 +96,8 @@ public class SpriteOutline : MonoBehaviour
     public void MarkUsed()
     {
         used = true;
+        if (!hovered)
+            Animate(usedColour, idleWidth);
     }
 
     private void Animate(Color targetColour, float targetThickness)

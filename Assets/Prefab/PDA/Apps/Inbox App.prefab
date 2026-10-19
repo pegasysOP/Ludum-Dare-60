@@ -239,32 +239,32 @@ MonoBehaviour:
   emails:
   - from: "Richard Hale, CEO"
     subject: "FW: URGENT - DwT Audits Interim Findings"
-    date: "Today, 8:47 AM"
+    date: "Wed, Aug 17, 2005, 8:47 AM"
     body: "Need you on this today. This came in from the auditors last night.\n\nSee Linda first, she'll get you whatever you need. Keep this quiet until we know more.\n\nRichard\n----- Forwarded message -----\nFrom: DwT Audits\n\nOur Q3 review found $1.2 million in outgoing payments with no invoices or sign-off. We cannot account for where these funds went. Please provide a full explanation by Friday, or we will escalate."
     read: 0
   - from: "Reception"
     subject: "Lost property at the front desk"
-    date: "Yesterday, 4:12 PM"
+    date: "Tue, Aug 16, 2005, 4:12 PM"
     body: "Hi all,\n\nSomeone left a blue umbrella at the front desk. Please claim it by Friday or it goes in the lost property box.\n\nThanks,\nReception"
     read: 1
   - from: "Social Committee"
     subject: "Bagel Friday is back!"
-    date: "Yesterday, 11:30 AM"
+    date: "Tue, Aug 16, 2005, 11:30 AM"
     body: "Bagels and coffee in the break room this Friday from 9am.\n\nPlease don't take the last cinnamon raisin. You know who you are."
     read: 1
   - from: "Facilities"
     subject: "Parking lot resurfacing next week"
-    date: "Mon, 2:05 PM"
+    date: "Mon, Aug 15, 2005, 2:05 PM"
     body: "The main lot will be closed Monday to Wednesday next week for resurfacing. Please use the overflow lot on Level B.\n\nSorry for any inconvenience."
     read: 1
   - from: "SuperSaver Office Supply"
     subject: "Toner Blowout - 20% off this week only!"
-    date: "Mon, 9:00 AM"
+    date: "Mon, Aug 15, 2005, 9:00 AM"
     body: "Stock up and save! 20% off ALL laser and inkjet toner cartridges.\n\nFree shipping on orders over $50.\n\nTo unsubscribe, reply with REMOVE in the subject line."
     read: 1
   - from: "Prince Adewale Bankole"
     subject: "STRICTLY CONFIDENTIAL BUSINESS PROPOSAL"
-    date: "Last week"
+    date: "Thu, Aug 11, 2005, 3:12 AM"
     body: "DEAR FRIEND,\n\nI AM A PRINCE IN NEED OF A TRUSTED PARTNER TO MOVE $14,500,000 USD OUT OF MY COUNTRY. YOU WILL RECEIVE 30% FOR YOUR KIND ASSISTANCE.\n\nKINDLY REPLY WITH YOUR BANK DETAILS AT ONCE.\n\nGOD BLESS"
     read: 1
 --- !u!1 &1977058849120215888
