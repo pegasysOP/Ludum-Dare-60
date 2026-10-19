@@ -2439,15 +2439,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProductManagerInteractable
   dialogLinesWithCharacterInfo:
-  - text: You're here about the accounting issue, right?
-    character: {fileID: 11400000, guid: cc20f72f74b140d2bfee77910408b697, type: 2}
-  - text: I am.
-    character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
-  - text: Then I'm probably not much help.
+  - text: I'm afraid I'm probably not going to be much help.
     character: {fileID: 11400000, guid: cc20f72f74b140d2bfee77910408b697, type: 2}
   - text: Why's that?
     character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
-  - text: Because we fixed the bug.
+  - text: Because we fixed the bug two weeks ago.
     character: {fileID: 11400000, guid: cc20f72f74b140d2bfee77910408b697, type: 2}
   - text: You're sure?
     character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}

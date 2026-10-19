@@ -2739,8 +2739,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProductManagerInteractable
   dialogLinesWithCharacterInfo:
-  - text: Why is the wall on fire? Someone should put it out
+  - text: Look, it wasn't my fault!
+    character: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
+  - text: Excuse me?
+    character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
+  - text: Oh. You're not here about the alarm?
+    character: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
+  - text: ... actually, I am.
+    character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
+  - text: Right. Well, I checked it out right away. False alarm. Just an employee working late.
+    character: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
+  - text: Do you remember who?
+    character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
+  - text: I checked it out right away. I didn't say I checked it out well.
+    character: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
+  - text: The security cameras should have it. Feel free to take a look.
     character: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
   repeatableLine:
-    text: FIRE!!!!!!!!!!!!!!
+    text: The cameras remember things a lot better than I do.
     character: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
