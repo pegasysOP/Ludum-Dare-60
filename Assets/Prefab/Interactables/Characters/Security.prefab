@@ -2739,22 +2739,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProductManagerInteractable
   dialogLinesWithCharacterInfo:
-  - text: Look, it wasn't my fault!
+  - text: Look, whatever happened, it wasn't me.
     character: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
-  - text: Excuse me?
+  - text: Relax. I'm just investigating.
     character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
-  - text: Oh. You're not here about the alarm?
+  - text: Oh. Good.
     character: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
-  - text: ... actually, I am.
+  - text: Do you keep archives?
     character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
-  - text: Right. Well, I checked it out right away. False alarm. Just an employee working late.
+  - text: About a month, I think...
     character: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
-  - text: Do you remember who?
-    character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
-  - text: I checked it out right away. I didn't say I checked it out well.
-    character: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
-  - text: The security cameras should have it. Feel free to take a look.
+  - text: You can check the recordings yourself if you want.
     character: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
   repeatableLine:
-    text: The cameras remember things a lot better than I do.
+    text: Honestly, the cameras know more about this building than I do.
     character: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
