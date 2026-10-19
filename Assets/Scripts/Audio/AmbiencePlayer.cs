@@ -2,32 +2,40 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Plays the current room's ambience from <see cref="AmbienceLibrary"/>: its bed on a loop, and its details at
-/// random intervals. Moving rooms crossfades the beds. Everything goes to the SFX mixer group, so the SFX
-/// volume setting applies and the world muffles when the phone is up.
+/// Plays the current room's ambience from <see cref="AmbienceLibrary"/>: each lane's one-shots at random intervals,
+/// panned to where their source is on screen, over the room's bed if it has one (a soft recording of people at work).
+/// As the mood climbs (<see cref="GameMusicGuy.CurrentMood"/>), the gaps grow so the busier music gets the room.
 ///
 /// Beds loop by crossfading into their own start on a second AudioSource rather than with
 /// <see cref="AudioSource.loop"/>, so a codec gap at the seam (WebGL transcodes to AAC) never shows.
+///
+/// Everything goes to the SFX mixer group, so the SFX volume setting applies and the world muffles when the phone
+/// is up. Sounds still playing when you leave a room fade out behind the move, and the beds crossfade.
 ///
 /// Created on the first <see cref="SetRoom"/> in the active scene, so it goes away with the Game scene.
 /// </summary>
 public class AmbiencePlayer : MonoBehaviour
 {
+    // more than any room ever overlaps; if they're all busy, that sound is skipped
+    private const int MaxVoices = 6;
+
     private static AmbiencePlayer instance;
 
     private AmbienceLibrary library;
-    private readonly List<BedVoice> voices = new List<BedVoice>();
+    private readonly List<Voice> voices = new List<Voice>();
+    private readonly List<BedVoice> beds = new List<BedVoice>();
     private RoomAmbience currentRoom;
-    private float nextDetailTime;
+    private float[] nextTimes = new float[0];
+    private int[] lastClips = new int[0];
     private bool stopped;
 
-    /// <summary>Switch to the ambience of the room with this GameObject name. The first call fades the ambience in.</summary>
+    /// <summary>Switch to the ambience of the room with this GameObject name.</summary>
     public static void SetRoom(string roomName)
     {
         if (instance == null)
         {
             AmbienceLibrary library = AmbienceLibrary.Load();
-            if (library == null)
+            if (library == null || !library.playAmbience)
                 return;
             instance = new GameObject(nameof(AmbiencePlayer)).AddComponent<AmbiencePlayer>();
             instance.library = library;
@@ -41,8 +49,10 @@ public class AmbiencePlayer : MonoBehaviour
         if (instance == null)
             return;
         instance.stopped = true;
-        foreach (BedVoice voice in instance.voices)
-            voice.FadeTo(0f, instance.library.endingFade);
+        foreach (Voice voice in instance.voices)
+            voice.FadeOut(instance.library.endingFade);
+        foreach (BedVoice bed in instance.beds)
+            bed.FadeTo(0f, instance.library.endingFade);
     }
 
     private void OnDestroy()
@@ -60,22 +70,39 @@ public class AmbiencePlayer : MonoBehaviour
         if (room == currentRoom)
             return;
 
-        bool first = currentRoom == null && voices.Count == 0;
-        float fadeTime = first ? library.startFade : library.roomCrossfade;
-        foreach (BedVoice voice in voices)
-            voice.FadeTo(0f, fadeTime);
+        foreach (Voice voice in voices)
+            voice.FadeOut(library.roomExitFade);
+        ChangeBed(room);
 
         currentRoom = room;
-        nextDetailTime = Time.unscaledTime + NextDetailDelay();
+        int count = room != null ? room.lanes.Count : 0;
+        nextTimes = new float[count];
+        lastClips = new int[count];
+        for (int i = 0; i < count; i++)
+        {
+            // first sound lands early in the lane's gap, so the room comes alive soon after the fade
+            AmbienceLane lane = room.lanes[i];
+            float firstGap = Mathf.Max(0.5f, Mathf.Min(lane.minInterval, lane.maxInterval));
+            nextTimes[i] = Time.unscaledTime + Random.Range(0.5f, firstGap) * Spacing();
+            lastClips[i] = -1;
+        }
+    }
+
+    private void ChangeBed(RoomAmbience room)
+    {
+        bool first = currentRoom == null && beds.Count == 0;
+        float fadeTime = first ? library.startFade : library.roomExitFade;
+        foreach (BedVoice bed in beds)
+            bed.FadeTo(0f, fadeTime);
         if (room == null || room.bed == null)
             return;
 
         // coming straight back picks the old bed up where it was instead of restarting it
-        BedVoice target = voices.Find(voice => voice.room == room);
+        BedVoice target = beds.Find(bed => bed.room == room);
         if (target == null)
         {
             target = new BedVoice(gameObject, room, MixerGroup());
-            voices.Add(target);
+            beds.Add(target);
         }
         target.FadeTo(1f, fadeTime);
     }
@@ -85,32 +112,98 @@ public class AmbiencePlayer : MonoBehaviour
         float sfxVolume = AudioManager.Instance != null && AudioManager.Instance.sfxSource != null
             ? AudioManager.Instance.sfxSource.volume
             : 1f;
-
-        for (int i = voices.Count - 1; i >= 0; i--)
+        foreach (Voice voice in voices)
+            voice.Tick(Time.unscaledDeltaTime, sfxVolume);
+        for (int i = beds.Count - 1; i >= 0; i--)
         {
-            BedVoice voice = voices[i];
-            float baseVolume = sfxVolume * AudioVolume.ToLinear(library.masterVolume * voice.room.bedVolume);
-            if (!voice.Tick(Time.unscaledDeltaTime, baseVolume, library.loopCrossfade))
+            BedVoice bed = beds[i];
+            float bedVolume = sfxVolume * AudioVolume.ToLinear(library.masterVolume * bed.room.bedVolume);
+            if (!bed.Tick(Time.unscaledDeltaTime, bedVolume, library.loopCrossfade))
             {
-                voice.Dispose();
-                voices.RemoveAt(i);
+                bed.Dispose();
+                beds.RemoveAt(i);
             }
         }
 
-        if (stopped || currentRoom == null || Time.unscaledTime < nextDetailTime)
+        if (stopped || currentRoom == null)
             return;
-        nextDetailTime = Time.unscaledTime + NextDetailDelay();
-        if (currentRoom.details.HasAnyClip)
-            currentRoom.details.Play(library.masterVolume);
+
+        for (int i = 0; i < nextTimes.Length; i++)
+        {
+            if (Time.unscaledTime < nextTimes[i])
+                continue;
+            AmbienceLane lane = currentRoom.lanes[i];
+            nextTimes[i] = Time.unscaledTime + NextGap(lane);
+            Play(lane, i, sfxVolume);
+        }
     }
 
-    private float NextDetailDelay()
+    private void Play(AmbienceLane lane, int laneIndex, float sfxVolume)
     {
-        if (currentRoom == null)
-            return 0f;
-        float min = Mathf.Min(currentRoom.detailMinInterval, currentRoom.detailMaxInterval);
-        float max = Mathf.Max(currentRoom.detailMinInterval, currentRoom.detailMaxInterval);
-        return Random.Range(min, max);
+        SfxBank bank = lane.sounds;
+        int clipIndex = PickClip(bank, lastClips[laneIndex]);
+        if (clipIndex < 0)
+            return;
+        Voice voice = FreeVoice();
+        if (voice == null)
+            return;
+        lastClips[laneIndex] = clipIndex;
+
+        // same perceived-loudness shaping as SfxBank.Play, with the ambience master on top
+        AudioClipVolume entry = bank.clips[clipIndex];
+        float perceived = entry.Volume * bank.gain * library.masterVolume;
+        if (bank.volumeJitter > 0f)
+            perceived *= 1f + Random.Range(-bank.volumeJitter, bank.volumeJitter);
+
+        float pitch = Random.Range(Mathf.Min(bank.pitchMin, bank.pitchMax), Mathf.Max(bank.pitchMin, bank.pitchMax));
+        float pan = Random.Range(Mathf.Min(lane.panMin, lane.panMax), Mathf.Max(lane.panMin, lane.panMax));
+        voice.Play(entry.Clip, AudioVolume.ToLinear(perceived), pitch, pan, Mathf.Max(0f, entry.Delay), sfxVolume);
+    }
+
+    /// <summary>A random clip index from the bank, never <paramref name="last"/> when there's another; -1 if none.</summary>
+    private static int PickClip(SfxBank bank, int last)
+    {
+        if (bank == null || bank.clips == null)
+            return -1;
+        int count = bank.clips.Count;
+        int start = Random.Range(0, count);
+        int fallback = -1;
+        for (int i = 0; i < count; i++)
+        {
+            int idx = (start + i) % count;
+            if (bank.clips[idx] == null || bank.clips[idx].Clip == null)
+                continue;
+            if (idx != last)
+                return idx;
+            fallback = idx;
+        }
+        return fallback;
+    }
+
+    private Voice FreeVoice()
+    {
+        foreach (Voice voice in voices)
+        {
+            if (voice.IsFree)
+                return voice;
+        }
+        if (voices.Count >= MaxVoices)
+            return null;
+        Voice created = new Voice(gameObject, MixerGroup());
+        voices.Add(created);
+        return created;
+    }
+
+    private float NextGap(AmbienceLane lane)
+    {
+        float min = Mathf.Min(lane.minInterval, lane.maxInterval);
+        float max = Mathf.Max(lane.minInterval, lane.maxInterval);
+        return Random.Range(min, max) * Spacing();
+    }
+
+    private float Spacing()
+    {
+        return library.Spacing(GameMusicGuy.CurrentMood);
     }
 
     private static UnityEngine.Audio.AudioMixerGroup MixerGroup()
@@ -118,6 +211,65 @@ public class AmbiencePlayer : MonoBehaviour
         return AudioManager.Instance != null && AudioManager.Instance.sfxSource != null
             ? AudioManager.Instance.sfxSource.outputAudioMixerGroup
             : null;
+    }
+
+    /// <summary>One AudioSource the lanes take turns on, so each sound can have its own pan and fade.</summary>
+    private class Voice
+    {
+        private readonly AudioSource source;
+        private float gain;
+        private float level;
+        private float fadeSpeed;
+
+        public Voice(GameObject host, UnityEngine.Audio.AudioMixerGroup group)
+        {
+            source = host.AddComponent<AudioSource>();
+            source.outputAudioMixerGroup = group;
+            source.playOnAwake = false;
+            source.loop = false;
+            source.spatialBlend = 0f;
+        }
+
+        public bool IsFree => !source.isPlaying;
+
+        public void Play(AudioClip clip, float gain, float pitch, float pan, float delay, float sfxVolume)
+        {
+            this.gain = gain;
+            level = 1f;
+            fadeSpeed = 0f;
+            source.clip = clip;
+            source.pitch = pitch;
+            source.panStereo = pan;
+            source.volume = sfxVolume * gain;
+            if (delay > 0f)
+                source.PlayDelayed(delay);
+            else
+                source.Play();
+        }
+
+        public void FadeOut(float seconds)
+        {
+            if (source.isPlaying)
+                fadeSpeed = seconds > 0f ? 1f / seconds : float.MaxValue;
+        }
+
+        public void Tick(float dt, float sfxVolume)
+        {
+            if (!source.isPlaying)
+                return;
+            if (fadeSpeed > 0f)
+            {
+                level = Mathf.MoveTowards(level, 0f, fadeSpeed * dt);
+                if (level <= 0f)
+                {
+                    source.Stop();
+                    fadeSpeed = 0f;
+                    return;
+                }
+            }
+            // equal power, matching how the old beds faded
+            source.volume = sfxVolume * gain * Mathf.Sin(level * Mathf.PI * 0.5f);
+        }
     }
 
     /// <summary>One room's bed: two sources taking turns so each pass crossfades into the next.</summary>

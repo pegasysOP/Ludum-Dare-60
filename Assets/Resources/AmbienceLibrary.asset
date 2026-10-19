@@ -12,81 +12,211 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 261db221ee8147da8020613180fb6e0e, type: 3}
   m_Name: AmbienceLibrary
   m_EditorClassIdentifier: Assembly-CSharp::AmbienceLibrary
+  playAmbience: 1
   masterVolume: 0.45
-  roomCrossfade: 1.2
-  loopCrossfade: 4
+  roomExitFade: 1.2
   startFade: 2.5
+  loopCrossfade: 4
   endingFade: 2
+  yellowSpacing: 1.2
+  orangeSpacing: 1.5
+  redSpacing: 2
   rooms:
   - roomName: CEO Suite
-    bed: {fileID: 8300000, guid: d446c9db71b5d41f9979249db6423d6f, type: 3}
-    bedVolume: 0.9
-    details:
-      clips: []
-      pitchMin: 1
-      pitchMax: 1
-      gain: 1
-      volumeJitter: 0
-      useFocusMixerGroup: 0
-    detailMinInterval: 6
-    detailMaxInterval: 14
+    bed: {fileID: 0}
+    bedVolume: 0.6
+    lanes:
+    - name: Office through the wall
+      sounds:
+        clips:
+        - _clip: {fileID: 8300000, guid: beb230c2873d4d8d9d36894b1d74e2b0, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: 6037991634b5436ba0bde6731188651c, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: ecedfd61a6764f35bfe38242a63268f7, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: 6027e20a63614e3198812689e8809b09, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: cb77a0e1aa654a51bc625843c3109a9f, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: 28ce1632826f4e598921e988ff8ee8e7, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: 3b24c8cf64f6407b9613b2d52debdd78, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: 9b436cd567f349ce90507e38ef01f3b4, type: 3}
+          _volume: 1
+          _delay: 0
+        pitchMin: 0.97
+        pitchMax: 1.03
+        gain: 1
+        volumeJitter: 0.1
+        useFocusMixerGroup: 0
+      minInterval: 10
+      maxInterval: 22
+      panMin: 0.7
+      panMax: 0.95
   - roomName: Office
-    bed: {fileID: 8300000, guid: 97296e6dc7f4e4322a0b54bbd3027c50, type: 3}
-    bedVolume: 1
-    details:
-      clips:
-      - _clip: {fileID: 8300000, guid: fb11c8e6e4c3743238758cf8806e0d84, type: 3}
-        _volume: 1
-        _delay: 0
-      - _clip: {fileID: 8300000, guid: 2c94ff49e72044f2fb3e5f3c89a2675c, type: 3}
-        _volume: 1
-        _delay: 0
-      - _clip: {fileID: 8300000, guid: 999f17b70053249c38b665655983bc61, type: 3}
-        _volume: 1
-        _delay: 0
-      - _clip: {fileID: 8300000, guid: dd4608abf5d244b308d31807b6339a20, type: 3}
-        _volume: 1
-        _delay: 0
-      - _clip: {fileID: 8300000, guid: 6e12027d44eb54ccfb45f07b7b1b8d23, type: 3}
-        _volume: 1
-        _delay: 0
-      - _clip: {fileID: 8300000, guid: 94c8b3442b57b4a98871d83861c0ace3, type: 3}
-        _volume: 1
-        _delay: 0
-      - _clip: {fileID: 8300000, guid: d9721e5f290dc425aadc8b626594d69c, type: 3}
-        _volume: 1
-        _delay: 0
-      - _clip: {fileID: 8300000, guid: 1b202c66607b94a8c97a86e383ed8373, type: 3}
-        _volume: 1
-        _delay: 0
-      - _clip: {fileID: 8300000, guid: 1f0bc2600bd7547aa8c7cbca3b11bb2d, type: 3}
-        _volume: 1
-        _delay: 0
-      pitchMin: 0.97
-      pitchMax: 1.03
-      gain: 0.8
-      volumeJitter: 0.15
-      useFocusMixerGroup: 0
-    detailMinInterval: 4
-    detailMaxInterval: 11
+    bed: {fileID: 0}
+    bedVolume: 0.6
+    lanes:
+    - name: Typing
+      sounds:
+        clips:
+        - _clip: {fileID: 8300000, guid: 562882f0afd04e5291deb0c7007e399c, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: 800e49effbb445e6b8c5c0944e28d52f, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: d888717137af4af1a99ff121588f6473, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: a4e5b81d4acd448fb987c037fcd09f92, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: 2035534b752b44f29849e96bdce285c0, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: aee57bcc9748429f8a77dfbf24bf8d36, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: a30ff9000e984d23b4094934288ba632, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: a1a03f042a62409d884f9aedccd8995b, type: 3}
+          _volume: 1
+          _delay: 0
+        pitchMin: 0.97
+        pitchMax: 1.03
+        gain: 0.55
+        volumeJitter: 0.15
+        useFocusMixerGroup: 0
+      minInterval: 5
+      maxInterval: 12
+      panMin: -0.7
+      panMax: 0.7
+    - name: Mouse
+      sounds:
+        clips:
+        - _clip: {fileID: 8300000, guid: c2725a2efe5d437999ef52926e9fd7d5, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: 50db2847947e4d98b725692c1ecf5fda, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: 20e9c339a9524eb580140cc76b2b9b24, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: 3d9812a0babe4bdd8f2b3dd5cccf4425, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: 752f49980e3d47fdb462a473004baac5, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: 3f73a71818524835ad7a68a1a08dbccf, type: 3}
+          _volume: 1
+          _delay: 0
+        pitchMin: 0.97
+        pitchMax: 1.03
+        gain: 0.55
+        volumeJitter: 0.15
+        useFocusMixerGroup: 0
+      minInterval: 9
+      maxInterval: 20
+      panMin: -0.6
+      panMax: 0.6
+    - name: Desk life
+      sounds:
+        clips:
+        - _clip: {fileID: 8300000, guid: 6a30592518c149a1b2186e1d0e1122e7, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: bf9dc76332844a1ebf6330b601c41a85, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: ac225c5378174b45a987c64c0f437431, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: 78ede08590ae4f2fa7345d6f24ced196, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: e9593f2ff0e64f6a872befd10ca4d87b, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: 1baf0823e9ad4bf8b996ecd07c316d22, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: 6467197a5e2b4c39acbcf7ecb4d3bf0a, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: fd2dda426c204e0a9c4295f6140466cc, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: b78835f2293447818150cf5131a0dfda, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: c7c7a67f027a4a0285e1b50b8ad13c16, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: 704e7728165743f680fdccbdd8848f7a, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: 741480ccdaac4b44870d6faa996a941b, type: 3}
+          _volume: 1
+          _delay: 0
+        pitchMin: 0.97
+        pitchMax: 1.03
+        gain: 0.55
+        volumeJitter: 0.15
+        useFocusMixerGroup: 0
+      minInterval: 12
+      maxInterval: 28
+      panMin: -0.7
+      panMax: 0.7
   - roomName: Security
-    bed: {fileID: 8300000, guid: 0f2e5d0dc4f544cc68db5b6a1ebc6fde, type: 3}
-    bedVolume: 1
-    details:
-      clips:
-      - _clip: {fileID: 8300000, guid: 4c08ace0165ad409f83d43ade0600615, type: 3}
-        _volume: 1
-        _delay: 0
-      - _clip: {fileID: 8300000, guid: 03a95a39946334d46bf8358c9018d41b, type: 3}
-        _volume: 1
-        _delay: 0
-      - _clip: {fileID: 8300000, guid: 26c32f54bb1ef45ec91b50554e06e2f0, type: 3}
-        _volume: 1
-        _delay: 0
-      pitchMin: 0.98
-      pitchMax: 1.02
-      gain: 0.65
-      volumeJitter: 0.1
-      useFocusMixerGroup: 0
-    detailMinInterval: 25
-    detailMaxInterval: 60
+    bed: {fileID: 0}
+    bedVolume: 0.6
+    lanes:
+    - name: Office through the wall
+      sounds:
+        clips:
+        - _clip: {fileID: 8300000, guid: beb230c2873d4d8d9d36894b1d74e2b0, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: 6037991634b5436ba0bde6731188651c, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: ecedfd61a6764f35bfe38242a63268f7, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: 6027e20a63614e3198812689e8809b09, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: cb77a0e1aa654a51bc625843c3109a9f, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: 28ce1632826f4e598921e988ff8ee8e7, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: 3b24c8cf64f6407b9613b2d52debdd78, type: 3}
+          _volume: 1
+          _delay: 0
+        - _clip: {fileID: 8300000, guid: 9b436cd567f349ce90507e38ef01f3b4, type: 3}
+          _volume: 1
+          _delay: 0
+        pitchMin: 0.97
+        pitchMax: 1.03
+        gain: 1
+        volumeJitter: 0.1
+        useFocusMixerGroup: 0
+      minInterval: 10
+      maxInterval: 22
+      panMin: -0.95
+      panMax: -0.7
