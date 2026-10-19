@@ -103,10 +103,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProductManagerInteractable
   dialogLinesWithCharacterInfo:
-  - text: Line for Head of HR
+  - text: I'm afraid I'm very busy with performance reviews right now.
+    character: {fileID: 11400000, guid: 65181e84e9c64dcc8477f95d0e0d485f, type: 2}
+  - text: Just a few questions.
+    character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
+  - text: Mom, if a hamster bites someone, does it get a performance review?
+    character: {fileID: 0}
+  - text: We're not having this conversation again.
+    character: {fileID: 11400000, guid: 65181e84e9c64dcc8477f95d0e0d485f, type: 2}
+  - text: So that's a maybe?
+    character: {fileID: 0}
+  - text: Please excuse me.
     character: {fileID: 11400000, guid: 65181e84e9c64dcc8477f95d0e0d485f, type: 2}
   repeatableLine:
-    text: Repeatable line for Head of HR
+    text: I'm very busy.
     character: {fileID: 11400000, guid: 65181e84e9c64dcc8477f95d0e0d485f, type: 2}
 --- !u!60 &6813529360823359505
 PolygonCollider2D:

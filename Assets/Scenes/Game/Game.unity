@@ -1175,10 +1175,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 74725921}
     m_Modifications:
-    - target: {fileID: 587939059822236913, guid: 3bd36cce41d823941940dd07130d51d7, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[3].text
-      value: Maybe there's something on my computer that can help.
-      objectReference: {fileID: 0}
     - target: {fileID: 3981013730137166821, guid: 3bd36cce41d823941940dd07130d51d7, type: 3}
       propertyPath: m_Name
       value: Finance
@@ -2401,7 +2397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1580528502822705574, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -27.327272
+      value: -23.9
       objectReference: {fileID: 0}
     - target: {fileID: 1580528502822705574, guid: d9509969a5a5b6b46b19a07c56c46c54, type: 3}
       propertyPath: m_LocalPosition.y
