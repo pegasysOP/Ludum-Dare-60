@@ -12,8 +12,12 @@ public class CreditsMenu : MonoBehaviour
     public float blackFadeDuration = 0.6f;
     public float stagger = 0.1f;
 
+    private PhoneSfxLibrary sounds;
+
     private void Awake()
     {
+        sounds = PhoneSfxLibrary.Load();
+
         menuButton.onClick.AddListener(OnMenuClicked);
 
         blackOverlay.alpha = 1f;
@@ -40,8 +44,12 @@ public class CreditsMenu : MonoBehaviour
         }
     }
 
+    // back to black before loading, so the click isn't cut off by the scene change
     private void OnMenuClicked()
     {
-        SceneUtils.LoadMenuScene();
+        sounds.tap.Play();
+
+        blackOverlay.blocksRaycasts = true;
+        blackOverlay.DOFade(1f, 0.35f).SetEase(Ease.InOutSine).SetLink(gameObject).OnComplete(SceneUtils.LoadMenuScene);
     }
 }

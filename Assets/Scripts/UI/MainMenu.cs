@@ -19,9 +19,12 @@ public class MainMenu : MonoBehaviour
 
     private readonly Dictionary<RectTransform, (Vector2 position, Quaternion rotation)> rest = new Dictionary<RectTransform, (Vector2, Quaternion)>();
     private bool leaving = false;
+    private PhoneSfxLibrary sounds;
 
     private void Awake()
     {
+        sounds = PhoneSfxLibrary.Load();
+
         startButton.onClick.AddListener(OnStartClicked);
         soundtrackButton.onClick.AddListener(OnSoundtrackClicked);
         quitButton.onClick.AddListener(OnQuitClicked);
@@ -73,16 +76,19 @@ public class MainMenu : MonoBehaviour
 
     private void OnStartClicked()
     {
+        sounds.tap.Play();
         Leave(SceneUtils.LoadGameScene);
     }
 
     private void OnQuitClicked()
     {
+        sounds.tap.Play();
         SceneUtils.QuitApplication();
     }
 
     private void OnSoundtrackClicked()
     {
+        sounds.tap.Play();
         Leave(SceneUtils.LoadSoundtrackScene);
     }
 
