@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2932000991107557338}
   - component: {fileID: 7350967420141639792}
   - component: {fileID: 5000588137854494443}
-  - component: {fileID: 3579458602070279295}
   - component: {fileID: 2941786233203754801}
+  - component: {fileID: 905433971914243338}
   m_Layer: 0
   m_Name: PostItNote
   m_TagString: Untagged
@@ -108,8 +108,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   stickyNoteCanvas: {fileID: 0}
---- !u!61 &3579458602070279295
-BoxCollider2D:
+--- !u!114 &2941786233203754801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6713168258077192737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc050a0b59d48a4fa66fa3eb51c9334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteOutline
+  idleColour: {r: 0.55, g: 0.8, b: 1, a: 0.85}
+  hoverColour: {r: 0.92, g: 0.16, b: 0.12, a: 1}
+  idleWidth: 0.02
+  hoverWidth: 0.05
+  gapWidth: 0.02
+--- !u!60 &905433971914243338
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -138,7 +155,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -152,19 +169,62 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &2941786233203754801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6713168258077192737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dc050a0b59d48a4fa66fa3eb51c9334, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpriteOutline
-  outlineColor: {r: 1, g: 0, b: 0, a: 1}
-  outlineScale: 1.15
+  m_Points:
+    m_Paths:
+    - - {x: 0.323, y: -0.186}
+      - {x: 0.335, y: -0.120000005}
+      - {x: 0.347, y: -0.048}
+      - {x: 0.351, y: -0.018000001}
+      - {x: 0.35500002, y: 0.020000001}
+      - {x: 0.35900003, y: 0.048}
+      - {x: 0.35900003, y: 0.102000006}
+      - {x: 0.35700002, y: 0.128}
+      - {x: 0.347, y: 0.18200001}
+      - {x: 0.333, y: 0.23200001}
+      - {x: 0.319, y: 0.286}
+      - {x: 0.31300002, y: 0.31}
+      - {x: 0.29900002, y: 0.328}
+      - {x: 0.28100002, y: 0.33200002}
+      - {x: 0.071, y: 0.33200002}
+      - {x: 0.041, y: 0.33}
+      - {x: -0.003, y: 0.326}
+      - {x: -0.041, y: 0.32200003}
+      - {x: -0.113000005, y: 0.312}
+      - {x: -0.171, y: 0.30200002}
+      - {x: -0.20700002, y: 0.294}
+      - {x: -0.223, y: 0.28800002}
+      - {x: -0.23300001, y: 0.27600002}
+      - {x: -0.23500001, y: 0.27}
+      - {x: -0.23500001, y: 0.246}
+      - {x: -0.231, y: 0.21400002}
+      - {x: -0.22500001, y: 0.172}
+      - {x: -0.21900001, y: 0.128}
+      - {x: -0.21700001, y: 0.126}
+      - {x: -0.21900001, y: 0.09}
+      - {x: -0.22900002, y: 0.060000002}
+      - {x: -0.24900001, y: 0.024}
+      - {x: -0.28300002, y: -0.046000004}
+      - {x: -0.30100003, y: -0.086}
+      - {x: -0.31100002, y: -0.11000001}
+      - {x: -0.333, y: -0.16000001}
+      - {x: -0.347, y: -0.21200001}
+      - {x: -0.35900003, y: -0.254}
+      - {x: -0.35900003, y: -0.28}
+      - {x: -0.349, y: -0.29000002}
+      - {x: -0.34100002, y: -0.29200003}
+      - {x: -0.31100002, y: -0.296}
+      - {x: -0.261, y: -0.3}
+      - {x: -0.22900002, y: -0.30200002}
+      - {x: -0.19500001, y: -0.30400002}
+      - {x: -0.113000005, y: -0.31}
+      - {x: -0.061000004, y: -0.314}
+      - {x: -0.033, y: -0.316}
+      - {x: -0.001, y: -0.31800002}
+      - {x: 0.059000004, y: -0.32200003}
+      - {x: 0.091000006, y: -0.324}
+      - {x: 0.149, y: -0.328}
+      - {x: 0.20300001, y: -0.33200002}
+      - {x: 0.28500003, y: -0.33200002}
+      - {x: 0.29900002, y: -0.312}
+      - {x: 0.307, y: -0.268}
+  m_UseDelaunayMesh: 1
