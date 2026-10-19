@@ -20,7 +20,7 @@ public class ComputerScreen : MonoBehaviour
     public Button insertCDButton;
     public GameObject ReportGameObject;
 
-    public string password = "password"; //TODO: Change this to be based on the clue
+    public string password = "1aa23dca18z8";
 
     private ComputerSfxLibrary sounds;
     private Vector2 screenPos;
