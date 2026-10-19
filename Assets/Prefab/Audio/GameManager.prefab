@@ -60,3 +60,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EndingText
   dialogLinesWithCharacterInfo: []
   endingCanvas: {fileID: 0}
+  goodEndingSprite: {fileID: 21300000, guid: 59de09f7055c25142bcb175c3f70cdbe, type: 3}
+  badEndingSprite: {fileID: 21300000, guid: cad75434fa91260479d3382342a31ca3, type: 3}
+  speedEndingSprite: {fileID: 21300000, guid: cad75434fa91260479d3382342a31ca3, type: 3}
