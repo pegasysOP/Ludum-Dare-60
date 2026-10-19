@@ -219,34 +219,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProductManagerInteractable
   dialogLinesWithCharacterInfo:
-  - text: I assume you've already spoken to Finance.
+  - text: You here about the discrepancy?
     character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
-  - text: Why Finance?
+  - text: That's right.
     character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
-  - text: Because whenever numbers stop adding up, everyone immediately blames the product. Nobody ever considers the accountants.
+  - text: Great. Add your name to the queue.
     character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
-  - text: He lets out a tired laugh.
-    character: {fileID: 0}
-  - text: Although to be fair, the accountants say exactly the same thing about us.
+  - text: I've been here three nights straight.
     character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
-  - text: You've got an explanation for the discrepancies?
+  - text: Mind if I take a look around?
     character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
-  - text: I've got six explanations. Three involve software, two involve spreadsheets, and one involves setting fire to the building and starting over.
+  - text: Go ahead. My PC's right here.
     character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
-  - text: It's been a long week.
-    character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
-  - text: Anyway. Workstation's unlocked. Feel free.
-    character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
-  - text: You seem fairly relaxed.
-    character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
-  - text: Relaxed isn't the word.
-    character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
-  - text: Yesterday I sat through a two-hour meeting about whether a button should say 'Submit' or 'Confirm'.
-    character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
-  - text: Nothing you find on that computer can hurt me more than that meeting did.
+  - text: It's got one of the last CD drives in the building, if that's useful.
     character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
   repeatableLine:
-    text: Honestly, at this point I'd settle for a boring explanation.
+    text: That CD drive is older than some of our interns.
     character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
 --- !u!60 &9213973648289505133
 PolygonCollider2D:
