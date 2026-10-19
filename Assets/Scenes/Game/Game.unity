@@ -661,6 +661,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpriteOutline
   idleColour: {r: 0.55, g: 0.8, b: 1, a: 0.85}
   hoverColour: {r: 0.92, g: 0.16, b: 0.12, a: 1}
+  usedColour: {r: 0.8, g: 0.82, b: 0.85, a: 0.85}
   idleWidth: 0.02
   hoverWidth: 0.05
   gapWidth: 0.02
@@ -1358,11 +1359,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7402000271987236352, guid: 3bd36cce41d823941940dd07130d51d7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.3508592
+      value: -1.85
       objectReference: {fileID: 0}
     - target: {fileID: 7402000271987236352, guid: 3bd36cce41d823941940dd07130d51d7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.0456971
+      value: -3.07
       objectReference: {fileID: 0}
     - target: {fileID: 7402000271987236352, guid: 3bd36cce41d823941940dd07130d51d7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1463,6 +1464,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpriteOutline
   idleColour: {r: 0.55, g: 0.8, b: 1, a: 0.85}
   hoverColour: {r: 0.92, g: 0.16, b: 0.12, a: 1}
+  usedColour: {r: 0.8, g: 0.82, b: 0.85, a: 0.85}
   idleWidth: 0.02
   hoverWidth: 0.05
   gapWidth: 0.02
@@ -1805,13 +1807,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
     - target: {fileID: 1139003983346214975, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
-      propertyPath: dialogLinesWithCharacterInfo.Array.data[13].character
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1139003983346214975, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
       propertyPath: dialogLinesWithCharacterInfo.Array.data[12].character
       value: 
       objectReference: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+    - target: {fileID: 1139003983346214975, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[13].character
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1139003983346214975, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
       propertyPath: dialogLinesWithCharacterInfo.Array.data[14].character
       value: 
@@ -1826,11 +1828,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1147485803453466909, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.54
+      value: -1.11
       objectReference: {fileID: 0}
     - target: {fileID: 1147485803453466909, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.30164
+      value: 0.19
       objectReference: {fileID: 0}
     - target: {fileID: 1147485803453466909, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2921,6 +2923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpriteOutline
   idleColour: {r: 0.55, g: 0.8, b: 1, a: 0.85}
   hoverColour: {r: 0.92, g: 0.16, b: 0.12, a: 1}
+  usedColour: {r: 0.8, g: 0.82, b: 0.85, a: 0.85}
   idleWidth: 0.02
   hoverWidth: 0.05
   gapWidth: 0.02
@@ -3288,19 +3291,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8632493399321058803, guid: 39ea8172047fee447855c50de249e49d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.7974163
+      value: 0.9471041
       objectReference: {fileID: 0}
     - target: {fileID: 8632493399321058803, guid: 39ea8172047fee447855c50de249e49d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8966
+      value: 0.77188295
       objectReference: {fileID: 0}
     - target: {fileID: 8632493399321058803, guid: 39ea8172047fee447855c50de249e49d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.6693
+      value: 0.7441
       objectReference: {fileID: 0}
     - target: {fileID: 8632493399321058803, guid: 39ea8172047fee447855c50de249e49d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.4863
+      value: 0.5487
       objectReference: {fileID: 0}
     - target: {fileID: 8632493399321058803, guid: 39ea8172047fee447855c50de249e49d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3366,11 +3369,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3609570586172128587, guid: 7872d9a0de10b5946972b84feac4e41a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.7606941
+      value: 6.24
       objectReference: {fileID: 0}
     - target: {fileID: 3609570586172128587, guid: 7872d9a0de10b5946972b84feac4e41a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.087459445
+      value: -0.07
       objectReference: {fileID: 0}
     - target: {fileID: 3609570586172128587, guid: 7872d9a0de10b5946972b84feac4e41a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3625,6 +3628,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpriteOutline
   idleColour: {r: 0.55, g: 0.8, b: 1, a: 0.85}
   hoverColour: {r: 0.92, g: 0.16, b: 0.12, a: 1}
+  usedColour: {r: 0.8, g: 0.82, b: 0.85, a: 0.85}
   idleWidth: 0.02
   hoverWidth: 0.05
   gapWidth: 0.02
@@ -4036,11 +4040,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5332902369292001470, guid: d2790ee9c54a3bd4bb75185e7bd1b0af, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.6
+      value: -6.88
       objectReference: {fileID: 0}
     - target: {fileID: 5332902369292001470, guid: d2790ee9c54a3bd4bb75185e7bd1b0af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.77
+      value: 0.95
       objectReference: {fileID: 0}
     - target: {fileID: 5332902369292001470, guid: d2790ee9c54a3bd4bb75185e7bd1b0af, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4140,6 +4144,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[0].text
+      value: The CEO wanted you to have this CD.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[1].text
+      value: What's on it?
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[2].text
+      value: Q3 report. Burned it myself.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[3].text
+      value: The CD, not the report.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[4].text
+      value: The CD, not the report.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[1].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[2].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 66288176f0d64d55a642533492dab6c6, type: 2}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[3].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 66288176f0d64d55a642533492dab6c6, type: 2}
     - target: {fileID: 4889285028667515705, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
       propertyPath: m_Name
       value: Secretary
