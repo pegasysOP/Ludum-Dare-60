@@ -3558,6 +3558,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: repeatableLine.text
+      value: If another exec says 'circle back', I'm gone.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[0].text
+      value: You must be the auditor.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[1].text
+      value: Cool. Saves me having to sit through another meeting about 'stakeholder confidence'.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[2].text
+      value: The CEO wanted you to have this CD.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[3].text
+      value: What's on it?
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[4].text
+      value: Q3 report. Burned it myself.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[5].text
+      value: The CD, not the report.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332593120877055998, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
+      propertyPath: dialogLinesWithCharacterInfo.Array.data[1].character
+      value: 
+      objectReference: {fileID: 11400000, guid: 66288176f0d64d55a642533492dab6c6, type: 2}
     - target: {fileID: 4889285028667515705, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
       propertyPath: m_Name
       value: Secretary
