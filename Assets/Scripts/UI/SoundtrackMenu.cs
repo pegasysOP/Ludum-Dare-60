@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
@@ -38,6 +37,19 @@ public class SoundtrackMenu : MonoBehaviour
     public CanvasGroup[] entrance;
     public float stagger = 0.08f;
 
+    // album order from the OST: bad ending before good so it ends in light, then the credits
+    private static readonly MusicTrack[] AlbumOrder =
+    {
+        MusicTrack.MainMenu,
+        MusicTrack.GameBlue,
+        MusicTrack.GameYellow,
+        MusicTrack.GameOrange,
+        MusicTrack.GameRed,
+        MusicTrack.EndingBad,
+        MusicTrack.EndingGood,
+        MusicTrack.Credits,
+    };
+
     private MusicTrack[] tracks;
     private readonly List<SoundtrackRow> rows = new List<SoundtrackRow>();
     private int currentIndex = 0;
@@ -56,7 +68,7 @@ public class SoundtrackMenu : MonoBehaviour
 
         uiSounds = UiSfxLibrary.Load();
         sounds = PhoneSfxLibrary.Load();
-        tracks = (MusicTrack[])Enum.GetValues(typeof(MusicTrack));
+        tracks = AlbumOrder;
         scroll = list.GetComponentInParent<SmoothScrollRect>();
 
         previousButton.onClick.AddListener(OnPreviousClicked);

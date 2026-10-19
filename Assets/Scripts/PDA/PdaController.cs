@@ -171,6 +171,7 @@ public class PdaController : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         RectTransform closedRect = (RectTransform)closedGroup.transform;
         closedRect.DOComplete();
+        sounds.vibrate.Play();
         DOTween.Sequence()
             .Append(closedRect.DOShakeAnchorPos(0.25f, new Vector2(10f, 3f), 40, 90f))
             .Join(closedRect.DOShakeRotation(0.25f, new Vector3(0f, 0f, 1.2f), 40, 90f))
