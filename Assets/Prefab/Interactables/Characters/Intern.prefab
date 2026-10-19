@@ -2742,6 +2742,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13207926ca803674293b6f9244e50057, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProductManagerInteractable
+  countsAsEvidence: 0
+  evidence: 0
   dialogLinesWithCharacterInfo:
   - text: I'm just an intern, okay? Still at college. I really need this job.
     character: {fileID: 11400000, guid: aff33ab34aa54fd2b0eb77c8158aa59c, type: 2}
@@ -2752,5 +2754,5 @@ MonoBehaviour:
   - text: My desk is the one on the left
     character: {fileID: 11400000, guid: aff33ab34aa54fd2b0eb77c8158aa59c, type: 2}
   repeatableLine:
-    text: My desk's on the let. If you find a way to pass university without debt, let me know.
+    text: My desk is on the left. If you find a way to pass university without debt, let me know.
     character: {fileID: 11400000, guid: aff33ab34aa54fd2b0eb77c8158aa59c, type: 2}
