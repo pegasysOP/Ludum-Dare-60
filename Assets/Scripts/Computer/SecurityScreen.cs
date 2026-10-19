@@ -55,6 +55,10 @@ public class SecurityScreen : MonoBehaviour
             columns[0].text = recording.date;
             columns[1].text = recording.time;
             columns[2].text = recording.location;
+            // flags anything recorded outside the working day
+            Transform outOfHoursTag = row.transform.Find("Out Of Hours");
+            if (outOfHoursTag != null)
+                outOfHoursTag.gameObject.SetActive(recording.outOfHours);
 
             ColorBlock colours = row.colors;
             colours.normalColor = i % 2 == 0 ? rowColour : altRowColour;
@@ -166,5 +170,6 @@ public class SecurityScreen : MonoBehaviour
         public string time;
         public string location;
         public Texture image;
+        public bool outOfHours;
     }
 }
