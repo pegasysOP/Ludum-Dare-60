@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
     public void ActivateCheckedCameraFlag()
     {
         checkedCamera = true;
+        GameMusicGuy.SetMood(GameMood.Orange);
     }
 
     public bool CheckedCamera()
