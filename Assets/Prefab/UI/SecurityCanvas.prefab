@@ -927,6 +927,7 @@ GameObject:
   - component: {fileID: 3516326769500534492}
   - component: {fileID: 3435777544016459383}
   - component: {fileID: 966662778941953453}
+  - component: {fileID: 3291152146090998857}
   m_Layer: 5
   m_Name: Back Button
   m_TagString: Untagged
@@ -2766,6 +2767,7 @@ GameObject:
   - component: {fileID: 5210390957607568042}
   - component: {fileID: 7031090097889004246}
   - component: {fileID: 8649462236499373846}
+  - component: {fileID: 2854002781756335983}
   m_Layer: 5
   m_Name: Power Button
   m_TagString: Untagged
@@ -4105,3 +4107,29 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3291152146090998857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2327447208157700146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d83ac50b974f11bcf58e49c7ce244e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverGrow
+  hoverScale: 1.08
+--- !u!114 &2854002781756335983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7177388230939705667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d83ac50b974f11bcf58e49c7ce244e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverGrow
+  hoverScale: 1.08

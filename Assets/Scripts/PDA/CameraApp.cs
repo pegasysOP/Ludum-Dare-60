@@ -36,6 +36,7 @@ public class CameraApp : MonoBehaviour, IAppContent
     private PhoneSfxLibrary sounds;
     private Vector2 photoPos;
     private Sequence saveSequence;
+    private bool appOpen = false;
 
     private void Awake()
     {
@@ -70,6 +71,8 @@ public class CameraApp : MonoBehaviour, IAppContent
 
     public void OnAppOpened()
     {
+        appOpen = true;
+
         if (pictures.IsFull)
         {
             // nowhere to save a new one, so skip the viewfinder and show a blank shot
@@ -93,6 +96,7 @@ public class CameraApp : MonoBehaviour, IAppContent
 
     public void OnAppClosed()
     {
+        appOpen = false;
         StopAiming();
     }
 
@@ -193,7 +197,13 @@ public class CameraApp : MonoBehaviour, IAppContent
             .Append(photoRect.DOAnchorPosY(photoPos.y + 900f, 0.4f).SetEase(Ease.InQuad))
             .Join(photoRect.DORotate(new Vector3(0f, 0f, Random.Range(-20f, 20f)), 0.4f).SetEase(Ease.InQuad))
             .Join(photo.DOFade(0f, 0.4f).SetEase(Ease.InQuad))
-            .OnComplete(ClearPhoto);
+            .OnComplete(() =>
+            {
+                // photo's gone to the gallery, so put the camera away rather than leave an empty slot
+                ClearPhoto(false);
+                if (appOpen)
+                    pda.CloseApp();
+            });
     }
 
     private void Retake()
@@ -204,12 +214,15 @@ public class CameraApp : MonoBehaviour, IAppContent
 
     private void FinishSaveFling()
     {
-        if (saveSequence != null && saveSequence.IsActive())
-            saveSequence.Complete();
+        if (saveSequence == null || !saveSequence.IsActive())
+            return;
+
+        saveSequence.Kill();
+        ClearPhoto();
     }
 
     // empty black slot, faded back in where the photo was
-    private void ClearPhoto()
+    private void ClearPhoto(bool showSlot = true)
     {
         RectTransform photoRect = photo.rectTransform;
         photoRect.anchoredPosition = photoPos;
@@ -217,7 +230,8 @@ public class CameraApp : MonoBehaviour, IAppContent
 
         photo.texture = null;
         photo.color = new Color(0f, 0f, 0f, 0f);
-        photo.DOFade(1f, 0.2f);
+        if (showSlot)
+            photo.DOFade(1f, 0.2f);
     }
 
     private void RefreshButtons()
