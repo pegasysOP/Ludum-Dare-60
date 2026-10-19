@@ -5709,6 +5709,7 @@ GameObject:
   - component: {fileID: 301161851914059013}
   - component: {fileID: 217163132779751734}
   - component: {fileID: 6860434757580196053}
+  - component: {fileID: 7431051956246692709}
   m_Layer: 5
   m_Name: Mail Window
   m_TagString: Untagged
@@ -6851,6 +6852,7 @@ GameObject:
   - component: {fileID: 8083900178307413806}
   - component: {fileID: 3004645674717432747}
   - component: {fileID: 3626068146379625268}
+  - component: {fileID: 7021598611946147046}
   m_Layer: 5
   m_Name: Updates Window
   m_TagString: Untagged
@@ -8452,3 +8454,29 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3421778005171197573, guid: a40004bf4fa1a3445affbab64d0ed465, type: 3}
   m_PrefabInstance: {fileID: 7337349866887187012}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7431051956246692709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7518600156529525959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 761538a9bc534704a675ed8484c57e93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EvidenceSource
+  evidence: 1
+--- !u!114 &7021598611946147046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4640355250862649541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 761538a9bc534704a675ed8484c57e93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EvidenceSource
+  evidence: 0

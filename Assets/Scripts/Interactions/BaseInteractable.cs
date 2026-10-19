@@ -9,6 +9,10 @@ public abstract class Interactable : MonoBehaviour, IPointerDownHandler, IPointe
 
     public abstract void OnPointerUp(PointerEventData eventData);
 
+    // for things the player has to look at before an accusation is taken seriously
+    [SerializeField] private bool countsAsEvidence = false;
+    [SerializeField] private Evidence evidence;
+
     private SpriteOutline spriteOutline;
     protected InteractSfxLibrary interactSounds;
 
@@ -31,6 +35,8 @@ public abstract class Interactable : MonoBehaviour, IPointerDownHandler, IPointe
             interactSounds?.select.Play();
         if (MarkUsedOnClick)
             MarkUsed();
+        if (countsAsEvidence && GameManager.Instance != null)
+            GameManager.Instance.FoundEvidence(evidence);
         OnPointerDown(eventData);
     }
 
