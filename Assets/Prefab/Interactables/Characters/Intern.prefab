@@ -2749,8 +2749,8 @@ MonoBehaviour:
     character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
   - text: Yeah... well... everyone's worried right now.
     character: {fileID: 11400000, guid: aff33ab34aa54fd2b0eb77c8158aa59c, type: 2}
-  - text: My desk is the one on the right.
+  - text: My desk is the one on the left
     character: {fileID: 11400000, guid: aff33ab34aa54fd2b0eb77c8158aa59c, type: 2}
   repeatableLine:
-    text: My desk's on the right. If you find a way to pass university without debt, let me know.
+    text: My desk's on the let. If you find a way to pass university without debt, let me know.
     character: {fileID: 11400000, guid: aff33ab34aa54fd2b0eb77c8158aa59c, type: 2}
