@@ -1,12 +1,13 @@
 using DG.Tweening;
 using UnityEngine;
 
-// line around the sprite drawn by the SpriteOutline shader, thin and blue at rest, thicker and red on hover
+// line around the sprite drawn by the SpriteOutline shader, thin and blue at rest (grey once used), thicker and red on hover
 public class SpriteOutline : MonoBehaviour
 {
     // sizes are in world units so the line scales with the screen
     [SerializeField] private Color idleColour = new Color(0.55f, 0.8f, 1f, 0.85f);
     [SerializeField] private Color hoverColour = new Color(0.92f, 0.16f, 0.12f, 1f);
+    [SerializeField] private Color usedColour = new Color(0.8f, 0.82f, 0.85f, 0.85f);
     [SerializeField] private float idleWidth = 0.02f;
     [SerializeField] private float hoverWidth = 0.05f;
     [SerializeField] private float gapWidth = 0.02f;
@@ -20,6 +21,7 @@ public class SpriteOutline : MonoBehaviour
     private Color colour;
     private float thickness;
     private Tween hoverTween;
+    private bool used = false;
 
     private void Awake()
     {
@@ -84,7 +86,13 @@ public class SpriteOutline : MonoBehaviour
 
     public void HideOutline()
     {
-        Animate(idleColour, idleWidth);
+        Animate(used ? usedColour : idleColour, idleWidth);
+    }
+
+    // already looked at, so it settles to grey instead of blue once the mouse leaves
+    public void MarkUsed()
+    {
+        used = true;
     }
 
     private void Animate(Color targetColour, float targetThickness)

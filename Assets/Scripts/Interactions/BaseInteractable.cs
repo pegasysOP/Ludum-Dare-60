@@ -26,6 +26,7 @@ public abstract class Interactable : MonoBehaviour, IPointerDownHandler, IPointe
     {
         if (PlaysSelectSound)
             interactSounds?.select.Play();
+        spriteOutline?.MarkUsed();
         OnPointerDown(eventData);
     }
 
