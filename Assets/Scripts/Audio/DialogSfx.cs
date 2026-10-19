@@ -104,11 +104,16 @@ public class DialogSfx : MonoBehaviour
         AudioSource src = voices[nextVoice];
         fadeRate[nextVoice] = 0f;
         nextVoice = (nextVoice + 1) % voices.Length;
+        // UI group, and the SFX volume setting the UI source carries
+        float sfxVolume = 1f;
         if (AudioManager.Instance != null && AudioManager.Instance.uiSfxSource != null)
+        {
             src.outputAudioMixerGroup = AudioManager.Instance.uiSfxSource.outputAudioMixerGroup;
+            sfxVolume = AudioManager.Instance.uiSfxSource.volume;
+        }
         src.clip = entry.Clip;
         src.pitch = Mathf.Pow(2f, semitones / 12f);
-        src.volume = AudioVolume.ToLinear(perceived);
+        src.volume = sfxVolume * AudioVolume.ToLinear(perceived);
         src.Play();
     }
 

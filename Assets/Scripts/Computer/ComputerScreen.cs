@@ -39,6 +39,9 @@ public class ComputerScreen : MonoBehaviour
     [SerializeField] private bool loggedIn = false;
     private Sequence sequence;
     private float fanVolume;
+    // 1 while the computer is on, tweened to 0 as it shuts down
+    private float fanLevel = 1f;
+    private Tween fanFade;
     private int openedFrame;
     private Color insertCDColour;
 
@@ -81,6 +84,11 @@ public class ComputerScreen : MonoBehaviour
         if (gameObject.activeSelf)
             return;
 
+        // fan source plays on awake, so set its level before the canvas turns on
+        fanFade?.Kill();
+        fanLevel = 1f;
+        UpdateFanVolume();
+
         gameObject.SetActive(true);
         openedFrame = Time.frameCount;
         sequence?.Kill();
@@ -98,7 +106,6 @@ public class ComputerScreen : MonoBehaviour
         wrongPasswordText.SetActive(false);
         RefreshInsertCD();
 
-        // fan source plays on awake, so it starts whenever this canvas turns on
         sounds.wake.Play();
         sequence = DOTween.Sequence()
             .Append(screenGroup.DOFade(1f, 0.4f))
@@ -111,6 +118,8 @@ public class ComputerScreen : MonoBehaviour
 
     private void Update()
     {
+        UpdateFanVolume();
+
         // every press of the real mouse clicks, whatever it lands on. Skip the click that opened the screen
         if (screenGroup.blocksRaycasts && Time.frameCount != openedFrame
             && Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
@@ -137,11 +146,20 @@ public class ComputerScreen : MonoBehaviour
             .OnComplete(() =>
             {
                 gameObject.SetActive(false);
-                fanSource.volume = fanVolume;
             });
 
         // fan winds down over the whole shut down
-        fanSource.DOFade(0f, blackoutDuration + flyDuration);
+        fanFade?.Kill();
+        fanFade = DOTween.To(() => fanLevel, x => fanLevel = x, 0f, blackoutDuration + flyDuration);
+    }
+
+    // follows the SFX volume setting live, like the ambience
+    private void UpdateFanVolume()
+    {
+        float sfxVolume = AudioManager.Instance != null && AudioManager.Instance.sfxSource != null
+            ? AudioManager.Instance.sfxSource.volume
+            : 1f;
+        fanSource.volume = fanVolume * fanLevel * sfxVolume;
     }
 
     public void CheckCD()
