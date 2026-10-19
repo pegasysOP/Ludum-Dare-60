@@ -2891,13 +2891,17 @@ PrefabInstance:
       propertyPath: stickyNoteCanvas
       value: 
       objectReference: {fileID: 1819291427}
+    - target: {fileID: 4227548352175500875, guid: db2ef6e576493ed4395f2027ceb0ed73, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8365482925268488673, guid: db2ef6e576493ed4395f2027ceb0ed73, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.8222375
+      value: 3.71
       objectReference: {fileID: 0}
     - target: {fileID: 8365482925268488673, guid: db2ef6e576493ed4395f2027ceb0ed73, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.38344452
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8365482925268488673, guid: db2ef6e576493ed4395f2027ceb0ed73, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3368,7 +3372,23 @@ PrefabInstance:
     - target: {fileID: 2874970746136678779, guid: 354a11d35b1f50244b3d17ebe1044edf, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 53ea64c4dde72b845bb235b60d1dcb91, type: 3}
+      objectReference: {fileID: 21300000, guid: 9490c7c5ed6342d4da97059fdd6fb76f, type: 3}
+    - target: {fileID: 7524981875986165513, guid: 354a11d35b1f50244b3d17ebe1044edf, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 535.9349
+      objectReference: {fileID: 0}
+    - target: {fileID: 7524981875986165513, guid: 354a11d35b1f50244b3d17ebe1044edf, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 535.9349
+      objectReference: {fileID: 0}
+    - target: {fileID: 7524981875986165513, guid: 354a11d35b1f50244b3d17ebe1044edf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7524981875986165513, guid: 354a11d35b1f50244b3d17ebe1044edf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
