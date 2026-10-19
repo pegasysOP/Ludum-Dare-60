@@ -92,23 +92,24 @@ public class GameManager : MonoBehaviour
 
     public void TriggerEnding(Character character)
     {
+        bool isLazy = !hasCD || !usedCD || !checkedCamera || !checkedReview;
         EndingText endingText = FindAnyObjectByType<EndingText>();
         AmbiencePlayer.FadeOut();
         // the lazy ending is a lost case too, so it shares the bad ending music
-        if (!usedCD ||  !hasCD)
-        {
-            GameMusicGuy.PlayEnding(GameEnding.Bad);
-            endingText.StartEnding(ENDINGS.LAZY);
-        }
-        else if (character.characterName == "Greg Lawson" && usedCD)
+        if (!isLazy && character.characterName == "Greg Lawson")
         {
             GameMusicGuy.PlayEnding(GameEnding.Good);
             endingText.StartEnding(ENDINGS.GOOD);
         }
-        else
+        else if (!isLazy)
         {
             GameMusicGuy.PlayEnding(GameEnding.Bad);
             endingText.StartEnding(ENDINGS.BAD);
+        }
+        else
+        {
+            GameMusicGuy.PlayEnding(GameEnding.Bad);
+            endingText.StartEnding(ENDINGS.LAZY);
         }
         
     }
