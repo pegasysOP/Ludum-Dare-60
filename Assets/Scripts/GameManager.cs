@@ -1,3 +1,4 @@
+using System.Reflection.Metadata.Ecma335;
 using TMPro;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ public class GameManager : MonoBehaviour
     SusPXApp suspectApp;
 
     bool hasCD = false;
+
+    bool usedCD = false;
 
     private void Awake()
     {
@@ -56,17 +59,27 @@ public class GameManager : MonoBehaviour
         return hasCD;
     }
 
+    public void ActivateUsedCDFlag()
+    {
+        usedCD = true;
+    }
+
+    public bool UsedCD()
+    {
+        return usedCD;
+    }
+
     public void TriggerEnding(Character character)
     {
         EndingText endingText = FindAnyObjectByType<EndingText>();
         AmbiencePlayer.FadeOut();
         // the lazy ending is a lost case too, so it shares the bad ending music
-        if (!hasCD)
+        if (!usedCD ||  !hasCD)
         {
             GameMusicGuy.PlayEnding(GameEnding.Bad);
             endingText.StartEnding(ENDINGS.LAZY);
         }
-        else if (character.characterName == "Greg Lawson")
+        else if (character.characterName == "Greg Lawson" && usedCD)
         {
             GameMusicGuy.PlayEnding(GameEnding.Good);
             endingText.StartEnding(ENDINGS.GOOD);
