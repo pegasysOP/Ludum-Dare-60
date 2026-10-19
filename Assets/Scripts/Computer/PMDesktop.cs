@@ -3,7 +3,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-// the product manager's desktop: icons that open their windows, and mail that flashes until it's read
+// the product manager's desktop: icons that open their windows, and mail that flashes until every email in it is read
 public class PMDesktop : MonoBehaviour
 {
     public Button cdDriveIcon;
@@ -19,10 +19,11 @@ public class PMDesktop : MonoBehaviour
     public GameObject[] windows;
     public Button[] closeButtons;
 
-    public event Action MailOpened;
+    public event Action MailRead;
 
-    public bool MailRead { get; private set; }
+    public bool HasUnreadMail => mail.HasUnread;
 
+    private DesktopMail mail;
     private Tween flash;
 
     private void Awake()
@@ -30,6 +31,9 @@ public class PMDesktop : MonoBehaviour
         cdDriveIcon.onClick.AddListener(OnCDDriveClicked);
         mailIcon.onClick.AddListener(OnMailClicked);
         loadCDButton.onClick.AddListener(() => cdDriveWindow.SetActive(false));
+
+        mail = mailWindow.GetComponent<DesktopMail>();
+        mail.AllRead += OnMailRead;
 
         for (int i = 0; i < closeButtons.Length; i++)
         {
@@ -45,8 +49,8 @@ public class PMDesktop : MonoBehaviour
             window.SetActive(false);
 
         flash?.Kill();
-        mailNotification.gameObject.SetActive(!MailRead);
-        if (MailRead)
+        mailNotification.gameObject.SetActive(HasUnreadMail);
+        if (!HasUnreadMail)
             return;
 
         mailNotification.alpha = 1f;
@@ -61,13 +65,14 @@ public class PMDesktop : MonoBehaviour
     private void OnMailClicked()
     {
         Open(mailWindow);
-        if (MailRead)
-            return;
+    }
 
-        MailRead = true;
+    // only once the unread email itself has been opened, just opening the app isn't enough
+    private void OnMailRead()
+    {
         flash?.Kill();
         mailNotification.gameObject.SetActive(false);
-        MailOpened?.Invoke();
+        MailRead?.Invoke();
     }
 
     private void Open(GameObject window)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -16,6 +17,10 @@ public class DesktopMail : MonoBehaviour
     public TextMeshProUGUI bodyText;
     public Button backButton;
     public List<Email> emails = new List<Email>();
+
+    public event Action AllRead;
+
+    public bool HasUnread => emails.Exists(email => !email.read);
 
     private void Awake()
     {
@@ -45,8 +50,11 @@ public class DesktopMail : MonoBehaviour
 
     private void OpenEmail(EmailRow row, Email email)
     {
+        bool hadUnread = HasUnread;
         email.read = true;
         row.SetRead(true);
+        if (hadUnread && !HasUnread)
+            AllRead?.Invoke();
 
         subjectText.text = email.subject;
         fromText.text = "From: " + email.from;

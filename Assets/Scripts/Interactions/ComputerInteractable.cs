@@ -21,7 +21,7 @@ public class ComputerInteractable : Interactable
 
         pmDesktop = computerScreen.GetComponentInChildren<PMDesktop>(true);
         if (pmDesktop != null)
-            pmDesktop.MailOpened += MarkUsed;
+            pmDesktop.MailRead += MarkUsed;
     }
 
     public override void OnPointerDown(PointerEventData eventData)
