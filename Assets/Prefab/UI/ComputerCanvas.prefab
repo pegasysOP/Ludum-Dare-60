@@ -277,6 +277,7 @@ GameObject:
   - component: {fileID: 165442317898404734}
   - component: {fileID: 1740915591810596161}
   - component: {fileID: 4408415921398950202}
+  - component: {fileID: 6024158314185591046}
   m_Layer: 5
   m_Name: Power Button
   m_TagString: Untagged
@@ -577,6 +578,7 @@ GameObject:
   - component: {fileID: 5090810852139816435}
   - component: {fileID: 4560697071780428189}
   - component: {fileID: 5075484110829730911}
+  - component: {fileID: 6671225489093375432}
   m_Layer: 5
   m_Name: Enter Button
   m_TagString: Untagged
@@ -2374,3 +2376,29 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6024158314185591046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890940039056808152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d83ac50b974f11bcf58e49c7ce244e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverGrow
+  hoverScale: 1.08
+--- !u!114 &6671225489093375432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2257457581719657304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d83ac50b974f11bcf58e49c7ce244e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverGrow
+  hoverScale: 1.08

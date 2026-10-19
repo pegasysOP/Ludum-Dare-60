@@ -2,17 +2,18 @@ using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class PdaController : MonoBehaviour
+public class PdaController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Button openButton;
     public Button closeButton;
     public RectTransform rect;
     public CanvasGroup canvasGroup;
     public HomescreenApp[] apps;
-    public Image notificationLight;
+    public CanvasGroup notificationLight;
     public CanvasGroup openGroup;
     public CanvasGroup closedGroup;
 
@@ -20,6 +21,10 @@ public class PdaController : MonoBehaviour
     public Vector2 openPosition = new Vector2(-120f, 1100f);
     public Vector2 closedPosition = new Vector2(16f, 360f);
     public float closedScale = 0.38f;
+    // closed phone peeks up this far on hover to show it can be opened
+    public float closedHoverLift = 16f;
+    // seconds between buzzes while something's waiting
+    public float buzzInterval = 4f;
 
     private bool open = false;
     private bool putAway = false;
@@ -28,6 +33,9 @@ public class PdaController : MonoBehaviour
     private PhoneSfxLibrary sounds;
     private List<IAppNotification> notifiers = new List<IAppNotification>();
     private Tween lightPulse;
+    private Tween moveTween;
+    private Tween hoverLift;
+    private Sequence buzzLoop;
 
     private void Awake()
     {
@@ -109,7 +117,7 @@ public class PdaController : MonoBehaviour
         closedGroup.DOKill();
 
         Ease ease = opening ? Ease.OutBack : Ease.OutExpo;
-        rect.DOAnchorPos(opening ? openPosition : closedPosition, 0.45f).SetEase(ease);
+        moveTween = rect.DOAnchorPos(opening ? openPosition : closedPosition, 0.45f).SetEase(ease);
         rect.DOScale(opening ? 1f : closedScale, 0.45f).SetEase(ease);
 
         // closed lid sits on top, so fade it rather than the open phone to avoid seeing through both
@@ -125,7 +133,7 @@ public class PdaController : MonoBehaviour
         open = opening;
     }
 
-    // led on the frame breathes while any app has something new
+    // led on the frame breathes and the phone buzzes while any app has something new
     private void RefreshNotificationLight()
     {
         bool lit = notifiers.Exists(notifier => notifier.HasNotification);
@@ -133,14 +141,65 @@ public class PdaController : MonoBehaviour
             return;
 
         lightPulse?.Kill();
+        buzzLoop?.Kill();
         notificationLight.gameObject.SetActive(lit);
         if (!lit)
             return;
 
-        Color colour = notificationLight.color;
-        colour.a = 1f;
-        notificationLight.color = colour;
-        lightPulse = notificationLight.DOFade(0.1f, 1.2f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo).SetLink(gameObject);
+        // quick swell, slow fade, then a beat of dark like a real notification led
+        notificationLight.alpha = 0f;
+        lightPulse = DOTween.Sequence()
+            .Append(notificationLight.DOFade(1f, 0.4f).SetEase(Ease.OutSine))
+            .Append(notificationLight.DOFade(0f, 1f).SetEase(Ease.InSine))
+            .AppendInterval(0.6f)
+            .SetLoops(-1)
+            .SetLink(gameObject);
+
+        buzzLoop = DOTween.Sequence()
+            .AppendInterval(0.3f)
+            .AppendCallback(Buzz)
+            .AppendInterval(buzzInterval)
+            .SetLoops(-1)
+            .SetLink(gameObject);
+    }
+
+    // two short rattles like a phone on vibrate
+    private void Buzz()
+    {
+        if (open || putAway)
+            return;
+
+        RectTransform closedRect = (RectTransform)closedGroup.transform;
+        closedRect.DOComplete();
+        DOTween.Sequence()
+            .Append(closedRect.DOShakeAnchorPos(0.25f, new Vector2(10f, 3f), 40, 90f))
+            .Join(closedRect.DOShakeRotation(0.25f, new Vector3(0f, 0f, 1.2f), 40, 90f))
+            .AppendInterval(0.12f)
+            .Append(closedRect.DOShakeAnchorPos(0.25f, new Vector2(10f, 3f), 40, 90f))
+            .Join(closedRect.DOShakeRotation(0.25f, new Vector3(0f, 0f, 1.2f), 40, 90f))
+            .SetTarget(closedRect)
+            .SetLink(gameObject);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        SetHoverLift(true);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        SetHoverLift(false);
+    }
+
+    private void SetHoverLift(bool lifted)
+    {
+        // leave the phone alone while it's open or still flipping shut
+        if (open || putAway || (moveTween != null && moveTween.IsActive()))
+            return;
+
+        hoverLift?.Kill();
+        hoverLift = rect.DOAnchorPos(closedPosition + Vector2.up * (lifted ? closedHoverLift : 0f), 0.2f)
+            .SetEase(lifted ? Ease.OutBack : Ease.OutQuad);
     }
 
     public void SetVisible(bool visible)

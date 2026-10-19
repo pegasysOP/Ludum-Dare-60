@@ -499,5 +499,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6713168258077192737, guid: ce225db419a2b094fb50d6a30c2ba549, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 34708527566528144}
   m_SourcePrefab: {fileID: 100100000, guid: ce225db419a2b094fb50d6a30c2ba549, type: 3}
+--- !u!1 &108460012395299866 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6713168258077192737, guid: ce225db419a2b094fb50d6a30c2ba549, type: 3}
+  m_PrefabInstance: {fileID: 6676768107567412795}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &34708527566528144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108460012395299866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c77d0b82404b3a4299c14c6301aed53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PerformanceReviewInteractable
+  dialogLinesWithCharacterInfo:
+  - text: Notice - Final Warning
+    character: {fileID: 0}
+  - text: Productivity - Needs Improvement
+    character: {fileID: 0}
+  - text: Work Ethic - Needs Improvement
+    character: {fileID: 0}
+  - text: 'Dress Sense - Lacking '
+    character: {fileID: 0}
+  repeatableLine:
+    text: Your next review is in one month
+    character: {fileID: 0}
+  performanceCanvas: {fileID: 0}

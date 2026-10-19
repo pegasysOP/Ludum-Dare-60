@@ -124,6 +124,7 @@ public class ComputerScreen : MonoBehaviour
             insertCDButton.gameObject.SetActive(false);
             //TODO: Add a loading icon and wait then show? 
             ReportGameObject.gameObject.SetActive(true);
+            GameManager.Instance.ActivateUsedCDFlag();
         }   
     }
 

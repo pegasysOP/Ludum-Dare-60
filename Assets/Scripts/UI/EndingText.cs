@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EndingText : MonoBehaviour
 {
@@ -9,13 +10,19 @@ public class EndingText : MonoBehaviour
 
     DialogManager dialogManager;
 
+    public Image endingImage;
+
+    public Sprite goodEndingSprite;
+    public Sprite badEndingSprite;
+    public Sprite speedEndingSprite;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         dialogManager = FindAnyObjectByType<DialogManager>();
     }
 
-    public void StartEndingText(ENDINGS ending)
+    public void StartEnding(ENDINGS ending)
     {
         endingCanvas.gameObject.SetActive(true);
         if(ending == ENDINGS.GOOD)
@@ -27,12 +34,15 @@ public class EndingText : MonoBehaviour
         {
             case ENDINGS.GOOD:
                 LoadGoodEndingText();
+                endingImage.sprite = goodEndingSprite;
                 break;
             case ENDINGS.BAD:
                 LoadBadEndingText();
+                endingImage.sprite = badEndingSprite;
                 break;
             case ENDINGS.LAZY:
                 LoadLazyEndingText();
+                endingImage.sprite = speedEndingSprite;
                 break;
             default:
                 Debug.LogError("Error: " + ending + " not implemented yet!");

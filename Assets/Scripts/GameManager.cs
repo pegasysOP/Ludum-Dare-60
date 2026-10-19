@@ -9,7 +9,11 @@ public class GameManager : MonoBehaviour
 
     SusPXApp suspectApp;
 
+
     bool hasCD = false;
+    bool usedCD = false;
+    bool checkedCamera = false;
+    bool checkedReview = false;
 
     private void Awake()
     {
@@ -56,25 +60,55 @@ public class GameManager : MonoBehaviour
         return hasCD;
     }
 
+    public void ActivateUsedCDFlag()
+    {
+        usedCD = true;
+    }
+
+    public bool UsedCD()
+    {
+        return usedCD;
+    }
+
+    public void ActivateCheckedCameraFlag()
+    {
+        checkedCamera = true;
+    }
+
+    public bool CheckedCamera()
+    {
+        return checkedCamera;
+    }
+
+    public void ActivateCheckedReviewFlag()
+    {
+        checkedReview = true;
+    }
+
+    public bool CheckedReview()
+    {
+        return checkedReview;
+    }
+
     public void TriggerEnding(Character character)
     {
         EndingText endingText = FindAnyObjectByType<EndingText>();
         AmbiencePlayer.FadeOut();
         // the lazy ending is a lost case too, so it shares the bad ending music
-        if (!hasCD)
+        if (!usedCD ||  !hasCD)
         {
             GameMusicGuy.PlayEnding(GameEnding.Bad);
-            endingText.StartEndingText(ENDINGS.LAZY);
+            endingText.StartEnding(ENDINGS.LAZY);
         }
-        else if (character.characterName == "Greg Lawson")
+        else if (character.characterName == "Greg Lawson" && usedCD)
         {
             GameMusicGuy.PlayEnding(GameEnding.Good);
-            endingText.StartEndingText(ENDINGS.GOOD);
+            endingText.StartEnding(ENDINGS.GOOD);
         }
         else
         {
             GameMusicGuy.PlayEnding(GameEnding.Bad);
-            endingText.StartEndingText(ENDINGS.BAD);
+            endingText.StartEnding(ENDINGS.BAD);
         }
         
     }
