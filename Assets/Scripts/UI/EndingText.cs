@@ -57,10 +57,11 @@ public class EndingText : MonoBehaviour
 
     public void LoadGoodEndingText()
     {
-        DialogLine line1 = new DialogLine("The Product Manager did it! Seeing the CEO buy his 4th Yacht while they're toiling away. No reward. No promotion.");
-        DialogLine line2 = new DialogLine("2 years later");
-        DialogLine line3 = new DialogLine("ClearSky™ saw an 8th consecutive quarter of record profits.");
-        DialogLine line4 = new DialogLine("Congratulations, you got the good ending!",
+        DialogLine line1 = new DialogLine("The trail leads directly to the Product Manager. The evidence all point to a scheme to quietly siphon money from the company while avoiding suspicion.");
+        DialogLine line2 = new DialogLine("Following a brief trial, he is convicted of embezzlement and escorted away in handcuffs.");
+        DialogLine line3 = new DialogLine("With the source of the losses removed, confidence returns. The company goes on to achieve eight consecutive quarters of growth.");
+        DialogLine line4 = new DialogLine("The CEO throws a company-wide holiday. Karen celebrates by buying more sticky notes. Susan finally finishes the performance reviews.");
+        DialogLine finalLine = new DialogLine("Congratulations! You got the GOOD ENDING.",
         null,
         null,
         () => SceneUtils.LoadCreditScene()
@@ -70,15 +71,16 @@ public class EndingText : MonoBehaviour
         dialogLinesWithCharacterInfo.Add(line2);
         dialogLinesWithCharacterInfo.Add(line3);
         dialogLinesWithCharacterInfo.Add(line4);
+        dialogLinesWithCharacterInfo.Add(finalLine);
     }
 
     public void LoadBadEndingText()
     {
-        DialogLine line1 = new DialogLine("An innocent condemned. How could you? Soap trusted you. I thought I could too.");
-        DialogLine line2 = new DialogLine("2 years later");
-        DialogLine line3 = new DialogLine("ClearSky™ is foreclosed. After years of embezzlement the coffers are empty.");
-        DialogLine line4 = new DialogLine("Company wide email reads: Everyone is fired. Effective immediately!");
-        DialogLine line5 = new DialogLine("Better luck next time, you got the bad ending!",
+        DialogLine line1 = new DialogLine("Certain of your conclusion, you present the evidence. Unfortunately, you've accused the wrong person.");
+        DialogLine line2 = new DialogLine("An innocent employee is dismissed from the company and publicly blamed for the missing funds.");
+        DialogLine line3 = new DialogLine("Within a year, the company is drowning in debt. Projects are canceled. Departments are shut down. Employees leave in droves.");
+        DialogLine line4 = new DialogLine("Eventually, the company is foreclosed and everyone loses their job.");
+        DialogLine line5 = new DialogLine("The mystery remains unsolved. You got the BAD ENDING",
         null,
         null,
         () => SceneUtils.LoadCreditScene()
@@ -93,11 +95,11 @@ public class EndingText : MonoBehaviour
 
     public void LoadLazyEndingText()
     {
-        DialogLine line1 = new DialogLine("Did you even play the game? Yes you! I get it, theres a lot of games to rate. But condemning someone without evidence is inexcusable!");
-        DialogLine line2 = new DialogLine("2 days later");
-        DialogLine line3 = new DialogLine("You're pulled into the HR office at DwT");
-        DialogLine line4 = new DialogLine("You've made this company look like an absolute joke. You're fired!");
-        DialogLine line5 = new DialogLine("Better luck next time, you got the Speedrunner ending!",
+        DialogLine line1 = new DialogLine("Wow. That was fast. Like... suspiciously fast.");
+        DialogLine line2 = new DialogLine("To be fair, this is Ludum Dare. There are a lot of games to rate, and only so many hours in the day.");
+        DialogLine line3 = new DialogLine("We understand. Still, you may have missed one or two... or fifty... important details.");
+        DialogLine line4 = new DialogLine("The good news is that the office will still be here when you come back. Probably...");
+        DialogLine finalLine = new DialogLine("You got the SPEEDRUNNER ENDING.",
         null,
         null,
         () => SceneUtils.LoadCreditScene()
@@ -107,7 +109,7 @@ public class EndingText : MonoBehaviour
         dialogLinesWithCharacterInfo.Add(line2);
         dialogLinesWithCharacterInfo.Add(line3);
         dialogLinesWithCharacterInfo.Add(line4);
-        dialogLinesWithCharacterInfo.Add(line5);
+        dialogLinesWithCharacterInfo.Add(finalLine);
     }
 
 }
