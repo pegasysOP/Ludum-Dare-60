@@ -2439,8 +2439,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProductManagerInteractable
   dialogLinesWithCharacterInfo:
-  - text: What do you mean missing semicolon on line 89. This file is only 40 lines long
+  - text: You're here about the accounting issue, right?
     character: {fileID: 11400000, guid: cc20f72f74b140d2bfee77910408b697, type: 2}
+  - text: I am.
+    character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
+  - text: Then I'm probably not much help.
+    character: {fileID: 11400000, guid: cc20f72f74b140d2bfee77910408b697, type: 2}
+  - text: Why's that?
+    character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
+  - text: Because we fixed the bug.
+    character: {fileID: 11400000, guid: cc20f72f74b140d2bfee77910408b697, type: 2}
+  - text: You're sure?
+    character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
+  - text: As sure as a software engineer ever is.
+    character: {fileID: 11400000, guid: cc20f72f74b140d2bfee77910408b697, type: 2}
+  - text: Meaning?
+    character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
+  - text: About ninety-eight percent sure. Which is basically certainty in our industry.
+    character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
   repeatableLine:
-    text: I hate programming
+    text: I fixed the bug. That's usually where my stories end.
     character: {fileID: 11400000, guid: cc20f72f74b140d2bfee77910408b697, type: 2}
