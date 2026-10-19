@@ -1,66 +1,43 @@
-using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CreditsMenu : MonoBehaviour
 {
     public Button menuButton;
-    public CanvasGroup canvasGroup;
     public CanvasGroup blackOverlay;
-    public float blackHoldDuration = 1f;
-    public float blackFadeDuration = 1f;
-    public float fadeDelay = 1.5f;
-    public float fadeDuration = 1.5f;
+    // faded and slid up one after another as the black lifts
+    public CanvasGroup[] entrance;
+
+    public float blackFadeDuration = 0.6f;
+    public float stagger = 0.1f;
 
     private void Awake()
     {
         menuButton.onClick.AddListener(OnMenuClicked);
 
-        canvasGroup.alpha = 0f;
-        canvasGroup.interactable = false;
-        canvasGroup.blocksRaycasts = false;
-
         blackOverlay.alpha = 1f;
         blackOverlay.blocksRaycasts = true;
+        foreach (CanvasGroup group in entrance)
+            group.alpha = 0f;
     }
 
     private void Start()
     {
-        StartCoroutine(IntroRoutine());
-    }
+        Sequence intro = DOTween.Sequence().SetLink(gameObject);
+        intro.Append(blackOverlay.DOFade(0f, blackFadeDuration).SetEase(Ease.InOutSine));
+        intro.AppendCallback(() => blackOverlay.blocksRaycasts = false);
 
-    private IEnumerator IntroRoutine()
-    {
-        yield return new WaitForSeconds(blackHoldDuration);
-
-        float elapsed = 0f;
-        while (elapsed < blackFadeDuration)
+        for (int i = 0; i < entrance.Length; i++)
         {
-            elapsed += Time.deltaTime;
-            blackOverlay.alpha = 1f - Mathf.Clamp01(elapsed / blackFadeDuration);
-            yield return null;
+            RectTransform rect = (RectTransform)entrance[i].transform;
+            Vector2 target = rect.anchoredPosition;
+            rect.anchoredPosition = target + Vector2.down * 24f;
+
+            float at = blackFadeDuration * 0.4f + i * stagger;
+            intro.Insert(at, entrance[i].DOFade(1f, 0.4f));
+            intro.Insert(at, rect.DOAnchorPos(target, 0.5f).SetEase(Ease.OutCubic));
         }
-        blackOverlay.alpha = 0f;
-        blackOverlay.blocksRaycasts = false;
-
-        yield return StartCoroutine(FadeInRoutine());
-    }
-
-    private IEnumerator FadeInRoutine()
-    {
-        yield return new WaitForSeconds(fadeDelay);
-
-        float elapsed = 0f;
-        while (elapsed < fadeDuration)
-        {
-            elapsed += Time.deltaTime;
-            canvasGroup.alpha = Mathf.Clamp01(elapsed / fadeDuration);
-            yield return null;
-        }
-
-        canvasGroup.alpha = 1f;
-        canvasGroup.interactable = true;
-        canvasGroup.blocksRaycasts = true;
     }
 
     private void OnMenuClicked()
