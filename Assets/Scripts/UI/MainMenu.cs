@@ -6,13 +6,11 @@ public class MainMenu : MonoBehaviour
     public Button startButton;
     public Button soundtrackButton; 
     public Button quitButton;
-    public Button creditsButton;
 
     private void Awake()
     {
         startButton.onClick.AddListener(OnStartClicked);
         soundtrackButton.onClick.AddListener(OnSoundtrackClicked);
-        creditsButton.onClick.AddListener(OnCreditsClicked);
         quitButton.onClick.AddListener(OnQuitClicked);
 
 #if UNITY_WEBGL
@@ -33,10 +31,5 @@ public class MainMenu : MonoBehaviour
     private void OnSoundtrackClicked()
     {
         SceneUtils.LoadSoundtrackScene();
-    }
-
-    private void OnCreditsClicked()
-    {
-        SceneUtils.LoadCreditScene();
     }
 }
