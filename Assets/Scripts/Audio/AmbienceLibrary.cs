@@ -21,8 +21,8 @@ public class AmbienceLibrary : ScriptableObject
     [Range(0f, 1f)] public float masterVolume = 0.45f;
 
     [Header("Timing")]
-    [Tooltip("Seconds a sound still playing from the room you left takes to fade out, and a bed to hand over.")]
-    [Min(0f)] public float roomExitFade = 1.2f;
+    [Tooltip("Seconds a sound still playing takes to fade out when you click to leave the room, and a bed to hand over.")]
+    [Min(0f)] public float roomExitFade = 0.25f;
     [Tooltip("Seconds the first bed takes to fade in when the game starts.")]
     [Min(0f)] public float startFade = 2.5f;
     [Tooltip("Seconds each bed crossfades into its own start when it loops, so the seam never shows.")]

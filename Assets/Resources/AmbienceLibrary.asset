@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AmbienceLibrary
   playAmbience: 1
   masterVolume: 0.45
-  roomExitFade: 1.2
+  roomExitFade: 0.25
   startFade: 2.5
   loopCrossfade: 4
   endingFade: 2

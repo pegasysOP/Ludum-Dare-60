@@ -10,7 +10,8 @@ using UnityEngine;
 /// <see cref="AudioSource.loop"/>, so a codec gap at the seam (WebGL transcodes to AAC) never shows.
 ///
 /// Everything goes to the SFX mixer group, so the SFX volume setting applies and the world muffles when the phone
-/// is up. Sounds still playing when you leave a room fade out behind the move, and the beds crossfade.
+/// is up. Leaving a room (<see cref="LeaveRoom"/>) quickly fades out its sounds that are still playing and holds the
+/// lanes until the next room starts; the beds crossfade.
 ///
 /// Created on the first <see cref="SetRoom"/> in the active scene, so it goes away with the Game scene.
 /// </summary>
@@ -28,6 +29,7 @@ public class AmbiencePlayer : MonoBehaviour
     private float[] nextTimes = new float[0];
     private int[] lastClips = new int[0];
     private bool stopped;
+    private bool leaving;
 
     /// <summary>Switch to the ambience of the room with this GameObject name.</summary>
     public static void SetRoom(string roomName)
@@ -41,6 +43,17 @@ public class AmbiencePlayer : MonoBehaviour
             instance.library = library;
         }
         instance.ChangeRoom(roomName);
+    }
+
+    /// <summary>The player is moving rooms: quickly fade out the room's one-shots and play no new ones until
+    /// <see cref="SetRoom"/>. Safe to call when nothing is playing.</summary>
+    public static void LeaveRoom()
+    {
+        if (instance == null)
+            return;
+        instance.leaving = true;
+        foreach (Voice voice in instance.voices)
+            voice.FadeOut(instance.library.roomExitFade);
     }
 
     /// <summary>Fade all ambience out for good (the ending). Safe to call when nothing is playing.</summary>
@@ -66,6 +79,7 @@ public class AmbiencePlayer : MonoBehaviour
         if (stopped)
             return;
 
+        leaving = false;
         RoomAmbience room = library.Get(roomName);
         if (room == currentRoom)
             return;
@@ -125,7 +139,7 @@ public class AmbiencePlayer : MonoBehaviour
             }
         }
 
-        if (stopped || currentRoom == null)
+        if (stopped || leaving || currentRoom == null)
             return;
 
         for (int i = 0; i < nextTimes.Length; i++)

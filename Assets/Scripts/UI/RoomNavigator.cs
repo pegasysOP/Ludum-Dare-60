@@ -36,8 +36,9 @@ public class RoomNavigator : MonoBehaviour
         if (moveSequence.IsActive() || target < 0 || target >= rooms.childCount)
             return;
 
-        // three footsteps on carpet while the screen is black
+        // three footsteps on carpet while the screen is black, and the room you're leaving goes quiet
         sounds.roomMove.Play();
+        AmbiencePlayer.LeaveRoom();
 
         // black out, jump the camera, then fade back so the seams between rooms never show
         fade.blocksRaycasts = true;
