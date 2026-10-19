@@ -57,8 +57,8 @@ public class DesktopMail : MonoBehaviour
             AllRead?.Invoke();
 
         subjectText.text = email.subject;
-        fromText.text = "From: " + email.from;
-        dateText.text = "Received: " + email.date;
+        fromText.text = email.sent ? "To: " + email.to : "From: " + email.from;
+        dateText.text = (email.sent ? "Sent: " : "Received: ") + email.date;
         bodyText.text = email.body;
 
         listView.SetActive(false);

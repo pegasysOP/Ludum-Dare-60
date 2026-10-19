@@ -116,4 +116,7 @@ public class Email
     public string date;
     [TextArea(3, 12)] public string body;
     public bool read;
+    // one the owner sent rather than received, shown with who it went to
+    public bool sent;
+    public string to;
 }

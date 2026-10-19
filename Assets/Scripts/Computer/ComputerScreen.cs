@@ -27,6 +27,10 @@ public class ComputerScreen : MonoBehaviour
     public Image userPicture;
     public TextMeshProUGUI userNameText;
     public TextMeshProUGUI userTitleText;
+    // the login card shows the same person waiting to be signed in
+    public Image loginPicture;
+    public TextMeshProUGUI loginNameText;
+    public TextMeshProUGUI loginTitleText;
 
     private string password = "12aa23dca19z88";
 
@@ -56,6 +60,13 @@ public class ComputerScreen : MonoBehaviour
             userNameText.text = user.characterName;
             userTitleText.text = user.jobTitle;
             userPicture.sprite = user.headshot;
+
+            if (loginPicture != null)
+            {
+                loginPicture.sprite = user.headshot;
+                loginNameText.text = user.characterName;
+                loginTitleText.text = user.jobTitle;
+            }
         }
 
         if(insertCDButton != null)
