@@ -227,11 +227,11 @@ MonoBehaviour:
     character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
   - text: I've been here three nights straight.
     character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+  - text: We're moving everything over to network file transfers. *ugh*
+    character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
   - text: Mind if I take a look around?
     character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
-  - text: Go ahead. My PC's right here.
-    character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
-  - text: It's got one of the last CD drives in the building, if that's useful.
+  - text: Go ahead. My PC's right here. Still has a CD player too, IT hasn't got around to replacing it yet.
     character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
   repeatableLine:
     text: That CD drive is older than some of our interns.
