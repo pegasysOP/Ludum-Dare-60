@@ -230,7 +230,7 @@ MonoBehaviour:
   - text: Mind if I take a look around?
     character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
   - text: Go ahead. My PC's right here.
-    character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
+    character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
   - text: It's got one of the last CD drives in the building, if that's useful.
     character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
   repeatableLine:
