@@ -15,6 +15,9 @@ public abstract class Interactable : MonoBehaviour, IPointerDownHandler, IPointe
     // interactables with their own click sound (paper, footsteps) turn the generic select off
     protected virtual bool PlaysSelectSound => true;
 
+    // some only count as looked at once you've found what they're hiding, and mark themselves
+    protected virtual bool MarkUsedOnClick => true;
+
     public virtual void Awake()
     {
         spriteOutline = GetComponent<SpriteOutline>();
@@ -26,8 +29,14 @@ public abstract class Interactable : MonoBehaviour, IPointerDownHandler, IPointe
     {
         if (PlaysSelectSound)
             interactSounds?.select.Play();
-        spriteOutline?.MarkUsed();
+        if (MarkUsedOnClick)
+            MarkUsed();
         OnPointerDown(eventData);
+    }
+
+    protected void MarkUsed()
+    {
+        spriteOutline?.MarkUsed();
     }
 
     public void OnPointerEnter(PointerEventData eventData)

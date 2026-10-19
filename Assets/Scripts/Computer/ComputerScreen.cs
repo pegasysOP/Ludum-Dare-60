@@ -20,6 +20,14 @@ public class ComputerScreen : MonoBehaviour
     public Button insertCDButton;
     public GameObject ReportGameObject;
 
+    [Header("Taskbar")]
+    // whoever this pc belongs to, shown signed in on the taskbar once logged in
+    public Character user;
+    public GameObject userBadge;
+    public Image userPicture;
+    public TextMeshProUGUI userNameText;
+    public TextMeshProUGUI userTitleText;
+
     private string password = "12aa23dca19z88";
 
     private ComputerSfxLibrary sounds;
@@ -43,6 +51,13 @@ public class ComputerScreen : MonoBehaviour
         passwordField.onSubmit.AddListener(_ => TryLogin());
         passwordField.onValueChanged.AddListener(OnPasswordTyped);
         powerButton.onClick.AddListener(Close);
+        if (user != null)
+        {
+            userNameText.text = user.characterName;
+            userTitleText.text = user.jobTitle;
+            userPicture.sprite = user.headshot;
+        }
+
         if(insertCDButton != null)
         {
             insertCDButton.onClick.AddListener(CheckCD);
@@ -66,6 +81,8 @@ public class ComputerScreen : MonoBehaviour
 
         login.SetActive(!loggedIn);
         desktop.SetActive(loggedIn);
+        if (userBadge != null)
+            userBadge.SetActive(loggedIn);
         passwordField.text = "";
         wrongPasswordText.SetActive(false);
         RefreshInsertCD();
@@ -130,6 +147,7 @@ public class ComputerScreen : MonoBehaviour
             insertCDButton.gameObject.SetActive(false);
             //TODO: Add a loading icon and wait then show? 
             ReportGameObject.gameObject.SetActive(true);
+            ReportGameObject.transform.SetAsLastSibling();
             GameManager.Instance.ActivateUsedCDFlag();
             GameMusicGuy.SetMood(GameMood.Yellow);
         }   
@@ -163,6 +181,8 @@ public class ComputerScreen : MonoBehaviour
             sounds.boot.Play();
             login.SetActive(false);
             desktop.SetActive(true);
+            if (userBadge != null)
+                userBadge.SetActive(true);
             RefreshInsertCD();
             return;
         }
