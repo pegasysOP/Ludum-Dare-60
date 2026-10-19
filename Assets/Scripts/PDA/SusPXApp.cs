@@ -23,6 +23,8 @@ public class SusPXApp : MonoBehaviour, IAppContent
     private string reportLabel;
     private bool confirmingReport = false;
 
+    private GameMood currentMood;
+
     private void Awake()
     {
         sounds = PhoneSfxLibrary.Load();
@@ -51,12 +53,17 @@ public class SusPXApp : MonoBehaviour, IAppContent
         return true;
     }
 
-    public void OnAppOpened() { }
+    public void OnAppOpened()
+    {
+        currentMood = GameMusicGuy.CurrentMood;
+        GameMusicGuy.SetMood(GameMood.Red);
+    }
 
     public void OnAppClosed()
     {
         detailView.SetActive(false);
         ResetReport();
+        GameMusicGuy.SetMood(currentMood);
     }
 
     private void ShowSuspect(SuspectCard row, Character suspect)
