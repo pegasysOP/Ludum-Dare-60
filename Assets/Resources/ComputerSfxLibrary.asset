@@ -117,3 +117,33 @@ MonoBehaviour:
     gain: 0.4
     volumeJitter: 0
     useFocusMixerGroup: 0
+  monitorOn:
+    clips:
+    - _clip: {fileID: 8300000, guid: 138441631e7e9498b8aa1ae16b2dc556, type: 3}
+      _volume: 1
+      _delay: 0
+    pitchMin: 1
+    pitchMax: 1
+    gain: 0.8
+    volumeJitter: 0
+    useFocusMixerGroup: 0
+  monitorOff:
+    clips:
+    - _clip: {fileID: 8300000, guid: 28fba9ccf141349c088cf02e5627d50b, type: 3}
+      _volume: 1
+      _delay: 0
+    pitchMin: 1
+    pitchMax: 1
+    gain: 0.84
+    volumeJitter: 0
+    useFocusMixerGroup: 0
+  footageTune:
+    clips:
+    - _clip: {fileID: 8300000, guid: 340d94c2581bb4e9bad61433f39d272f, type: 3}
+      _volume: 1
+      _delay: 0
+    pitchMin: 0.97
+    pitchMax: 1.03
+    gain: 0.4
+    volumeJitter: 0.05
+    useFocusMixerGroup: 0

@@ -10,6 +10,11 @@ public class FlavourTextInteractable : Interactable
 
     public float characterDelay = 0.1f;
 
+    [Tooltip("Tap the fish tank glass instead of the generic select click.")]
+    [SerializeField] private bool fishTankTap;
+
+    protected override bool PlaysSelectSound => !fishTankTap || interactSounds == null || !interactSounds.fishTap.HasAnyClip;
+
     public void Start()
     {
         dialogManager = FindAnyObjectByType<DialogManager>();
@@ -19,6 +24,8 @@ public class FlavourTextInteractable : Interactable
 
     public override void OnPointerDown(PointerEventData eventData)
     {
+        if (!PlaysSelectSound)
+            interactSounds.fishTap.Play();
         List<DialogLine> list = new List<DialogLine> { new DialogLine(flavourText) };
         dialogManager.AddDialogueLines(list, characterDelay);
         dialogManager.PlayDialog();

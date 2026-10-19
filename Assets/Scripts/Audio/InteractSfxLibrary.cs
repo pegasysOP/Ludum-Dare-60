@@ -23,6 +23,10 @@ public class InteractSfxLibrary : ScriptableObject
     public SfxBank paperOpen = new SfxBank();
     public SfxBank paperClose = new SfxBank();
 
+    [Header("Objects")]
+    [Tooltip("Tapping the fish tank glass in Security. Falls back to Select while empty.")]
+    public SfxBank fishTap = new SfxBank();
+
     [Header("Moving")]
     [Tooltip("Three footsteps on carpet while the camera slides to the next room.")]
     public SfxBank roomMove = new SfxBank();
@@ -43,6 +47,7 @@ public class InteractSfxLibrary : ScriptableObject
         yield return new KeyValuePair<string, SfxBank>("Item Get", itemGet);
         yield return new KeyValuePair<string, SfxBank>("Paper Open", paperOpen);
         yield return new KeyValuePair<string, SfxBank>("Paper Close", paperClose);
+        yield return new KeyValuePair<string, SfxBank>("Fish Tap", fishTap);
         yield return new KeyValuePair<string, SfxBank>("Room Move", roomMove);
     }
 }

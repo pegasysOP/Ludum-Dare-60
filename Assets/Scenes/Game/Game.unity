@@ -725,6 +725,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FlavourTextInteractable
   flavourText: I have no idea what this is and at this point i'm too afraid to ask
   characterDelay: 0.05
+  fishTankTap: 1
 --- !u!212 &238187137
 SpriteRenderer:
   serializedVersion: 3
@@ -1528,6 +1529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FlavourTextInteractable
   flavourText: Looking at the pie chart, it's clear that the majority far exceeds the minority
   characterDelay: 0.05
+  fishTankTap: 0
 --- !u!212 &816783144
 SpriteRenderer:
   serializedVersion: 3
@@ -2859,6 +2861,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FlavourTextInteractable
   flavourText: Hold up! Is this someone's pants?
   characterDelay: 0.1
+  fishTankTap: 0
 --- !u!61 &1281169601
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3610,6 +3613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FlavourTextInteractable
   flavourText: It's a cute family photo
   characterDelay: 0.05
+  fishTankTap: 0
 --- !u!114 &1786494483
 MonoBehaviour:
   m_ObjectHideFlags: 0

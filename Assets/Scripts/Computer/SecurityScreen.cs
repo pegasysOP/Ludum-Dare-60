@@ -83,7 +83,7 @@ public class SecurityScreen : MonoBehaviour
         SetView(footageView, false, 0f);
         ShowListStatus();
 
-        sounds.wake.Play();
+        (sounds.monitorOn.HasAnyClip ? sounds.monitorOn : sounds.wake).Play();
         sequence = DOTween.Sequence().Append(screenGroup.DOFade(1f, 0.4f));
     }
 
@@ -103,7 +103,7 @@ public class SecurityScreen : MonoBehaviour
 
         sequence?.Kill();
         screenGroup.blocksRaycasts = false;
-        sounds.shutdown.Play();
+        (sounds.monitorOff.HasAnyClip ? sounds.monitorOff : sounds.shutdown).Play();
 
         // monitor goes black, then the whole screen flies off the top, same as the office computers
         sequence = DOTween.Sequence()
@@ -130,6 +130,7 @@ public class SecurityScreen : MonoBehaviour
         SetView(footageView, true, 0.15f);
 
         // picture tunes in from black
+        sounds.footageTune.Play();
         footage.DOKill();
         footage.color = Color.black;
         footage.DOColor(Color.white, 0.35f).SetEase(Ease.OutQuad);

@@ -21,6 +21,14 @@ public class ComputerSfxLibrary : ScriptableObject
     public SfxBank boot = new SfxBank();
     public SfxBank cdInsert = new SfxBank();
 
+    [Header("Security")]
+    [Tooltip("The CCTV terminal powers on. Falls back to Wake while empty.")]
+    public SfxBank monitorOn = new SfxBank();
+    [Tooltip("The CCTV terminal powers off. Falls back to Shutdown while empty.")]
+    public SfxBank monitorOff = new SfxBank();
+    [Tooltip("A CCTV recording tunes in from black.")]
+    public SfxBank footageTune = new SfxBank();
+
     private void OnEnable()
     {
         // Every phone sound goes to the Phone mixer group, so it stays clear while the world is muffled.
@@ -47,6 +55,9 @@ public class ComputerSfxLibrary : ScriptableObject
         yield return new KeyValuePair<string, SfxBank>("Fan", fan);
         yield return new KeyValuePair<string, SfxBank>("Boot", boot);
         yield return new KeyValuePair<string, SfxBank>("CD Insert", cdInsert);
+        yield return new KeyValuePair<string, SfxBank>("Monitor On", monitorOn);
+        yield return new KeyValuePair<string, SfxBank>("Monitor Off", monitorOff);
+        yield return new KeyValuePair<string, SfxBank>("Footage Tune", footageTune);
     }
 
 }

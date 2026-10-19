@@ -58,6 +58,16 @@ MonoBehaviour:
     gain: 0.7
     volumeJitter: 0.05
     useFocusMixerGroup: 0
+  fishTap:
+    clips:
+    - _clip: {fileID: 8300000, guid: f2df77fdce19649dd9dd53645d497ffd, type: 3}
+      _volume: 1
+      _delay: 0
+    pitchMin: 0.95
+    pitchMax: 1.05
+    gain: 0.63
+    volumeJitter: 0.05
+    useFocusMixerGroup: 0
   roomMove:
     clips:
     - _clip: {fileID: 8300000, guid: d2400fe7063a4b6b82a8fdc58f6837af, type: 3}
