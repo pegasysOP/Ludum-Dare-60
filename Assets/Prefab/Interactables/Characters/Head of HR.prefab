@@ -108,11 +108,11 @@ MonoBehaviour:
   - text: Just a few questions.
     character: {fileID: 11400000, guid: 84e4cd08ba834598bbef8b33274bcd0c, type: 2}
   - text: Mom, if a hamster bites someone, does it get a performance review?
-    character: {fileID: 0}
+    character: {fileID: 11400000, guid: 3db87619b2f614e45b2d205329aa6892, type: 2}
   - text: We're not having this conversation again.
     character: {fileID: 11400000, guid: 65181e84e9c64dcc8477f95d0e0d485f, type: 2}
   - text: So that's a maybe?
-    character: {fileID: 0}
+    character: {fileID: 11400000, guid: 3db87619b2f614e45b2d205329aa6892, type: 2}
   - text: Please excuse me.
     character: {fileID: 11400000, guid: 65181e84e9c64dcc8477f95d0e0d485f, type: 2}
   repeatableLine:
