@@ -11,6 +11,9 @@ public class RoomNavigator : MonoBehaviour
     public Button rightButton;
     public CanvasGroup fade;
     public float fadeDuration = 0.5f;
+    // the menu leaves on a sky wash, so the game picks up from it and clears
+    public Color arrivalColour = new Color(0.42f, 0.74f, 1f);
+    public float arrivalDuration = 0.35f;
 
     private Camera mainCamera;
     private InteractSfxLibrary sounds;
@@ -25,9 +28,28 @@ public class RoomNavigator : MonoBehaviour
         leftButton.onClick.AddListener(() => Move(-1));
         rightButton.onClick.AddListener(() => Move(1));
 
-        fade.alpha = 0f;
-        fade.blocksRaycasts = false;
         ShowRoom(startRoom);
+        Arrive();
+    }
+
+    // reverse of the menu's exit: start washed out in sky blue, then clear, before the fade goes back to black for room changes
+    private void Arrive()
+    {
+        Image fadeImage = fade.GetComponent<Image>();
+        Color roomColour = fadeImage.color;
+        fadeImage.color = arrivalColour;
+        fade.alpha = 1f;
+        fade.blocksRaycasts = true;
+
+        moveSequence = DOTween.Sequence()
+            .AppendInterval(0.1f)
+            .Append(fade.DOFade(0f, arrivalDuration).SetEase(Ease.InOutSine))
+            .OnComplete(() =>
+            {
+                fade.blocksRaycasts = false;
+                fadeImage.color = roomColour;
+            })
+            .SetLink(gameObject);
     }
 
     private void Move(int direction)
