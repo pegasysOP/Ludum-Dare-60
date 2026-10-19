@@ -22,7 +22,7 @@ public class DialogManager :Interactable
 
     public CanvasGroup box;
     public CanvasGroup portrait;
-    public TextMeshProUGUI continueArrow;
+    public Image continueArrow;
     // invisible full screen blocker so clicking anywhere but the pda moves the dialog on
     public GameObject clickCatcher;
     public Color placeholderColour = Color.black;
@@ -266,7 +266,9 @@ public class DialogManager :Interactable
         if (!show)
             return;
 
-        continueArrow.alpha = 1f;
+        Color colour = continueArrow.color;
+        colour.a = 1f;
+        continueArrow.color = colour;
         continueArrow.DOFade(0.2f, 0.6f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo).SetLink(continueArrow.gameObject);
     }
 

@@ -121,6 +121,7 @@ public class ComputerScreen : MonoBehaviour
         {
             Debug.Log("CD inserted");
             sounds.cdInsert.Play();
+            CDPopup.PlayInserted();
             insertCDButton.gameObject.SetActive(false);
             //TODO: Add a loading icon and wait then show? 
             ReportGameObject.gameObject.SetActive(true);

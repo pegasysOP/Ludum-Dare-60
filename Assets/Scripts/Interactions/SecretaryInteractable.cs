@@ -8,6 +8,9 @@ public class SecretaryInteractable : Interactable
 
     public DialogLine repeatableLine;
 
+    // the line where the CD gets handed over, it shows on screen as that line starts
+    public int cdLineIndex = 2;
+
     DialogManager dialogManager;
 
     public void Start()
@@ -21,6 +24,10 @@ public class SecretaryInteractable : Interactable
         {
             dialogLinesWithCharacterInfo[^1].onLineCompleted = OnFinalLineCompleted;
         }
+        if (!GameManager.Instance.HasCD() && cdLineIndex > 0 && cdLineIndex < dialogLinesWithCharacterInfo.Count)
+        {
+            dialogLinesWithCharacterInfo[cdLineIndex - 1].onLineCompleted = OnCDHandedOver;
+        }
         dialogManager.AddDialogueLines(dialogLinesWithCharacterInfo);
         dialogManager.PlayDialog();
     }
@@ -30,11 +37,14 @@ public class SecretaryInteractable : Interactable
         Debug.Log("SecretaryInteractable OnPointerUp");
     }
     
+    private void OnCDHandedOver()
+    {
+        interactSounds.itemGet.Play();
+        CDPopup.PlayReceived();
+    }
+
     private void OnFinalLineCompleted()
     {
-        // the repeatable line also lands here, so only chime the first time
-        if (!GameManager.Instance.HasCD())
-            interactSounds.itemGet.Play();
         GameManager.Instance.ActivateGotCDFlag();
         
         dialogLinesWithCharacterInfo.Clear();
