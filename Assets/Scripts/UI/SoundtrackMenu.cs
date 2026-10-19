@@ -1,210 +1,232 @@
+using System;
+using System.Collections.Generic;
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 public class SoundtrackMenu : MonoBehaviour
 {
-    public Button previousSongButton;
-    public Button playSongButton;
-    public Button nextSongButton;
-    public Button menuButton; 
     public MusicLibrary musicLibrary;
 
-    public Slider clipScrubberSlider;
+    [Header("Tracklist")]
+    public SoundtrackRow rowTemplate;
+    public RectTransform list;
+    public TextMeshProUGUI countText;
 
-    bool isPlaying = false;
+    [Header("Player")]
+    public TextMeshProUGUI titleText;
+    public TextMeshProUGUI numberText;
+    public RectTransform disc;
+    public Slider scrubber;
+    public TextMeshProUGUI currentTimeText;
+    public TextMeshProUGUI totalTimeText;
+    public Button previousButton;
+    public Button playButton;
+    public Button nextButton;
+    public Image playIcon;
+    public Sprite playSprite;
+    public Sprite pauseSprite;
+    public float discSpinSpeed = 90f;
+
+    [Header("Screen")]
+    public Button menuButton;
+    // sky wash the menu leaves on, lifted on the way in and brought back on the way out
+    public CanvasGroup fade;
+    // faded and slid up one after another as the wash lifts
+    public CanvasGroup[] entrance;
+    public float stagger = 0.08f;
 
     private MusicTrack[] tracks;
-
-    //We probably want to add the image to the MusicTrack itself. 
-    //We also probably want to dynamically create each Song Game Object rather than do it this way. 
-    public GameObject[] songContainerGameObjects;
-
-    public GameObject playlistContainer;
-    public GameObject songContainerPrefab;
-
-
-    //FIXME: SoundtrackMenu shouldn't be keeping track of index itself; it should query the MusicManager for the currently playing track.
+    private readonly List<SoundtrackRow> rows = new List<SoundtrackRow>();
     private int currentIndex = 0;
+    private bool userPaused = true;
+    private bool wasPlaying = false;
+    private bool leaving = false;
+    private UiSfxLibrary uiSounds;
+    private PhoneSfxLibrary sounds;
+    private SmoothScrollRect scroll;
 
     private void Awake()
     {
-        AddListeners();
-
-        tracks = (MusicTrack[])Enum.GetValues(typeof(MusicTrack));
-        songContainerGameObjects = new GameObject[tracks.Length];
-
         if (musicLibrary == null)
             musicLibrary = Resources.Load<MusicLibrary>("MusicLibrary");
-    }
 
-    private void AddListeners()
-    {
-        previousSongButton.onClick.AddListener(OnPreviousSongClicked);
-        playSongButton.onClick.AddListener(OnPlaySongClicked);
-        nextSongButton.onClick.AddListener(OnNextSongClicked);
-        menuButton.onClick.AddListener(SceneUtils.LoadMenuScene);
+        uiSounds = UiSfxLibrary.Load();
+        sounds = PhoneSfxLibrary.Load();
+        tracks = (MusicTrack[])Enum.GetValues(typeof(MusicTrack));
+        scroll = list.GetComponentInParent<SmoothScrollRect>();
 
-        // the menu button loads a scene straight away, which would cut its click off
-        UiSfxLibrary uiSounds = UiSfxLibrary.Load();
-        if (uiSounds != null)
+        previousButton.onClick.AddListener(OnPreviousClicked);
+        playButton.onClick.AddListener(OnPlayClicked);
+        nextButton.onClick.AddListener(OnNextClicked);
+        menuButton.onClick.AddListener(OnMenuClicked);
+        scrubber.onValueChanged.AddListener(OnScrubbed);
+
+        rowTemplate.gameObject.SetActive(false);
+        for (int i = 0; i < tracks.Length; i++)
         {
-            previousSongButton.onClick.AddListener(uiSounds.buttonPress.Play);
-            playSongButton.onClick.AddListener(uiSounds.buttonPress.Play);
-            nextSongButton.onClick.AddListener(uiSounds.buttonPress.Play);
+            int index = i;
+            SoundtrackRow row = Instantiate(rowTemplate, list);
+            row.gameObject.SetActive(true);
+            row.Show(i + 1, musicLibrary.GetDisplayText(tracks[i]), musicLibrary.Get(tracks[i]));
+            row.button.onClick.AddListener(() => OnRowClicked(index));
+            rows.Add(row);
         }
+        countText.text = tracks.Length + " tracks";
 
-        if (clipScrubberSlider != null)
-            clipScrubberSlider.onValueChanged.AddListener(OnScrubberValueChanged);
+        fade.alpha = 1f;
+        fade.blocksRaycasts = true;
+        foreach (CanvasGroup group in entrance)
+            group.alpha = 0f;
+
+        ShowTrack();
     }
 
     private void Start()
     {
-        foreach (MusicTrack track in tracks)
+        Sequence intro = DOTween.Sequence().SetLink(gameObject);
+        intro.Append(fade.DOFade(0f, 0.4f).SetEase(Ease.InOutSine));
+        intro.AppendCallback(() => fade.blocksRaycasts = false);
+
+        for (int i = 0; i < entrance.Length; i++)
         {
-            GameObject songContainer = Instantiate(songContainerPrefab, playlistContainer.transform);
-            songContainer.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = musicLibrary.entries[Array.IndexOf(tracks, track)].displayText;
-            songContainer.GetComponentInChildren<Image>().sprite = musicLibrary.entries[Array.IndexOf(tracks, track)].sprite;
-            songContainer.GetComponentInChildren<PulseText>().enabled = false;
-            songContainerGameObjects[Array.IndexOf(tracks, track)] = songContainer;
-        }
-    }
-    
-    private void OnPreviousSongClicked()
-    {
-        if (musicLibrary == null)
-        {
-            Debug.LogWarning("SoundtrackMenu: no MusicLibrary assigned.");
-            return;
-        }
+            RectTransform rect = (RectTransform)entrance[i].transform;
+            Vector2 target = rect.anchoredPosition;
+            rect.anchoredPosition = target + Vector2.down * 24f;
 
-        if (currentIndex > 0)
-        {
-            currentIndex--;
-            FlashCurrentSong();
-            PlayCurrentIndex();
-            return;
-        }
-
-        // At first track: restart the current song from the start.
-        //TODO: Should this just wrap around to the last song instead? 
-        PlayCurrentIndex(restart: true);
-        
-    }
-
-    private void OnPlaySongClicked()
-    {
-        if (musicLibrary == null)
-        {
-            Debug.LogWarning("SoundtrackMenu: no MusicLibrary assigned.");
-            return;
-        }
-        if (isPlaying)
-        {
-            isPlaying = false;
-            MusicManager.Instance.PauseMusic();
-            playSongButton.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "||";
-        }
-        else
-        {
-            PlayCurrentIndex();
-            isPlaying = true;
-            playSongButton.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "D";
-        }
-
-        FlashCurrentSong();
-    }
-
-    private void OnNextSongClicked()
-    {
-        if (musicLibrary == null)
-        {
-            Debug.LogWarning("SoundtrackMenu: no MusicLibrary assigned.");
-            return;
-        }
-
-        currentIndex++;
-        currentIndex %= tracks.Length;
-        FlashCurrentSong();
-        PlayCurrentIndex();
-        return;
-    }
-
-    private void PlayCurrentIndex(bool restart = false)
-    {
-        if (musicLibrary == null) return;
-        
-        AudioClip clip = musicLibrary.Get(tracks[currentIndex]);
-
-        if (clip == null)
-        {
-            Debug.LogWarning($"SoundtrackMenu: clip for track {tracks[currentIndex]} is not assigned.");
-            return;
-        }
-
-        if (MusicManager.Instance == null)
-        {
-            Debug.LogWarning("SoundtrackMenu: no MusicManager present in scene.");
-            return;
-        }
-
-        MusicManager.Instance.PlayMusic(clip);
-
-        if (restart)
-        {
-            MusicManager.Instance.RestartActive();
+            float at = 0.15f + i * stagger;
+            intro.Insert(at, entrance[i].DOFade(1f, 0.4f));
+            intro.Insert(at, rect.DOAnchorPos(target, 0.5f).SetEase(Ease.OutCubic));
         }
     }
 
     private void Update()
     {
-        ScrubMusicScrubber();
+        MusicManager music = MusicManager.Instance;
+        AudioClip clip = CurrentClip;
+        bool ours = music != null && clip != null && music.CurrentClip == clip;
+        bool playing = ours && music.IsMusicPlaying;
+
+        // one shot tracks stop at the end, so carry on to the next like an album would
+        if (wasPlaying && !playing && !userPaused)
+            PlayTrack((currentIndex + 1) % tracks.Length);
+        wasPlaying = playing;
+
+        playIcon.sprite = playing ? pauseSprite : playSprite;
+        if (playing)
+            disc.Rotate(0f, 0f, -discSpinSpeed * Time.deltaTime);
+
+        float length = clip != null ? clip.length : 0f;
+        float time = ours ? music.CurrentTimeSamples / (float)clip.frequency : 0f;
+        scrubber.interactable = ours;
+        scrubber.SetValueWithoutNotify(length > 0f ? Mathf.Clamp01(time / length) : 0f);
+        currentTimeText.text = FormatTime(time);
+        totalTimeText.text = FormatTime(length);
     }
 
-    private void ScrubMusicScrubber()
+    private AudioClip CurrentClip => musicLibrary != null ? musicLibrary.Get(tracks[currentIndex]) : null;
+
+    private void OnRowClicked(int index)
     {
-        if (clipScrubberSlider == null || MusicManager.Instance == null)
+        Click();
+        PlayTrack(index);
+    }
+
+    private void OnPlayClicked()
+    {
+        Click();
+        MusicManager music = MusicManager.Instance;
+        if (music == null)
             return;
 
-        AudioClip clip = MusicManager.Instance.CurrentClip;
-        if (clip == null)
+        if (music.CurrentClip == CurrentClip && music.IsMusicPlaying)
         {
-            clipScrubberSlider.SetValueWithoutNotify(0f);
-            clipScrubberSlider.interactable = false;
+            music.PauseMusic();
+            userPaused = true;
             return;
         }
 
-        clipScrubberSlider.interactable = true;
-        float duration = clip.length;
-        float t = 0f;
-        if (duration > 0f)
-            t = Mathf.Clamp01(MusicManager.Instance.CurrentTime / duration);
-
-        clipScrubberSlider.SetValueWithoutNotify(t);
+        PlayTrack(currentIndex);
     }
 
-    private void FlashCurrentSong()
+    private void OnPreviousClicked()
     {
-        for (int i = 0; i < songContainerGameObjects.Length; i++)
+        Click();
+        PlayTrack((currentIndex - 1 + tracks.Length) % tracks.Length);
+    }
+
+    private void OnNextClicked()
+    {
+        Click();
+        PlayTrack((currentIndex + 1) % tracks.Length);
+    }
+
+    // picks up where it left off if that track is just paused
+    private void PlayTrack(int index)
+    {
+        currentIndex = index;
+        ShowTrack();
+        // skipping can land on a song scrolled out of view
+        if (scroll != null)
+            scroll.ScrollToShow((RectTransform)rows[index].transform);
+
+        MusicManager music = MusicManager.Instance;
+        AudioClip clip = CurrentClip;
+        if (music == null || clip == null)
         {
-            if (i == currentIndex)
-            {
-                songContainerGameObjects[i].GetComponentInChildren<PulseText>().enabled = true;
-            }
-            else
-            {
-                songContainerGameObjects[i].GetComponentInChildren<PulseText>().enabled = false;
-            }
+            Debug.LogWarning($"SoundtrackMenu: can't play {tracks[index]}, no MusicManager or clip.");
+            userPaused = true;
+            return;
         }
+
+        if (music.CurrentClip == clip && !music.IsMusicPlaying)
+            music.UnPauseMusic();
+        else
+            music.PlayMusic(clip);
+
+        userPaused = false;
     }
 
-    private void OnScrubberValueChanged(float value)
+    private void ShowTrack()
     {
-        if (MusicManager.Instance == null) return;
-        AudioClip clip = MusicManager.Instance.CurrentClip;
-        if (clip == null) return;
+        titleText.text = musicLibrary.GetDisplayText(tracks[currentIndex]);
+        numberText.text = $"Track {currentIndex + 1} of {tracks.Length}";
+        for (int i = 0; i < rows.Count; i++)
+            rows[i].SetCurrent(i == currentIndex);
+    }
 
-        float time = Mathf.Clamp01(value) * clip.length;
-        MusicManager.Instance.SeekActive(time);
+    private void OnScrubbed(float value)
+    {
+        MusicManager music = MusicManager.Instance;
+        AudioClip clip = CurrentClip;
+        if (music == null || clip == null || music.CurrentClip != clip)
+            return;
+
+        music.SeekActive(Mathf.Clamp01(value) * clip.length);
+    }
+
+    private void Click()
+    {
+        if (uiSounds != null)
+            uiSounds.buttonPress.Play();
+    }
+
+    // sky wash back over everything before the menu loads, so the click isn't cut off
+    private void OnMenuClicked()
+    {
+        if (leaving)
+            return;
+
+        leaving = true;
+        sounds.tap.Play();
+        fade.blocksRaycasts = true;
+        fade.DOFade(1f, 0.3f).SetEase(Ease.InOutSine).SetLink(gameObject).OnComplete(SceneUtils.LoadMenuScene);
+    }
+
+    public static string FormatTime(float seconds)
+    {
+        int total = Mathf.FloorToInt(seconds);
+        return $"{total / 60}:{total % 60:00}";
     }
 }

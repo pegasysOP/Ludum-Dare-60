@@ -367,7 +367,9 @@ public class MusicManager : MonoBehaviour
     {
         if (activeSource == null) return;
         if (activeSource.clip == null) return;
-        activeSource.time = Mathf.Clamp(timeSeconds, 0f, activeSource.clip.length);
+        // the clip's full length is one past the last sample, which Unity rejects as a seek
+        AudioClip clip = activeSource.clip;
+        activeSource.timeSamples = Mathf.Clamp(Mathf.FloorToInt(timeSeconds * clip.frequency), 0, clip.samples - 1);
     }
 
     /// <summary>

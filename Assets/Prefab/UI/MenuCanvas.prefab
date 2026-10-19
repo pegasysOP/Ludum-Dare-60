@@ -1242,7 +1242,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3916090552149853100, guid: b627d6dc135d4a94b1a58679f35cfe12, type: 3}
       propertyPath: m_text
-      value: SOUNDTRACK
+      value: SOUNDTRACKS
       objectReference: {fileID: 0}
     - target: {fileID: 6960600716205613279, guid: b627d6dc135d4a94b1a58679f35cfe12, type: 3}
       propertyPath: m_Colors.m_NormalColor.r
