@@ -522,7 +522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PerformanceReviewInteractable
   dialogLinesWithCharacterInfo:
-  - text: Notice - Final Warning
+  - text: Internship Performance Review - Final Warning
     character: {fileID: 0}
   - text: Productivity - Needs Improvement
     character: {fileID: 0}
@@ -531,6 +531,6 @@ MonoBehaviour:
   - text: 'Dress Sense - Lacking '
     character: {fileID: 0}
   repeatableLine:
-    text: Your next review is in one month
+    text: Tyler, your next review is in one month
     character: {fileID: 0}
   performanceCanvas: {fileID: 0}
