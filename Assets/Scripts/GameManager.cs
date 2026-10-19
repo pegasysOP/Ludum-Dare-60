@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
 
     public void TriggerEnding(Character character)
     {
-        bool isLazy = !hasCD || !usedCD || !checkedCamera || !checkedReview;
+        bool isLazy = !hasCD || !usedCD || !checkedCamera;
         EndingText endingText = FindAnyObjectByType<EndingText>();
         AmbiencePlayer.FadeOut();
         // the lazy ending is a lost case too, so it shares the bad ending music
