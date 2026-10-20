@@ -114,6 +114,8 @@ public class MusicManager : MonoBehaviour
     private AudioSource twinA, twinB;
     private MusicLibrary loopLibrary;
     private int pausedLoopSample = -1;
+    // a paused source can report its position as 0, so a plain (non-loop) track remembers where it stopped
+    private int pausedSample = -1;
     private Coroutine routine;
     private Coroutine prewarmRoutine;
 
@@ -312,7 +314,10 @@ public class MusicManager : MonoBehaviour
             return;
         }
         if (activeSource.isPlaying)
+        {
+            pausedSample = activeSource.timeSamples;
             activeSource.Pause();
+        }
     }
 
     /// <summary>
@@ -332,6 +337,13 @@ public class MusicManager : MonoBehaviour
             StartSource(activeSource, st.clip, from);
             return;
         }
+        if (pausedSample >= 0 && activeSource.clip != null)
+        {
+            activeSource.timeSamples = pausedSample;
+            pausedSample = -1;
+            activeSource.Play();
+            return;
+        }
         if (activeSource.clip != null && !activeSource.isPlaying)
             activeSource.UnPause();
     }
@@ -347,7 +359,8 @@ public class MusicManager : MonoBehaviour
         get
         {
             if (activeSource == null) return 0;
-            if (loops.TryGetValue(activeSource, out LoopState st)) return st.playing.timeSamples;
+            if (loops.TryGetValue(activeSource, out LoopState st)) return pausedLoopSample >= 0 ? pausedLoopSample : st.playing.timeSamples;
+            if (pausedSample >= 0) return pausedSample;
             return activeSource.clip != null ? activeSource.timeSamples : 0;
         }
     }
@@ -398,6 +411,8 @@ public class MusicManager : MonoBehaviour
                 StartSource(activeSource, clip, sample);
             return;
         }
+        if (pausedSample >= 0)
+            pausedSample = sample;
         activeSource.timeSamples = sample;
     }
 
@@ -524,6 +539,7 @@ public class MusicManager : MonoBehaviour
     private void StartSource(AudioSource src, AudioClip clip, int fromSample = 0, bool playThrough = false)
     {
         StopSource(src);
+        pausedSample = -1;
         src.clip = clip;
         if (!playThrough && loopLibrary != null && loopLibrary.TryGetLoopRegion(clip, out int ls, out int le) && le <= clip.samples)
         {
@@ -587,6 +603,7 @@ public class MusicManager : MonoBehaviour
         if (sourceA != null) { StopSource(sourceA); sourceA.volume = 0f; sourceA.clip = null; }
         if (sourceB != null) { StopSource(sourceB); sourceB.volume = 0f; sourceB.clip = null; }
         pausedLoopSample = -1;
+        pausedSample = -1;
     }
 
     private void ResetDebug()
