@@ -122,8 +122,6 @@ public class DialogManager :Interactable
                 characterImage.color = characterImage.sprite != null ? Color.white : placeholderColour;
             }
             ShowPortrait(character != null);
-            // narration has the box to itself, so it sits in the middle
-            dialogText.alignment = character != null ? TextAlignmentOptions.TopLeft : TextAlignmentOptions.Center;
 
             if (boxOpen)
                 Sfx.Advance();
@@ -143,7 +141,7 @@ public class DialogManager :Interactable
             }
 
             dialogText.text = line;
-            dialogText.ForceMeshUpdate();
+            AlignText(character != null);
             dialogText.maxVisibleCharacters = 0;
             ShowContinue(false);
             typingCoroutine = StartCoroutine(AddCharactersOneByOne());
@@ -158,6 +156,36 @@ public class DialogManager :Interactable
         this.speed = dialogSpeed;
         Debug.Log("Added " + dialogLinesWithCharacterInfo.Count + " lines of dialog.");
         currentLine = 0;
+    }
+
+    // speakers read from the top left, narration has the box to itself so it sits in the middle
+    private void AlignText(bool speaking)
+    {
+        dialogText.margin = Vector4.zero;
+        if (speaking)
+        {
+            dialogText.alignment = TextAlignmentOptions.TopLeft;
+            dialogText.ForceMeshUpdate();
+            return;
+        }
+
+        // the portrait may have just left the layout, and the text has to wrap at its final width
+        LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)box.transform);
+
+        // tmp centres on the lines typed so far, so the block would jump up each new line:
+        // find where the whole text sits centred, then hold it there top aligned
+        dialogText.maxVisibleCharacters = int.MaxValue;
+        dialogText.alignment = TextAlignmentOptions.Center;
+        dialogText.ForceMeshUpdate();
+        float centredTop = dialogText.textInfo.lineInfo[0].ascender;
+
+        dialogText.alignment = TextAlignmentOptions.Top;
+        dialogText.ForceMeshUpdate();
+        float shift = dialogText.textInfo.lineInfo[0].ascender - centredTop;
+
+        // same amount off the bottom so autosizing sees the same space
+        dialogText.margin = new Vector4(0f, shift, 0f, -shift);
+        dialogText.ForceMeshUpdate();
     }
 
     private IEnumerator AddCharactersOneByOne()
