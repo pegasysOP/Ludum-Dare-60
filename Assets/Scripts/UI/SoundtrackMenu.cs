@@ -57,6 +57,8 @@ public class SoundtrackMenu : MonoBehaviour
     private bool wasPlaying = false;
     private bool leaving = false;
     private bool scrubbing = false;
+    // where the current track starts from when it isn't loaded yet, so the scrubber works before first play
+    private float startTime = 0f;
     private UiSfxLibrary uiSounds;
     private PhoneSfxLibrary sounds;
     private SmoothScrollRect scroll;
@@ -139,8 +141,8 @@ public class SoundtrackMenu : MonoBehaviour
             Seek(scrubber.value);
         }
 
-        float time = ours ? music.CurrentTimeSamples / (float)clip.frequency : 0f;
-        scrubber.interactable = ours;
+        float time = ours ? music.CurrentTimeSamples / (float)clip.frequency : startTime;
+        scrubber.interactable = clip != null;
         // while dragging, the handle and time show where it'll land instead of where it's playing
         if (scrubbing)
             time = scrubber.value * length;
@@ -190,6 +192,8 @@ public class SoundtrackMenu : MonoBehaviour
     // picks up where it left off if that track is just paused
     private void PlayTrack(int index)
     {
+        if (index != currentIndex)
+            startTime = 0f;
         currentIndex = index;
         ShowTrack();
         // skipping can land on a song scrolled out of view
@@ -205,11 +209,13 @@ public class SoundtrackMenu : MonoBehaviour
             return;
         }
 
+        // straight through like an album, the in-game loop points are skipped here
         if (music.CurrentClip == clip && !music.IsMusicPlaying)
             music.UnPauseMusic();
         else
-            music.PlayMusic(clip);
+            music.PlayThrough(clip, startTime);
 
+        startTime = 0f;
         userPaused = false;
     }
 
@@ -230,8 +236,15 @@ public class SoundtrackMenu : MonoBehaviour
     {
         MusicManager music = MusicManager.Instance;
         AudioClip clip = CurrentClip;
-        if (music == null || clip == null || music.CurrentClip != clip)
+        if (clip == null)
             return;
+
+        // not loaded yet, so just remember where to start
+        if (music == null || music.CurrentClip != clip)
+        {
+            startTime = Mathf.Clamp01(value) * clip.length;
+            return;
+        }
 
         music.SeekActive(Mathf.Clamp01(value) * clip.length);
     }

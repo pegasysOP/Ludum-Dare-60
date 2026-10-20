@@ -232,6 +232,22 @@ public class MusicManager : MonoBehaviour
         if (clip == null) return;
         if (IsAlreadyPlaying(clip)) return;
 
+        PlayFullVolume(clip, 0, false);
+    }
+
+    /// <summary>
+    /// Like <see cref="PlayMusic"/>, but plays the whole clip once from <paramref name="startSeconds"/>, intro to
+    /// outro, ignoring its loop region. For the soundtrack player, where songs play like an album.
+    /// </summary>
+    public void PlayThrough(AudioClip clip, float startSeconds = 0f)
+    {
+        if (clip == null) return;
+
+        PlayFullVolume(clip, Mathf.FloorToInt(startSeconds * clip.frequency), true);
+    }
+
+    private void PlayFullVolume(AudioClip clip, int fromSample, bool playThrough)
+    {
         StopRoutine();
 
         AudioSource other = OtherSource(activeSource);
@@ -243,7 +259,7 @@ public class MusicManager : MonoBehaviour
         }
 
         activeSource.volume = TargetLinear(fullVolumeMultiplier);
-        StartSource(activeSource, clip);
+        StartSource(activeSource, clip, fromSample, playThrough);
 
         currentClipDebug = clip;
         currentModeDebug = Mode.Menu;
@@ -502,13 +518,14 @@ public class MusicManager : MonoBehaviour
     /// <summary>
     /// Start <paramref name="clip"/> on <paramref name="src"/> (volume already set by the caller). With a loop
     /// region: plays from <paramref name="fromSample"/> to the loop end, then hands over sample-accurately to the
-    /// twin playing the loop body, and so on. Without: loops the whole clip.
+    /// twin playing the loop body, and so on. Without: loops the whole clip. <paramref name="playThrough"/>
+    /// ignores both and plays the clip once to its end.
     /// </summary>
-    private void StartSource(AudioSource src, AudioClip clip, int fromSample = 0)
+    private void StartSource(AudioSource src, AudioClip clip, int fromSample = 0, bool playThrough = false)
     {
         StopSource(src);
         src.clip = clip;
-        if (loopLibrary != null && loopLibrary.TryGetLoopRegion(clip, out int ls, out int le) && le <= clip.samples)
+        if (!playThrough && loopLibrary != null && loopLibrary.TryGetLoopRegion(clip, out int ls, out int le) && le <= clip.samples)
         {
             AudioSource twin = TwinOf(src);
             int from = Mathf.Clamp(fromSample, 0, le - 1);
@@ -533,7 +550,7 @@ public class MusicManager : MonoBehaviour
             pausedLoopSample = -1;
             return;
         }
-        src.loop = loopLibrary == null || !loopLibrary.IsPlayOnce(clip);
+        src.loop = !playThrough && (loopLibrary == null || !loopLibrary.IsPlayOnce(clip));
         src.timeSamples = Mathf.Clamp(fromSample, 0, Mathf.Max(0, clip.samples - 1));
         src.Play();
     }
