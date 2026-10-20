@@ -2078,10 +2078,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.787
       objectReference: {fileID: 0}
-    - target: {fileID: 6347866149542824629, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
-      propertyPath: outlineScale
-      value: 1.05
-      objectReference: {fileID: 0}
     - target: {fileID: 6803503765090878712, guid: 15f72491bd8036f4dbf95e0bae644c32, type: 3}
       propertyPath: m_Name
       value: ProductManager

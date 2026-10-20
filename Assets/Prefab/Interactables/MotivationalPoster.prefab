@@ -140,6 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpriteOutline
   idleColour: {r: 0.1, g: 0.5, b: 1, a: 1}
   hoverColour: {r: 0.92, g: 0.16, b: 0.12, a: 1}
+  usedColour: {r: 0.4, g: 0.45, b: 0.53, a: 1}
   idleWidth: 0.03
   hoverWidth: 0.05
   gapWidth: 0.02

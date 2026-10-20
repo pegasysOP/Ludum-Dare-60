@@ -52,10 +52,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Finance
       objectReference: {fileID: 0}
-    - target: {fileID: 5019537581400960372, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
-      propertyPath: outlineScale
-      value: 1.05
-      objectReference: {fileID: 0}
     - target: {fileID: 7713581836310035169, guid: 51c262e2215000e4facbc3301b86c89e, type: 3}
       propertyPath: m_Sprite
       value: 
