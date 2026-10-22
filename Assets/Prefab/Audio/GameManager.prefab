@@ -48,7 +48,7 @@ MonoBehaviour:
   flavourText: {fileID: 0}
   internNote:
     suspect: {fileID: 11400000, guid: aff33ab34aa54fd2b0eb77c8158aa59c, type: 2}
-    text: Camera footage of suspect is on days Tyler is at College
+    text: Camera footage of suspect is on day Tyler is at College
     lean: 2
 --- !u!114 &1194877380919235758
 MonoBehaviour:
