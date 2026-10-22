@@ -12,6 +12,8 @@ public class FlavourTextInteractable : Interactable
 
     public float characterDelay = 0.1f;
 
+    bool hasAdded = false;
+
     [Tooltip("Tap the fish tank glass instead of the generic select click.")]
     [SerializeField] private bool fishTankTap;
 
@@ -35,6 +37,12 @@ public class FlavourTextInteractable : Interactable
         if(note != null && note.text.Length > 0)
         {
             SuspectNotes.Add(note);
+            if (GameManager.Instance.HasFound(Evidence.SecurityFootageTimings) && hasAdded == false)
+            {
+                //Both camera timing and college timetable have been found so add evidence;
+                SuspectNotes.Add(GameManager.Instance.internNote);
+                hasAdded = true;
+            }
         }
     }
 
