@@ -8,6 +8,8 @@ public class FlavourTextInteractable : Interactable
 
     DialogManager dialogManager;
 
+    public SuspectNote note;
+
     public float characterDelay = 0.1f;
 
     [Tooltip("Tap the fish tank glass instead of the generic select click.")]
@@ -29,6 +31,11 @@ public class FlavourTextInteractable : Interactable
         List<DialogLine> list = new List<DialogLine> { new DialogLine(flavourText) };
         dialogManager.AddDialogueLines(list, characterDelay);
         dialogManager.PlayDialog();
+        
+        if(note != null && note.text.Length > 0)
+        {
+            SuspectNotes.Add(note);
+        }
     }
 
     public override void OnPointerUp(PointerEventData eventData)

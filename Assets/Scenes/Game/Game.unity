@@ -726,6 +726,10 @@ MonoBehaviour:
   countsAsEvidence: 0
   evidence: 0
   flavourText: I have no idea what this is and at this point i'm too afraid to ask
+  note:
+    suspect: {fileID: 0}
+    text: 
+    lean: 0
   characterDelay: 0.05
   fishTankTap: 1
 --- !u!212 &238187137
@@ -1148,6 +1152,10 @@ MonoBehaviour:
   countsAsEvidence: 1
   evidence: 3
   flavourText: An overstuffed student planner shows Computer Science lectures every Thursday and Friday, with the rest of the week blocked out as 'Intern Stuff'
+  note:
+    suspect: {fileID: 11400000, guid: aff33ab34aa54fd2b0eb77c8158aa59c, type: 2}
+    text: At college on Thursdays and Fridays
+    lean: 0
   characterDelay: 0.05
   fishTankTap: 0
 --- !u!61 &535774378
@@ -1774,6 +1782,10 @@ MonoBehaviour:
   countsAsEvidence: 0
   evidence: 0
   flavourText: Looking at the pie chart, it's clear that the majority far exceeds the minority
+  note:
+    suspect: {fileID: 0}
+    text: 
+    lean: 0
   characterDelay: 0.05
   fishTankTap: 0
 --- !u!212 &816783144
@@ -2184,6 +2196,10 @@ MonoBehaviour:
   countsAsEvidence: 0
   evidence: 0
   flavourText: The next deadline is hastily scribbed on.
+  note:
+    suspect: {fileID: 0}
+    text: 
+    lean: 0
   characterDelay: 0.05
   fishTankTap: 0
 --- !u!61 &861500384
@@ -3206,6 +3222,10 @@ MonoBehaviour:
   countsAsEvidence: 0
   evidence: 0
   flavourText: The interns desktop is covered in files, amongst them are 'Report_Final', 'Report_Final2', 'Report_Final_Final', and 'Report_FINAL_FOR_REAL_THIS_TIME'.
+  note:
+    suspect: {fileID: 0}
+    text: 
+    lean: 0
   characterDelay: 0.05
   fishTankTap: 0
 --- !u!61 &1277017245
@@ -3537,6 +3557,10 @@ MonoBehaviour:
   countsAsEvidence: 0
   evidence: 0
   flavourText: This note is hanging precariously above the waste paper basket
+  note:
+    suspect: {fileID: 0}
+    text: 
+    lean: 0
   characterDelay: 0.05
   fishTankTap: 0
 --- !u!61 &1333070958
@@ -6954,6 +6978,10 @@ MonoBehaviour:
   countsAsEvidence: 0
   evidence: 0
   flavourText: The family photo looks well-loved. The frame has been repaired with transparent tape at least twice.
+  note:
+    suspect: {fileID: 0}
+    text: 
+    lean: 0
   characterDelay: 0.05
   fishTankTap: 0
 --- !u!114 &1786494483

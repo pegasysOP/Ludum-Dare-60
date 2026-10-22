@@ -171,14 +171,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad8b65fa84ac62547bd1481e67c44061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CalendarInteractable
+  countsAsEvidence: 1
+  evidence: 2
   dialogLinesWithCharacterInfo:
   - text: Shows various events in the office
     character: {fileID: 0}
-  - text: "Annual Leave: Marco DeLuca, Finance Manager - Tuesday 2nd to Tuesday 16th August  <i>HAWAII yay!! :)</i>\nPretzel Day - Thursday 18th August\nOffice Summer Party - Friday 26th August"
+  - text: 'Annual Leave: Marco DeLuca, Finance Manager - Tuesday 2nd to Tuesday 16th August  <i>HAWAII yay!! :)</i>
+
+      Pretzel Day - Thursday 18th August
+
+      Office Summer Party - Friday 26th August'
     character: {fileID: 0}
   repeatableLine:
-    text: "Annual Leave: Marco DeLuca, Finance Manager - Tuesday 2nd to Tuesday 16th August  <i>HAWAII yay!! :)</i>\nPretzel Day - Thursday 18th August\nOffice Summer Party - Friday 26th August"
+    text: 'Annual Leave: Marco DeLuca, Finance Manager - Tuesday 2nd to Tuesday 16th August  <i>HAWAII yay!! :)</i>
+
+      Pretzel Day - Thursday 18th August
+
+      Office Summer Party - Friday 26th August'
     character: {fileID: 0}
+  note:
+    suspect: {fileID: 11400000, guid: 0ef43d2e83704a55b083bf30c304b9a3, type: 2}
+    text: 'On Vacation during the time the embezzlement occured '
+    lean: 2
   performanceCanvas: {fileID: 0}
-  countsAsEvidence: 1
-  evidence: 2
