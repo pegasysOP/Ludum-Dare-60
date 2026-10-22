@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
 
     SusPXApp suspectApp;
 
-
+    //This one requires both camera timings and timetable so adding it here as the flags are here. 
+    public SuspectNote internNote; 
     bool hasCD = false;
     bool usedCD = false;
 
@@ -39,7 +40,10 @@ public class GameManager : MonoBehaviour
     private void OnDestroy()
     {
         if (Instance == this)
+        {
             Instance = null;
+            SuspectNotes.Reset();
+        }
     }
 
     private void Start()
@@ -113,6 +117,22 @@ public class GameManager : MonoBehaviour
         return HasFound(Evidence.PerformanceReview);
     }
 
+    public void ActivateCameraTimeFlag()
+    {
+        FoundEvidence(Evidence.SecurityFootageTimings);
+
+        if (HasFound(Evidence.CollegeTimetable))
+        {
+            //Both camera timing and college timetable have been found so add evidence;
+            SuspectNotes.Add(internNote);
+        }
+    }
+
+    public bool CheckedCameraTimings()
+    {
+        return HasFound(Evidence.SecurityFootageTimings);
+    }
+
     public void TriggerEnding(Character character)
     {
         bool foundAll = Array.TrueForAll(RequiredEvidence, HasFound);
@@ -149,5 +169,6 @@ public enum Evidence
     SecurityFootage,
     PerformanceReview,
     // either the pm's or finance's pc
-    StaffComputer
+    StaffComputer,
+    SecurityFootageTimings
 }

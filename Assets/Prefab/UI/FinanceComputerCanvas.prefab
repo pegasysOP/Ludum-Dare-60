@@ -8488,3 +8488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EvidenceSource
   evidence: 0
+  note:
+    suspect: {fileID: 11400000, guid: cc20f72f74b140d2bfee77910408b697, type: 2}
+    text: 'Payment software bug fixed on July 19th.'
+    lean: 2

@@ -2756,3 +2756,7 @@ MonoBehaviour:
   repeatableLine:
     text: My desk is on the left. If you find a way to pass university without debt, let me know.
     character: {fileID: 11400000, guid: aff33ab34aa54fd2b0eb77c8158aa59c, type: 2}
+  note:
+    suspect: {fileID: 11400000, guid: aff33ab34aa54fd2b0eb77c8158aa59c, type: 2}
+    text: 'Still at college and says he really needs this job. Money worries?'
+    lean: 1

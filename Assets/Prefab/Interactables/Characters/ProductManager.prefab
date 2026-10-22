@@ -238,6 +238,10 @@ MonoBehaviour:
   repeatableLine:
     text: That CD drive is older than some of our interns.
     character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+  note:
+    suspect: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
+    text: Looks tired and overworked. Mentions working three nights in a row.
+    lean: 1
 --- !u!60 &9213973648289505133
 PolygonCollider2D:
   m_ObjectHideFlags: 0

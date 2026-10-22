@@ -114,6 +114,10 @@ MonoBehaviour:
   repeatableLine:
     text: I'm very busy.
     character: {fileID: 11400000, guid: 65181e84e9c64dcc8477f95d0e0d485f, type: 2}
+  note:
+    suspect: {fileID: 11400000, guid: 65181e84e9c64dcc8477f95d0e0d485f, type: 2}
+    text: 'Too busy with performance reviews to talk. Brought her daughter in.'
+    lean: 0
 --- !u!60 &6813529360823359505
 PolygonCollider2D:
   m_ObjectHideFlags: 0

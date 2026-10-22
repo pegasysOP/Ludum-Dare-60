@@ -10,7 +10,9 @@ public class PerformanceReviewInteractable : Interactable
 
     DialogManager dialogManager;
 
-    public Canvas performanceCanvas; 
+    public Canvas performanceCanvas;
+
+    public SuspectNote note; 
     public void Start()
     {
         dialogManager = FindAnyObjectByType<DialogManager>();
@@ -43,7 +45,10 @@ public class PerformanceReviewInteractable : Interactable
         dialogLinesWithCharacterInfo = new List<DialogLine>();
         dialogLinesWithCharacterInfo.Add(repeatableLine);
         Debug.Log("ProductManagerInteractable OnDialogFinished");
-
+        if(note != null && note.text.Length > 0)
+        {
+            SuspectNotes.Add(note);
+        }
     }
     
 }

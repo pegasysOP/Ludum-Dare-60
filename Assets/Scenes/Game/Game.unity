@@ -342,9 +342,21 @@ PrefabInstance:
       value: MotivationalPoster
       objectReference: {fileID: 0}
     - target: {fileID: 2584173991034558702, guid: 07e685c48921e4a4392f5206e1cbbb0e, type: 3}
+      propertyPath: m_Size.x
+      value: 6.6833334
+      objectReference: {fileID: 0}
+    - target: {fileID: 2584173991034558702, guid: 07e685c48921e4a4392f5206e1cbbb0e, type: 3}
+      propertyPath: m_Size.y
+      value: 8.566667
+      objectReference: {fileID: 0}
+    - target: {fileID: 2584173991034558702, guid: 07e685c48921e4a4392f5206e1cbbb0e, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: aaafa1f3b5390c94d93150e295629dd5, type: 3}
+    - target: {fileID: 2584173991034558702, guid: 07e685c48921e4a4392f5206e1cbbb0e, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3949163562240085618, guid: 07e685c48921e4a4392f5206e1cbbb0e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.71
@@ -421,7 +433,7 @@ PolygonCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 6.6833334, y: 8.566667}
-    newSize: {x: 5.7, y: 8.55}
+    newSize: {x: 6.6833334, y: 8.566667}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -726,6 +738,10 @@ MonoBehaviour:
   countsAsEvidence: 0
   evidence: 0
   flavourText: I have no idea what this is and at this point i'm too afraid to ask
+  note:
+    suspect: {fileID: 0}
+    text: 
+    lean: 0
   characterDelay: 0.05
   fishTankTap: 1
 --- !u!212 &238187137
@@ -1148,6 +1164,10 @@ MonoBehaviour:
   countsAsEvidence: 1
   evidence: 3
   flavourText: An overstuffed student planner shows Computer Science lectures every Thursday and Friday, with the rest of the week blocked out as 'Intern Stuff'
+  note:
+    suspect: {fileID: 11400000, guid: aff33ab34aa54fd2b0eb77c8158aa59c, type: 2}
+    text: At college on Thursdays and Fridays
+    lean: 0
   characterDelay: 0.05
   fishTankTap: 0
 --- !u!61 &535774378
@@ -1774,6 +1794,10 @@ MonoBehaviour:
   countsAsEvidence: 0
   evidence: 0
   flavourText: Looking at the pie chart, it's clear that the majority far exceeds the minority
+  note:
+    suspect: {fileID: 0}
+    text: 
+    lean: 0
   characterDelay: 0.05
   fishTankTap: 0
 --- !u!212 &816783144
@@ -2172,6 +2196,10 @@ MonoBehaviour:
   countsAsEvidence: 0
   evidence: 0
   flavourText: The next deadline is hastily scribbed on.
+  note:
+    suspect: {fileID: 0}
+    text: 
+    lean: 0
   characterDelay: 0.05
   fishTankTap: 0
 --- !u!61 &861500384
@@ -3194,6 +3222,10 @@ MonoBehaviour:
   countsAsEvidence: 0
   evidence: 0
   flavourText: The interns desktop is covered in files, amongst them are 'Report_Final', 'Report_Final2', 'Report_Final_Final', and 'Report_FINAL_FOR_REAL_THIS_TIME'.
+  note:
+    suspect: {fileID: 0}
+    text: 
+    lean: 0
   characterDelay: 0.05
   fishTankTap: 0
 --- !u!61 &1277017245
@@ -3525,6 +3557,10 @@ MonoBehaviour:
   countsAsEvidence: 0
   evidence: 0
   flavourText: This note is hanging precariously above the waste paper basket
+  note:
+    suspect: {fileID: 0}
+    text: 
+    lean: 0
   characterDelay: 0.05
   fishTankTap: 0
 --- !u!61 &1333070958
@@ -4278,6 +4314,10 @@ MonoBehaviour:
   countsAsEvidence: 0
   evidence: 0
   flavourText: The family photo looks well-loved. The frame has been repaired with transparent tape at least twice.
+  note:
+    suspect: {fileID: 0}
+    text: 
+    lean: 0
   characterDelay: 0.05
   fishTankTap: 0
 --- !u!114 &1786494483
@@ -4920,6 +4960,10 @@ PrefabInstance:
       propertyPath: endingCanvas
       value: 
       objectReference: {fileID: 1848070370}
+    - target: {fileID: 1620693234445515057, guid: c98ba4e82af4e744da21dd621fcb8573, type: 3}
+      propertyPath: internNote.text
+      value: Camera footage of suspect is on day Tyler is at College
+      objectReference: {fileID: 0}
     - target: {fileID: 3033212623151568380, guid: c98ba4e82af4e744da21dd621fcb8573, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

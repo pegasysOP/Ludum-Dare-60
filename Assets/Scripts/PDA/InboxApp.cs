@@ -24,6 +24,8 @@ public class InboxApp : MonoBehaviour, IAppContent, IAppNotification
 
     public bool HasNotification => emails.Exists(email => !email.read);
 
+    public bool KeepsBuzzing => true;
+
     private void Awake()
     {
         sounds = PhoneSfxLibrary.Load();

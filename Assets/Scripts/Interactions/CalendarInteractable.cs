@@ -8,6 +8,8 @@ public class CalendarInteractable : Interactable
 
     public DialogLine repeatableLine;
 
+    public SuspectNote note;
+
     DialogManager dialogManager;
 
     public Canvas performanceCanvas; 
@@ -42,7 +44,7 @@ public class CalendarInteractable : Interactable
         dialogLinesWithCharacterInfo = new List<DialogLine>();
         dialogLinesWithCharacterInfo.Add(repeatableLine);
         Debug.Log("ProductManagerInteractable OnDialogFinished");
-
+        SuspectNotes.Add(note);
     }
     
 }

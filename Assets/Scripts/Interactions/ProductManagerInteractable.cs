@@ -8,6 +8,9 @@ public class ProductManagerInteractable : Interactable
 
     public DialogLine repeatableLine;
 
+    // goes into SusPX once the conversation's been heard out
+    public SuspectNote note;
+
     DialogManager dialogManager;
 
     public void Start()
@@ -35,6 +38,7 @@ public class ProductManagerInteractable : Interactable
     
     private void OnFinalLineCompleted()
     {   
+        SuspectNotes.Add(note);
         dialogLinesWithCharacterInfo.Clear();
         dialogLinesWithCharacterInfo = new List<DialogLine>();
         dialogLinesWithCharacterInfo.Add(repeatableLine);
