@@ -8,6 +8,9 @@ public class SecretaryInteractable : Interactable
 
     public DialogLine repeatableLine;
 
+    // goes into SusPX once the conversation's been heard out
+    public SuspectNote note;
+
     // the line where the CD gets handed over, it shows on screen as that line starts
     public int cdLineIndex = 2;
 
@@ -46,6 +49,7 @@ public class SecretaryInteractable : Interactable
     private void OnFinalLineCompleted()
     {
         GameManager.Instance.ActivateGotCDFlag();
+        SuspectNotes.Add(note);
         
         dialogLinesWithCharacterInfo.Clear();
         dialogLinesWithCharacterInfo = new List<DialogLine>();

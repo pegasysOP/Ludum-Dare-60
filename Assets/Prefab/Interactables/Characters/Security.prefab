@@ -2750,3 +2750,7 @@ MonoBehaviour:
   repeatableLine:
     text: Honestly, the cameras know more about this building than I do.
     character: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
+  note:
+    suspect: {fileID: 11400000, guid: 97526db448704d30b3e32ccec2baf8fb, type: 2}
+    text: 'Runs the camera archive.'
+    lean: 0

@@ -2824,3 +2824,7 @@ MonoBehaviour:
   repeatableLine:
     text: If growing a beard improved profits, We'd be unstoppable.
     character: {fileID: 11400000, guid: c19b6085ea1f4aa38032526b613408ae, type: 2}
+  note:
+    suspect: {fileID: 11400000, guid: c19b6085ea1f4aa38032526b613408ae, type: 2}
+    text: 'Asked me in to find out what happened. Hazy on the details, but it''s his own company''s money.'
+    lean: 2

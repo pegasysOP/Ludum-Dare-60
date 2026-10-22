@@ -533,3 +533,7 @@ MonoBehaviour:
   repeatableLine:
     text: The password was definitely on a sticky note. Probably.
     character: {fileID: 11400000, guid: 0ef43d2e83704a55b083bf30c304b9a3, type: 2}
+  note:
+    suspect: {fileID: 11400000, guid: 0ef43d2e83704a55b083bf30c304b9a3, type: 2}
+    text: 'Kept password on sticky note. On vacation recently?'
+    lean: 0

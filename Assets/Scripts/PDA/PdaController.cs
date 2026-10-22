@@ -53,9 +53,14 @@ public class PdaController : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             IAppNotification notifier = app.fullscreenApp.GetComponentInChildren<IAppNotification>(true);
             if (notifier != null)
             {
+                bool had = notifier.HasNotification;
                 notifier.NotificationChanged += () =>
                 {
-                    app.SetNotification(notifier.HasNotification);
+                    bool has = notifier.HasNotification;
+                    app.SetNotification(has);
+                    if (has && !had && !notifier.KeepsBuzzing)
+                        DOVirtual.DelayedCall(0.3f, Buzz).SetLink(gameObject);
+                    had = has;
                     RefreshNotificationLight();
                 };
                 app.SetNotification(notifier.HasNotification);
@@ -133,15 +138,29 @@ public class PdaController : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         open = opening;
     }
 
-    // led on the frame breathes and the phone buzzes while any app has something new
+    // led on the frame breathes while any app has something new, and the phone keeps buzzing for the apps that want it
     private void RefreshNotificationLight()
     {
         bool lit = notifiers.Exists(notifier => notifier.HasNotification);
+        bool nagging = notifiers.Exists(notifier => notifier.HasNotification && notifier.KeepsBuzzing);
+
+        if (nagging != (buzzLoop != null && buzzLoop.IsActive()))
+        {
+            buzzLoop?.Kill();
+            buzzLoop = null;
+            if (nagging)
+                buzzLoop = DOTween.Sequence()
+                    .AppendInterval(0.3f)
+                    .AppendCallback(Buzz)
+                    .AppendInterval(buzzInterval)
+                    .SetLoops(-1)
+                    .SetLink(gameObject);
+        }
+
         if (lit == notificationLight.gameObject.activeSelf)
             return;
 
         lightPulse?.Kill();
-        buzzLoop?.Kill();
         notificationLight.gameObject.SetActive(lit);
         if (!lit)
             return;
@@ -152,13 +171,6 @@ public class PdaController : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             .Append(notificationLight.DOFade(1f, 0.4f).SetEase(Ease.OutSine))
             .Append(notificationLight.DOFade(0f, 1f).SetEase(Ease.InSine))
             .AppendInterval(0.6f)
-            .SetLoops(-1)
-            .SetLink(gameObject);
-
-        buzzLoop = DOTween.Sequence()
-            .AppendInterval(0.3f)
-            .AppendCallback(Buzz)
-            .AppendInterval(buzzInterval)
             .SetLoops(-1)
             .SetLink(gameObject);
     }

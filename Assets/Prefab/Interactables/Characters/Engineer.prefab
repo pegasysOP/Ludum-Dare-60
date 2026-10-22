@@ -2456,3 +2456,7 @@ MonoBehaviour:
   repeatableLine:
     text: I fixed the bug. That's usually where my stories end.
     character: {fileID: 11400000, guid: cc20f72f74b140d2bfee77910408b697, type: 2}
+  note:
+    suspect: {fileID: 11400000, guid: cc20f72f74b140d2bfee77910408b697, type: 2}
+    text: 'Says the payment bug was fixed a month ago. Only ''98% sure''.'
+    lean: 0

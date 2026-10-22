@@ -4,10 +4,13 @@ using UnityEngine;
 public class EvidenceSource : MonoBehaviour
 {
     public Evidence evidence;
+    // optional, goes into SusPX the first time this shows
+    public SuspectNote note;
 
     private void OnEnable()
     {
         if (GameManager.Instance != null)
             GameManager.Instance.FoundEvidence(evidence);
+        SuspectNotes.Add(note);
     }
 }
