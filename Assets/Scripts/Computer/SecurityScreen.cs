@@ -140,7 +140,7 @@ public class SecurityScreen : MonoBehaviour
         footage.DOColor(Color.white, 0.35f).SetEase(Ease.OutQuad);
 
         //Trigger flag if either of these dates is looked at 
-        if (recording.date == "Thur Jul 21, 2005" || recording.date == "Fri Aug 5, 2005")
+        if (recording.date == "Thur, Jul 21st 2005" || recording.date == "Fri, Aug 5th 2005")
         {
             GameManager.Instance.ActivateCameraTimeFlag();
         }
