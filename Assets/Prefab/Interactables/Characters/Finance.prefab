@@ -124,7 +124,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.6171572, y: 3.8744442}
+    oldSize: {x: 3.621578, y: 3.8731027}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -515,6 +515,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13207926ca803674293b6f9244e50057, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProductManagerInteractable
+  countsAsEvidence: 0
+  evidence: 0
   dialogLinesWithCharacterInfo:
   - text: I spent two weeks on a beach trying not to think about spreadsheets.
     character: {fileID: 11400000, guid: 0ef43d2e83704a55b083bf30c304b9a3, type: 2}
@@ -535,5 +537,5 @@ MonoBehaviour:
     character: {fileID: 11400000, guid: 0ef43d2e83704a55b083bf30c304b9a3, type: 2}
   note:
     suspect: {fileID: 11400000, guid: 0ef43d2e83704a55b083bf30c304b9a3, type: 2}
-    text: 'Kept password on sticky note. On vacation recently?'
+    text: Kept password on sticky note.
     lean: 0
