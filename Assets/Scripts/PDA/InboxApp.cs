@@ -82,6 +82,7 @@ public class InboxApp : MonoBehaviour, IAppContent, IAppNotification
         email.read = true;
         row.SetRead(true);
         NotificationChanged?.Invoke();
+        SuspectNotes.Add(email.note);
 
         subjectText.text = email.subject;
         fromText.text = "From: " + email.from;
@@ -121,4 +122,6 @@ public class Email
     // one the owner sent rather than received, shown with who it went to
     public bool sent;
     public string to;
+    // optional, goes into SusPX when the email's opened
+    public SuspectNote note;
 }

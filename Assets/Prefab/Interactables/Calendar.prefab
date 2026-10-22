@@ -145,8 +145,8 @@ MonoBehaviour:
     character: {fileID: 0}
   note:
     suspect: {fileID: 11400000, guid: 0ef43d2e83704a55b083bf30c304b9a3, type: 2}
-    text: 'On Vacation during the time the embezzlement occured '
-    lean: 2
+    text: In Hawaii 2nd-16th Aug
+    lean: 0
   performanceCanvas: {fileID: 0}
 --- !u!60 &146621091493819233
 PolygonCollider2D:

@@ -55,6 +55,7 @@ public class DesktopMail : MonoBehaviour
         row.SetRead(true);
         if (hadUnread && !HasUnread)
             AllRead?.Invoke();
+        SuspectNotes.Add(email.note);
 
         subjectText.text = email.subject;
         fromText.text = email.sent ? "To: " + email.to : "From: " + email.from;

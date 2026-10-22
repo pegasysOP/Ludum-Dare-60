@@ -31,7 +31,9 @@ public static class SuspectNotes
 
     public static void Add(SuspectNote note)
     {
-        if (note == null || note.suspect == null || string.IsNullOrEmpty(note.text) || notes.Contains(note))
+        // the same evidence can turn up in more than one place, it only counts once
+        if (note == null || note.suspect == null || string.IsNullOrEmpty(note.text)
+            || notes.Exists(other => other.suspect == note.suspect && other.text == note.text))
             return;
 
         notes.Add(note);

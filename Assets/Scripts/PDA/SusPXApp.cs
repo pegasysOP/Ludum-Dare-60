@@ -95,7 +95,9 @@ public class SusPXApp : MonoBehaviour, IAppContent, IAppNotification
             Destroy(noteRow.gameObject);
         noteRows.Clear();
 
+        // newest first, so fresh evidence is at the top
         List<SuspectNote> notes = SuspectNotes.For(suspect);
+        notes.Reverse();
         foreach (SuspectNote note in notes)
         {
             SuspectNoteRow noteRow = Instantiate(noteTemplate, notesList);
