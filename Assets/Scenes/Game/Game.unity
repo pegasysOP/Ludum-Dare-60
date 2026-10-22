@@ -1519,6 +1519,14 @@ PrefabInstance:
       value: Calendar
       objectReference: {fileID: 0}
     - target: {fileID: 7640470641073294179, guid: 93acbd5193b4a4f4d8300cb9c0859083, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640470641073294179, guid: 93acbd5193b4a4f4d8300cb9c0859083, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640470641073294179, guid: 93acbd5193b4a4f4d8300cb9c0859083, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.203
       objectReference: {fileID: 0}
