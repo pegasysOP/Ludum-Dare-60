@@ -16,6 +16,8 @@ public class SecretaryInteractable : Interactable
 
     DialogManager dialogManager;
 
+    public SuspectNote negativeNote; 
+
     public void Start()
     {
         dialogManager = FindAnyObjectByType<DialogManager>();
@@ -31,6 +33,13 @@ public class SecretaryInteractable : Interactable
         {
             dialogLinesWithCharacterInfo[cdLineIndex - 1].onLineCompleted = OnCDHandedOver;
         }
+
+        if (dialogLinesWithCharacterInfo[0].text == repeatableLine.text)
+        {
+            //Add suspect note on repeatable line 
+            SuspectNotes.Add(negativeNote);
+        }
+
         dialogManager.AddDialogueLines(dialogLinesWithCharacterInfo);
         dialogManager.PlayDialog();
     }
