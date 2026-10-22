@@ -521,6 +521,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c77d0b82404b3a4299c14c6301aed53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PerformanceReviewInteractable
+  countsAsEvidence: 0
+  evidence: 0
   dialogLinesWithCharacterInfo:
   - text: Internship Performance Review - Final Warning
     character: {fileID: 0}
@@ -534,3 +536,7 @@ MonoBehaviour:
     text: Tyler, your next review is in one month
     character: {fileID: 0}
   performanceCanvas: {fileID: 0}
+  note:
+    suspect: {fileID: 11400000, guid: aff33ab34aa54fd2b0eb77c8158aa59c, type: 2}
+    text: Negative Performance Review
+    lean: 1
