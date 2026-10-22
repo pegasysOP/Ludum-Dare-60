@@ -2438,6 +2438,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13207926ca803674293b6f9244e50057, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProductManagerInteractable
+  countsAsEvidence: 0
+  evidence: 0
   dialogLinesWithCharacterInfo:
   - text: I'm afraid I'm probably not going to be much help.
     character: {fileID: 11400000, guid: cc20f72f74b140d2bfee77910408b697, type: 2}
