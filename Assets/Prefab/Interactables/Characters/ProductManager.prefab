@@ -218,6 +218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13207926ca803674293b6f9244e50057, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProductManagerInteractable
+  countsAsEvidence: 0
+  evidence: 0
   dialogLinesWithCharacterInfo:
   - text: You here about the discrepancy?
     character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
@@ -238,8 +240,8 @@ MonoBehaviour:
     character: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
   note:
     suspect: {fileID: 11400000, guid: bb430af671224a169c0320f2b32830f0, type: 2}
-    text: 'Looks tired, overworked?'
-    lean: 0
+    text: Looks tired and overworked. Mentions working three nights in a row.
+    lean: 1
 --- !u!60 &9213973648289505133
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -278,7 +280,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.3837963, y: 2.2474344}
+    oldSize: {x: 3.7222917, y: 6.045403}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
