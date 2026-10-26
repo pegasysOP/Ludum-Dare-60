@@ -107,9 +107,14 @@ public class MusicManager : MonoBehaviour
         public AudioClip clip;
         public int start, end;
         public double nextSwitch;
+        // DSP time the pair falls silent on its own (a fade-out's end), so a stalled frame loop can't leave it playing
+        public double stopAt = double.MaxValue;
+        public double Body => (end - start) / (double)clip.frequency;
+        public AudioSource Waiting => playing == primary ? twin : primary;
     }
 
     private const double ScheduleLead = 0.05;      // seconds of DSP lead time when starting a scheduled track
+    private const double FadeStopMargin = 0.25;    // a faded-out track stops on the audio clock this long after its fade ends
     private readonly Dictionary<AudioSource, LoopState> loops = new Dictionary<AudioSource, LoopState>();
     private AudioSource twinA, twinB;
     private MusicLibrary loopLibrary;
@@ -163,18 +168,60 @@ public class MusicManager : MonoBehaviour
         {
             // The primary carries the envelope (crossfades, ducking for settings); the twin follows it.
             st.twin.volume = st.primary.volume;
-            if (pausedLoopSample >= 0 || now < st.nextSwitch)
-                continue;
-            // The handover just happened: re-arm the source that finished for the next pass.
-            AudioSource ended = st.playing;
-            st.playing = ended == st.primary ? st.twin : st.primary;
-            double body = (st.end - st.start) / (double)st.clip.frequency;
-            st.nextSwitch += body;
-            ended.Stop();
-            ended.timeSamples = st.start;
-            ended.PlayScheduled(st.nextSwitch);
-            ended.SetScheduledEndTime(st.nextSwitch + body);
+            if (pausedLoopSample < 0)
+                AdvanceLoop(st, now);
         }
+    }
+
+    // Once a handover has happened, re-arm the source that finished for the next pass.
+    private void AdvanceLoop(LoopState st, double now)
+    {
+        if (now < st.nextSwitch)
+            return;
+        double body = st.Body;
+        if (now >= st.nextSwitch + body)
+        {
+            // frames stalled for a whole pass (a hidden browser tab) and both sources have run out: pick the body back up
+            st.playing = st.primary;
+            ScheduleBody(st, st.primary, now + ScheduleLead);
+            st.nextSwitch = now + ScheduleLead + body;
+            ScheduleBody(st, st.twin, st.nextSwitch);
+            return;
+        }
+        AudioSource ended = st.playing;
+        st.playing = st.Waiting;
+        st.nextSwitch += body;
+        ScheduleBody(st, ended, st.nextSwitch);
+    }
+
+    private void ScheduleBody(LoopState st, AudioSource src, double at)
+    {
+        src.Stop();
+        if (at >= st.stopAt)
+            return;
+        src.timeSamples = st.start;
+        src.PlayScheduled(at);
+        src.SetScheduledEndTime(System.Math.Min(st.stopAt, at + st.Body));
+    }
+
+    /// <summary>
+    /// Has a looping pair fall silent at DSP time <paramref name="at"/> on the audio clock (double.MaxValue to
+    /// cancel), so a faded-out track stops even if frames stall mid-fade and the fade never finishes.
+    /// </summary>
+    private void SetStopTime(AudioSource src, double at)
+    {
+        if (src == null || !loops.TryGetValue(src, out LoopState st))
+            return;
+        double now = AudioSettings.dspTime;
+        if (pausedLoopSample < 0)
+            AdvanceLoop(st, now);
+        st.stopAt = at;
+        st.playing.SetScheduledEndTime(System.Math.Min(at, st.nextSwitch));
+        // Re-arm the waiting source (a cancelled stop may have skipped arming it), unless its start is too close to touch.
+        if (st.nextSwitch - now > ScheduleLead)
+            ScheduleBody(st, st.Waiting, st.nextSwitch);
+        else
+            st.Waiting.SetScheduledEndTime(System.Math.Min(at, st.nextSwitch + st.Body));
     }
 
     private void OnDestroy()
@@ -221,7 +268,7 @@ public class MusicManager : MonoBehaviour
         currentClipDebug = clip;
         currentModeDebug = Mode.Game;
         float fade = crossfadeOverride >= 0f ? crossfadeOverride : crossfadeDuration;
-        routine = StartCoroutine(GameMusicRoutine(clip, fade));
+        routine = StartCoroutine(CrossfadeRoutine(clip, fade, true));
     }
 
     /// <summary>
@@ -279,7 +326,7 @@ public class MusicManager : MonoBehaviour
     {
         if (clip == null) return;
         if (IsAlreadyPlaying(clip)) return;
-        if (crossfadeSeconds <= 0f || !IsPlayingPair(activeSource))
+        if (crossfadeSeconds <= 0f || !(IsPlayingPair(sourceA) || IsPlayingPair(sourceB)))
         {
             PlayMusic(clip);
             return;
@@ -288,7 +335,7 @@ public class MusicManager : MonoBehaviour
         StopRoutine();
         currentClipDebug = clip;
         currentModeDebug = Mode.Menu;
-        routine = StartCoroutine(EndingRoutine(clip, crossfadeSeconds));
+        routine = StartCoroutine(CrossfadeRoutine(clip, crossfadeSeconds, false));
     }
 
     /// <summary>
@@ -614,50 +661,88 @@ public class MusicManager : MonoBehaviour
         phaseDebug = "Idle";
     }
 
-    // Crossfade in to peak, hold, then decay to background.
-    private IEnumerator GameMusicRoutine(AudioClip clip, float crossfadeSeconds)
+    /// <summary>
+    /// The source to fade <paramref name="clip"/> in on. A fade cut short by a new request leaves both sources
+    /// sounding, so: if one is still playing the clip (fading back to the track you just left), it carries on
+    /// from where it is; otherwise the quieter one is reused, so the cut lands on the track you hear least.
+    /// </summary>
+    private AudioSource PickFadeTarget(AudioClip clip, out bool resume)
     {
-        AudioSource from = activeSource;
-        AudioSource to = OtherSource(from);
+        resume = true;
+        if (sourceA.clip == clip && IsPlayingPair(sourceA)) return sourceA;
+        if (sourceB.clip == clip && IsPlayingPair(sourceB)) return sourceB;
+        resume = false;
+        float a = IsPlayingPair(sourceA) ? sourceA.volume : -1f;
+        float b = IsPlayingPair(sourceB) ? sourceB.volume : -1f;
+        return a <= b ? sourceA : sourceB;
+    }
 
-        float fromStartLinear = (from != null && IsPlayingPair(from)) ? from.volume : 0f;
-        float peakLinear = TargetLinear(peakMultiplier);
+    // Fades run on the real clock, not frame deltas: a long or frozen frame finishes a fade, it never holds it halfway.
+    private static double Now => Time.realtimeSinceStartupAsDouble;
 
-        to.volume = 0f;
-        StartSource(to, clip);
+    private static float Elapsed(double since, float limit)
+    {
+        return Mathf.Min(limit, (float)(Now - since));
+    }
+
+    // Crossfade from whatever is playing into the clip. With the envelope (in-game): rise to peak, hold, then
+    // decay to background. Without (the endings): rise to full volume and stay there.
+    private IEnumerator CrossfadeRoutine(AudioClip clip, float crossfadeSeconds, bool envelope)
+    {
+        AudioSource to = PickFadeTarget(clip, out bool resume);
+        AudioSource from = OtherSource(to);
+        // the new track counts as the current one from the start, so a repeat request mid-fade is a no-op
+        activeSource = to;
+
+        float fromStartLinear = IsPlayingPair(from) ? from.volume : 0f;
+        float toStartLinear = resume ? to.volume : 0f;
+        float topMultiplier = envelope ? peakMultiplier : fullVolumeMultiplier;
+        float fade = Mathf.Max(0.01f, crossfadeSeconds);
+
+        if (resume)
+            SetStopTime(to, double.MaxValue);
+        else
+        {
+            to.volume = 0f;
+            StartSource(to, clip);
+        }
+        // If frames stall mid-fade (a hidden browser tab), the old track still stops on the audio clock.
+        if (IsPlayingPair(from))
+            SetStopTime(from, AudioSettings.dspTime + fade + FadeStopMargin);
 
         // Phase 1: crossfade (previous track fades out as new track rises to peak)
         phaseDebug = "Crossfade";
-        float fade = Mathf.Max(0.01f, crossfadeSeconds);
+        double since = Now;
         float t = 0f;
         while (t < fade)
         {
-            t += Time.deltaTime;
+            t = Elapsed(since, fade);
             float n = Ease(t / fade);
-            to.volume = AudioVolume.LerpAmplitudePerceived(0f, peakLinear, n);
-            if (from != null && from != to)
-                from.volume = AudioVolume.LerpAmplitudePerceived(fromStartLinear, 0f, n);
-            currentPerceivedMultiplierDebug = Mathf.Lerp(0f, peakMultiplier, n);
+            // Re-evaluate the target each frame so master-volume changes mid-fade still track.
+            to.volume = AudioVolume.LerpAmplitudePerceived(toStartLinear, TargetLinear(topMultiplier), n);
+            from.volume = AudioVolume.LerpAmplitudePerceived(fromStartLinear, 0f, n);
+            currentPerceivedMultiplierDebug = Mathf.Lerp(0f, topMultiplier, n);
             yield return null;
         }
 
-        to.volume = peakLinear;
-        if (from != null && from != to)
+        StopSource(from);
+        from.volume = 0f;
+        from.clip = null;
+        to.volume = TargetLinear(topMultiplier);
+        currentPerceivedMultiplierDebug = topMultiplier;
+
+        if (!envelope)
         {
-            StopSource(from);
-            from.volume = 0f;
-            from.clip = null;
+            phaseDebug = "FullVolume";
+            routine = null;
+            yield break;
         }
-        activeSource = to;
-        currentPerceivedMultiplierDebug = peakMultiplier;
 
         // Phase 2: hold at peak
         phaseDebug = "PeakHold";
-        float hold = Mathf.Max(0f, peakHoldDuration);
-        float held = 0f;
-        while (held < hold)
+        since = Now;
+        while (Now - since < peakHoldDuration)
         {
-            held += Time.deltaTime;
             // Re-evaluate each frame so master-volume changes mid-hold still track.
             to.volume = TargetLinear(peakMultiplier);
             yield return null;
@@ -667,15 +752,14 @@ public class MusicManager : MonoBehaviour
         phaseDebug = "Decay";
         float decay = Mathf.Max(0.01f, decayDuration);
         float decayStart = to.volume;
-        float decayEnd = TargetLinear(backgroundMultiplier);
-        float td = 0f;
-        while (td < decay)
+        since = Now;
+        t = 0f;
+        while (t < decay)
         {
-            td += Time.deltaTime;
-            float n = Ease(td / decay);
+            t = Elapsed(since, decay);
+            float n = Ease(t / decay);
             // Recompute end each frame so master-volume changes still track.
-            decayEnd = TargetLinear(backgroundMultiplier);
-            to.volume = AudioVolume.LerpAmplitudePerceived(decayStart, decayEnd, n);
+            to.volume = AudioVolume.LerpAmplitudePerceived(decayStart, TargetLinear(backgroundMultiplier), n);
             currentPerceivedMultiplierDebug = Mathf.Lerp(peakMultiplier, backgroundMultiplier, n);
             yield return null;
         }
@@ -683,38 +767,6 @@ public class MusicManager : MonoBehaviour
         to.volume = TargetLinear(backgroundMultiplier);
         currentPerceivedMultiplierDebug = backgroundMultiplier;
         phaseDebug = "Background";
-        routine = null;
-    }
-
-    // Crossfade from the current track into a full-volume track (the endings); no envelope after that.
-    private IEnumerator EndingRoutine(AudioClip clip, float crossfadeSeconds)
-    {
-        AudioSource from = activeSource;
-        AudioSource to = OtherSource(from);
-        float fromStartLinear = from.volume;
-
-        to.volume = 0f;
-        StartSource(to, clip);
-
-        phaseDebug = "Crossfade";
-        float t = 0f;
-        while (t < crossfadeSeconds)
-        {
-            t += Time.deltaTime;
-            float n = Ease(t / crossfadeSeconds);
-            to.volume = AudioVolume.LerpAmplitudePerceived(0f, TargetLinear(fullVolumeMultiplier), n);
-            from.volume = AudioVolume.LerpAmplitudePerceived(fromStartLinear, 0f, n);
-            currentPerceivedMultiplierDebug = Mathf.Lerp(0f, fullVolumeMultiplier, n);
-            yield return null;
-        }
-
-        StopSource(from);
-        from.volume = 0f;
-        from.clip = null;
-        activeSource = to;
-        to.volume = TargetLinear(fullVolumeMultiplier);
-        currentPerceivedMultiplierDebug = fullVolumeMultiplier;
-        phaseDebug = "FullVolume";
         routine = null;
     }
 
@@ -770,8 +822,7 @@ public class MusicManager : MonoBehaviour
 
     private IEnumerator FadeOutRoutine(float duration)
     {
-        AudioSource src = activeSource;
-        if (src == null || !IsPlayingPair(src))
+        if (!IsPlayingPair(sourceA) && !IsPlayingPair(sourceB))
         {
             SilenceAll();
             ResetDebug();
@@ -779,13 +830,20 @@ public class MusicManager : MonoBehaviour
             yield break;
         }
 
+        // both sources, in case this cuts into a crossfade
         phaseDebug = "FadeOut";
-        float startVol = src.volume;
+        float startA = IsPlayingPair(sourceA) ? sourceA.volume : 0f;
+        float startB = IsPlayingPair(sourceB) ? sourceB.volume : 0f;
+        double stopAt = AudioSettings.dspTime + duration + FadeStopMargin;
+        SetStopTime(sourceA, stopAt);
+        SetStopTime(sourceB, stopAt);
+        double since = Now;
         float t = 0f;
         while (t < duration)
         {
-            t += Time.deltaTime;
-            src.volume = AudioVolume.LerpAmplitudePerceived(startVol, 0f, t / duration);
+            t = Elapsed(since, duration);
+            sourceA.volume = AudioVolume.LerpAmplitudePerceived(startA, 0f, t / duration);
+            sourceB.volume = AudioVolume.LerpAmplitudePerceived(startB, 0f, t / duration);
             yield return null;
         }
 
